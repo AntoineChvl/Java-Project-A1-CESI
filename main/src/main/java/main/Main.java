@@ -1,5 +1,5 @@
 /**
- * @author Jean-Aymeric DIET jadiet@cesi.fr
+ * @author Tanguy Lhinaresa 
  * @version 1.0
  */
 package main;
