@@ -49,5 +49,6 @@ public class ModelTest {
         Assert.assertEquals("Hallo Welt", this.model.getHelloWorld().getMessage());
         this.model.loadHelloWorld("ID");
         Assert.assertEquals("Salamat pagi dunia", this.model.getHelloWorld().getMessage());
+        System.out.println("test");
     }
 }
