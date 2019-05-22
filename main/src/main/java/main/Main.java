@@ -1,5 +1,5 @@
 /**
- * @author Tanguy Lhinares
+ * @author Tanguy Lhinaresa 
  * @version 1.0
  */
 package main;
