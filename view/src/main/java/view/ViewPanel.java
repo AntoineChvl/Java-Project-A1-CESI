@@ -1,10 +1,13 @@
 package view;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JPanel;
+
+import entity.Entity;
 
 /**
  * The Class ViewPanel.
@@ -64,6 +67,26 @@ class ViewPanel extends JPanel implements Observer {
 	@Override
 	protected void paintComponent(final Graphics graphics) {
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-		graphics.drawString(this.getViewFrame().getModel().getMap().getContentOfMap(), 10, 20);
+		//graphics.drawString(this.getViewFrame().getModel().getMap().getContentOfMap(), 10, 20);
+		
+		Entity[][] loadMap = this.viewFrame.getModel().getMap().getArrayMap();
+		
+		((Graphics2D)graphics).scale(2,2);
+		
+		for(int x = 0; x <this.viewFrame.getModel().getMap().getWidthMap(); x++) {
+			
+			
+			for(int y=0; y < this.viewFrame.getModel().getMap().getHeightMap(); y++) {
+				
+				graphics.drawImage(loadMap[x][y].getSprite().getImage(), x*16, y*16, this);				
+				
+			}
+			
+			
+		}
+		
+		
+		
+		
 	}
 }

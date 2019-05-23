@@ -1,6 +1,13 @@
 package entity;
 
-import java.util.Arrays;
+import com.entity.mobileelements.Diamond;
+import com.entity.mobileelements.Enemy;
+import com.entity.mobileelements.Player;
+import com.entity.mobileelements.Stone;
+import com.entity.motionlesselements.Dirt;
+import com.entity.motionlesselements.ExitDoor;
+import com.entity.motionlesselements.Path;
+import com.entity.motionlesselements.Walls;
 
 public class Map extends Entity {
 
@@ -78,23 +85,55 @@ public class Map extends Entity {
 		return mapFirstLength[0].length() - 1;
 	}
 
-
 	public void createMapToChars() {
 		
 		
-		int i = 0;
-		int j = 0;
-	
-		if (getWidthMap() > 0 && getHeightMap() >0 ) {
-			this.mapToChars = new Entity[getWidthMap()][getHeightMap()];
-			for (i = 0; i < getHeightMap(); i++) {
-				for (j = 0; j < getWidthMap(); j++) {
-					this.mapToChars[j][i] = 'X';
+		String map = this.getContentOfMap();
+		System.out.println(map);
+		System.out.println(getHeightMap());
+		System.out.println(getWidthMap());
+		if (getHeightMap() >= 1 && getWidthMap() >= 1) {
+			this.mapToChars = new Entity[this.getWidthMap()][this.getHeightMap()];
+			for (int y = 0; y < getHeightMap(); y++) {
+				String[] finalMap = map.split("\n");
+				for (int x = 0; x < getWidthMap(); x++) {
+					switch (finalMap[y].toCharArray()[x]) {
+					case 'q':
+						mapToChars[x][y] = new Walls(x,y);
+						break;
+					case 't':
+						mapToChars[x][y] = new Dirt(x,y);
+						break;
+					case 'y':
+						mapToChars[x][y] = new Player(x,y);
+						break;
+					case 'o':
+						mapToChars[x][y] = new Stone(x,y);
+						break;
+					case 'i':
+						mapToChars[x][y] = new Enemy(x,y);
+						break;
+					case 'u':
+						mapToChars[x][y] = new Path(x,y);
+						break;
+					case 'x':
+						mapToChars[x][y] = new Diamond(x,y);
+						break;
+					case 'e':
+						mapToChars[x][y] = new ExitDoor(x,y);
+						break;
+					default:
+						break;
+					}
 				}
 			}
 		}
-		
-		System.out.println(Arrays.deepToString(mapToChars));
 	}
+	
+	public Entity[][] getArrayMap(){
+		
+		return this.mapToChars;
+	}
+	
 
 }
