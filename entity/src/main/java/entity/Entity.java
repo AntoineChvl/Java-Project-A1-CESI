@@ -6,6 +6,10 @@ package entity;
  * @author Jean-Aymeric Diet
  */
 public abstract class Entity {
+	
+	int positionX;
+	int positionY;
+	
 
 }
 
