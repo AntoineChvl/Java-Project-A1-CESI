@@ -15,6 +15,7 @@ import entity.Entity;
  *
  * @author Jean-Aymeric Diet
  */
+@SuppressWarnings("unused")
 class ViewPanel extends JPanel implements Observer {
 
 	/** The view frame. */
@@ -38,6 +39,7 @@ class ViewPanel extends JPanel implements Observer {
 	 *
 	 * @return the view frame
 	 */
+	@SuppressWarnings("unused")
 	private ViewFrame getViewFrame() {
 		return this.viewFrame;
 	}

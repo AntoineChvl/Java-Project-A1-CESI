@@ -147,19 +147,5 @@ public class Map extends Entity {
         return null;
     }
 	
-	public Stone getStone() {
-        Entity[][] entity = this.getArrayMap();
-        for (int y = 0; y < getHeightMap(); y++) {
-            for (int x = 0; x < getWidthMap(); x++) {
-                if (entity[x][y] instanceof Stone) {
-                    return (Stone) entity[x][y];
-                }
-            }
-        }
-        return null;
-    }
-	
-	
-	
 
 }

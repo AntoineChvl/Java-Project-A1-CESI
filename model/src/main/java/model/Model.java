@@ -118,7 +118,10 @@ public final class Model extends Observable implements IModel {
 	public void moveUp() {
 		boolean collision = checkForCollisions(this.map.getArrayMap(), map.getPlayer().getPositionX(), map.getPlayer().getPositionY()-1);
 		boolean isDiamond = checkForDiamonds(this.map.getArrayMap(), map.getPlayer().getPositionX(), map.getPlayer().getPositionY()-1);
+		this.map.getPlayer().loadImagesOfPlayer("up");
+		checkForGravity();
 		if(!collision) {
+
 			this.map.getArrayMap()[map.getPlayer().getPositionX()][map.getPlayer().getPositionY()-1] = this.map.getArrayMap()[map.getPlayer().getPositionX()][map.getPlayer().getPositionY()];
 			this.map.getArrayMap()[map.getPlayer().getPositionX()][map.getPlayer().getPositionY()] = new Path(map.getPlayer().getPositionX(),map.getPlayer().getPositionY());
 			this.map.getPlayer().setPositionY(map.getPlayer().getPositionY()-1);
@@ -134,7 +137,10 @@ public final class Model extends Observable implements IModel {
 	public void moveDown() {
 		boolean collision = checkForCollisions(this.map.getArrayMap(), map.getPlayer().getPositionX(), map.getPlayer().getPositionY()+1);
 		boolean isDiamond = checkForDiamonds(this.map.getArrayMap(), map.getPlayer().getPositionX(), map.getPlayer().getPositionY()+1);
+		this.map.getPlayer().loadImagesOfPlayer("down");
+		checkForGravity();
 		if(!collision) {
+
 			this.map.getArrayMap()[map.getPlayer().getPositionX()][map.getPlayer().getPositionY()+1] = this.map.getArrayMap()[map.getPlayer().getPositionX()][map.getPlayer().getPositionY()];
 			this.map.getArrayMap()[map.getPlayer().getPositionX()][map.getPlayer().getPositionY()] = new Path(map.getPlayer().getPositionX(),map.getPlayer().getPositionY());
 			this.map.getPlayer().setPositionY(map.getPlayer().getPositionY()+1);
@@ -151,7 +157,10 @@ public final class Model extends Observable implements IModel {
 	public void moveLeft() {
 		boolean collision = checkForCollisions(this.map.getArrayMap(), map.getPlayer().getPositionX()-1, map.getPlayer().getPositionY());
 		boolean isDiamond = checkForDiamonds(this.map.getArrayMap(), map.getPlayer().getPositionX()-1, map.getPlayer().getPositionY());
+		this.map.getPlayer().loadImagesOfPlayer("left");
+		checkForGravity();
 		if(!collision) {
+
 			this.map.getArrayMap()[map.getPlayer().getPositionX()-1][map.getPlayer().getPositionY()] = this.map.getArrayMap()[map.getPlayer().getPositionX()][map.getPlayer().getPositionY()];
 			this.map.getArrayMap()[map.getPlayer().getPositionX()][map.getPlayer().getPositionY()] = new Path(map.getPlayer().getPositionX(),map.getPlayer().getPositionY());
 			this.map.getPlayer().setPositionX(map.getPlayer().getPositionX()-1);
@@ -168,7 +177,10 @@ public final class Model extends Observable implements IModel {
 	public void moveRight() {
 		boolean collision = checkForCollisions(this.map.getArrayMap(), map.getPlayer().getPositionX()+1, map.getPlayer().getPositionY());
 		boolean isDiamond = checkForDiamonds(this.map.getArrayMap(), map.getPlayer().getPositionX()+1, map.getPlayer().getPositionY());
+		this.map.getPlayer().loadImagesOfPlayer("right");
+		checkForGravity();
 		if(!collision) {
+
 			this.map.getArrayMap()[map.getPlayer().getPositionX()+1][map.getPlayer().getPositionY()] = this.map.getArrayMap()[map.getPlayer().getPositionX()][map.getPlayer().getPositionY()];
 			this.map.getArrayMap()[map.getPlayer().getPositionX()][map.getPlayer().getPositionY()] = new Path(map.getPlayer().getPositionX(),map.getPlayer().getPositionY());
 			this.map.getPlayer().setPositionX(map.getPlayer().getPositionX()+1);
@@ -203,8 +215,20 @@ public final class Model extends Observable implements IModel {
 	}
 	
 	
-
-
-
+	public void checkForGravity() {
+		
+        for (int y = 0; y < this.map.getHeightMap(); y++) {
+            for (int x = 0; x < this.map.getWidthMap(); x++) {
+            	
+            	if (this.map.getArrayMap()[x][y] instanceof Stone && this.map.getArrayMap()[x][y+1] instanceof Path) {
+                   
+            		this.map.getArrayMap()[x][y+1] = this.map.getArrayMap()[x][y];
+            		this.map.getArrayMap()[x][y] = new Path(x,y);
+                }
+            }
+        }
+		this.setChanged();
+		this.notifyObservers();
+	}
 
 }
