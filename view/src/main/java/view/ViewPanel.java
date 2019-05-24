@@ -99,8 +99,9 @@ public class ViewPanel extends JPanel implements Observer {
 		}else { // If the remaining time is equal to 0
 			graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 			graphics.drawString("YOU LOOSE", this.getWidth()/2-75, this.getHeight()/2);
-			// NOW WE HAVE TO PERFORM AN ACTION WHEN THE PLAYER LOOSES
-			// THERE IS ONE MORE PROBLEM WITH THE TIMER IF THE USER CHANGE THE MAP IT WON'T RESTART
+			counter = -100;
+			/* NOW WE HAVE TO PERFORM AN ACTION WHEN THE PLAYER LOOSES (+ RESTART THE TIMER = set it two 200
+			when the player switch between the maps) */
 		}
 		
 	}
@@ -112,7 +113,10 @@ public class ViewPanel extends JPanel implements Observer {
 
     	    @Override
     	    public void run() {
-    	        counter--;//increments the counter
+    	    	// If the counter is equal to -100 it means that the game has stopped
+    	    	if (counter != -100) {
+    	    		counter--;//increments the counter
+    	    	}
     	    }
     	    
     	};
