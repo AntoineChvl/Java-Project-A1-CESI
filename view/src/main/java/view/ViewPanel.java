@@ -1,10 +1,14 @@
 package view;
 
 import java.awt.Font;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Observable;
 import java.util.Observer;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JPanel;
 
@@ -16,13 +20,15 @@ import entity.Entity;
  * @author Jean-Aymeric Diet
  */
 @SuppressWarnings("unused")
-class ViewPanel extends JPanel implements Observer {
+public class ViewPanel extends JPanel implements Observer {
 
 	/** The view frame. */
 	private ViewFrame viewFrame;
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -998294702363713521L;
 
+	
+	public ViewPanel() {}
 	/**
 	 * Instantiates a new view panel.
 	 *
@@ -67,30 +73,50 @@ class ViewPanel extends JPanel implements Observer {
 	 *
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 */
+	
+	static int counter = 3; // Counter until the end of the game
 	@Override
 	protected void paintComponent(final Graphics graphics) {
+		Font font = new Font("Arial", Font.BOLD, 20);
+		graphics.setFont(font);
+		if (counter != 0 && counter != -100) {
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-		//graphics.drawString(this.getViewFrame().getModel().getMap().getContentOfMap(), 10, 20);	
+		
+		graphics.drawString("Remaining time : "+counter, this.getWidth()-200, 35);
+		
 		Entity[][] loadMap = this.viewFrame.getModel().getMap().getArrayMap();
 		
 		//((Graphics2D)graphics).scale(2,2);
 		
 		for(int x = 0; x <this.viewFrame.getModel().getMap().getWidthMap(); x++) {
 			
-			
 			for(int y=0; y < this.viewFrame.getModel().getMap().getHeightMap(); y++) {
-				
-				
 				graphics.drawImage(loadMap[x][y].getSprite().getImage(), x*16, 40+y*16, this);
-				
 			}
-			Font font = new Font("Arial", Font.BOLD, 18);
-			graphics.setFont(font);
-			graphics.drawString(String.valueOf("Diamond Counter : "+this.viewFrame.getModel().getMap().getPlayer().getDiamondsCounter()), 15, 15);
+			graphics.drawString(String.valueOf("Diamond Counter : "+this.viewFrame.getModel().getMap().getPlayer().getDiamondsCounter()), 15, 35);
+		
+		}
+		}else { // If the remaining time is equal to 0
+			graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
+			graphics.drawString("YOU LOOSE", this.getWidth()/2-75, this.getHeight()/2);
+			// NOW WE HAVE TO PERFORM AN ACTION WHEN THE PLAYER LOOSES
+			// THERE IS ONE MORE PROBLEM WITH THE TIMER IF THE USER CHANGE THE MAP IT WON'T RESTART
 		}
 		
+	}
+	
+	public void startTimer() { // This is a timer
+		ViewPanel drawTimer = new ViewPanel();
 		
-		
-		
+    	TimerTask timerTask = new TimerTask() {
+
+    	    @Override
+    	    public void run() {
+    	        counter--;//increments the counter
+    	    }
+    	    
+    	};
+    	Timer timer = new Timer("MyTimer"); //create a new timer
+    	timer.scheduleAtFixedRate(timerTask, 1000, 1000); // each seconds we perform the run method
 	}
 }
