@@ -165,6 +165,7 @@ public class Map extends Entity {
 		this.collisionsHandler.checkForGravity();
 		
 	}
+
 	
 
 }
