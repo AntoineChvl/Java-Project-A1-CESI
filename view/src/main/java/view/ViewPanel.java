@@ -73,6 +73,8 @@ class ViewPanel extends JPanel implements Observer {
 		//graphics.drawString(this.getViewFrame().getModel().getMap().getContentOfMap(), 10, 20);
 		
 		Entity[][] loadMap = this.viewFrame.getModel().getMap().getArrayMap();
+		this.viewFrame.getModel().checkForGravity();
+
 		
 		//((Graphics2D)graphics).scale(2,2);
 		
@@ -81,11 +83,11 @@ class ViewPanel extends JPanel implements Observer {
 			
 			for(int y=0; y < this.viewFrame.getModel().getMap().getHeightMap(); y++) {
 				
-				graphics.drawImage(loadMap[x][y].getSprite().getImage(), x*16, 40+y*16, this);				
+				
+				graphics.drawImage(loadMap[x][y].getSprite().getImage(), x*16, 40+y*16, this);
 				
 			}
 			Font font = new Font("Arial", Font.BOLD, 18);
-			
 			graphics.setFont(font);
 			graphics.drawString(String.valueOf("Diamond Counter : "+this.viewFrame.getModel().getMap().getPlayer().getDiamondsCounter()), 15, 15);
 		}

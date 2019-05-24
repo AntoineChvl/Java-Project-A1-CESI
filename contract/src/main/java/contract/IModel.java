@@ -37,6 +37,7 @@ public interface IModel {
 	
 	void movePlayer(char direction);
 
-
+	public void checkForGravity();
+	
 
 }
