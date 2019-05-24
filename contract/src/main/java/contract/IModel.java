@@ -34,6 +34,8 @@ public interface IModel {
 	 * @return the observable
 	 */
 	Observable getObservable();
+	
+	void movePlayer(char direction);
 
 
 }

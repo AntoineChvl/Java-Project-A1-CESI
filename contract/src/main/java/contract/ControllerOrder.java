@@ -16,5 +16,14 @@ public enum ControllerOrder {
 	/** The Indonesia. */
 	Map4,
 	
-	Map5
+	Map5,
+	
+	Z,
+	
+	Q,
+	
+	S,
+	
+	D
+	
 }

@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Observable;
@@ -71,18 +72,20 @@ class ViewPanel extends JPanel implements Observer {
 		
 		Entity[][] loadMap = this.viewFrame.getModel().getMap().getArrayMap();
 		
-		((Graphics2D)graphics).scale(2,2);
+		//((Graphics2D)graphics).scale(2,2);
 		
 		for(int x = 0; x <this.viewFrame.getModel().getMap().getWidthMap(); x++) {
 			
 			
 			for(int y=0; y < this.viewFrame.getModel().getMap().getHeightMap(); y++) {
 				
-				graphics.drawImage(loadMap[x][y].getSprite().getImage(), x*16, y*16, this);				
+				graphics.drawImage(loadMap[x][y].getSprite().getImage(), x*16, 40+y*16, this);				
 				
 			}
+			Font font = new Font("Arial", Font.BOLD, 18);
 			
-			
+			graphics.setFont(font);
+			graphics.drawString(String.valueOf("Diamond Counter : "+this.viewFrame.getModel().getMap().getPlayer().getDiamondsCounter()), 15, 15);
 		}
 		
 		

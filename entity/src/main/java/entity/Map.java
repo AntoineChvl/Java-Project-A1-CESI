@@ -89,9 +89,9 @@ public class Map extends Entity {
 		
 		
 		String map = this.getContentOfMap();
-		System.out.println(map);
-		System.out.println(getHeightMap());
-		System.out.println(getWidthMap());
+		//System.out.println(map);
+		//System.out.println(getHeightMap());
+		//System.out.println(getWidthMap());
 		if (getHeightMap() >= 1 && getWidthMap() >= 1) {
 			this.mapToChars = new Entity[this.getWidthMap()][this.getHeightMap()];
 			for (int y = 0; y < getHeightMap(); y++) {
@@ -134,6 +134,32 @@ public class Map extends Entity {
 		
 		return this.mapToChars;
 	}
+	
+	public Player getPlayer() {
+        Entity[][] entity = this.getArrayMap();
+        for (int y = 0; y < getHeightMap(); y++) {
+            for (int x = 0; x < getWidthMap(); x++) {
+                if (entity[x][y] instanceof Player) {
+                    return (Player) entity[x][y];
+                }
+            }
+        }
+        return null;
+    }
+	
+	public Stone getStone() {
+        Entity[][] entity = this.getArrayMap();
+        for (int y = 0; y < getHeightMap(); y++) {
+            for (int x = 0; x < getWidthMap(); x++) {
+                if (entity[x][y] instanceof Stone) {
+                    return (Stone) entity[x][y];
+                }
+            }
+        }
+        return null;
+    }
+	
+	
 	
 
 }

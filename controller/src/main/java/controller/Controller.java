@@ -85,6 +85,18 @@ public final class Controller implements IController {
 		case Map5:
 			this.model.loadMap(5);
 			break;
+		case Z:
+			this.model.movePlayer('Z');
+			break;
+		case Q:
+			this.model.movePlayer('Q');
+			break;
+		case S:
+			this.model.movePlayer('S');
+			break;
+		case D:
+			this.model.movePlayer('D');
+			break;
 		default:
 			break;
 		}
