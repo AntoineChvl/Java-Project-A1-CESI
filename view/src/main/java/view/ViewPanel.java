@@ -77,8 +77,12 @@ class ViewPanel extends JPanel implements Observer {
 	static int counter = 10; // Counter until the end of the game
 	@Override
 	protected void paintComponent(final Graphics graphics) {
+		
 		Font font = new Font("Arial", Font.BOLD, 20);
 		graphics.setFont(font);
+		
+		//((Graphics2D)graphics).scale(2,2);
+		
 		if (counter != 0 && counter != -100) {
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
 		
@@ -86,7 +90,7 @@ class ViewPanel extends JPanel implements Observer {
 		
 		Entity[][] loadMap = this.viewFrame.getModel().getMap().getArrayMap();
 		
-		//((Graphics2D)graphics).scale(2,2);
+		
 		
 		for(int x = 0; x <this.viewFrame.getModel().getMap().getWidthMap(); x++) {
 			
