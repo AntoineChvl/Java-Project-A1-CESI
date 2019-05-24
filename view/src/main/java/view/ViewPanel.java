@@ -20,7 +20,7 @@ import entity.Entity;
  * @author Jean-Aymeric Diet
  */
 @SuppressWarnings("unused")
-public class ViewPanel extends JPanel implements Observer {
+class ViewPanel extends JPanel implements Observer {
 
 	/** The view frame. */
 	private ViewFrame viewFrame;
@@ -74,7 +74,7 @@ public class ViewPanel extends JPanel implements Observer {
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 */
 	
-	static int counter = 200; // Counter until the end of the game
+	static int counter = 10; // Counter until the end of the game
 	@Override
 	protected void paintComponent(final Graphics graphics) {
 		Font font = new Font("Arial", Font.BOLD, 20);

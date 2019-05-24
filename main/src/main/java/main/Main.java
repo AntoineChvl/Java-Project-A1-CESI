@@ -8,7 +8,6 @@ import contract.ControllerOrder;
 import controller.Controller;
 import model.Model;
 import view.View;
-import view.ViewPanel;
 
 /**
  * The Class Main.
@@ -34,8 +33,8 @@ public abstract class Main {
         controller.orderPerform(ControllerOrder.Map1); 
         
         // We create ViewPanel in order to start the timer because the start almost instantly
-    	ViewPanel vpTime = new ViewPanel();
-    	vpTime.startTimer();
+    	//ViewPanel vpTime = new ViewPanel();
+    	//vpTime.startTimer();
     	
         controller.start();
 
