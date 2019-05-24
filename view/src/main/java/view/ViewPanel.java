@@ -73,8 +73,12 @@ class ViewPanel extends JPanel implements Observer {
 		//graphics.drawString(this.getViewFrame().getModel().getMap().getContentOfMap(), 10, 20);
 		
 		Entity[][] loadMap = this.viewFrame.getModel().getMap().getArrayMap();
-		this.viewFrame.getModel().checkForGravity();
+		
 
+		
+			this.viewFrame.getModel().checkForGravity();
+
+			
 		
 		//((Graphics2D)graphics).scale(2,2);
 		

@@ -2,9 +2,12 @@ package model;
 
 import java.sql.SQLException;
 import java.util.Observable;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import com.entity.mobileelements.Diamond;
 import com.entity.mobileelements.Stone;
+import com.entity.motionlesselements.Dirt;
 import com.entity.motionlesselements.Path;
 import com.entity.motionlesselements.Walls;
 
@@ -27,6 +30,7 @@ public final class Model extends Observable implements IModel {
 	 */
 	public Model() {
 		this.map = new Map();
+		//this.startTimerFallingObject();
 	}
 	
 	
@@ -211,22 +215,37 @@ public final class Model extends Observable implements IModel {
 	
 	
 	public void checkForGravity() {
-		
-        for (int y = 0; y < this.map.getHeightMap(); y++) {
+
+        for (int y = this.map.getHeightMap()-1; y >= 0 ; y--) {
             for (int x = 0; x < this.map.getWidthMap(); x++) {
             	
             	if ((this.map.getArrayMap()[x][y] instanceof Stone || this.map.getArrayMap()[x][y] instanceof Diamond) && this.map.getArrayMap()[x][y+1] instanceof Path) {
-                   
             		this.map.getArrayMap()[x][y+1] = this.map.getArrayMap()[x][y];
             		this.map.getArrayMap()[x][y] = new Path(x,y);
-            		this.setChanged();
-            		this.notifyObservers();
-                }
-            }
-        }
 
-	}
+                } else if (this.map.getArrayMap()[x][y] instanceof Stone && this.map.getArrayMap()[x][y+1] instanceof Stone
+                		&& this.map.getArrayMap()[x-1][y] instanceof Path && this.map.getArrayMap()[x-1][y+1] instanceof Path ) {
+                	
+                	this.map.getArrayMap()[x-1][y+1] = this.map.getArrayMap()[x][y];
+            		this.map.getArrayMap()[x][y] = new Path(x,y);
 	
+                } else if (this.map.getArrayMap()[x][y] instanceof Stone && this.map.getArrayMap()[x][y+1] instanceof Stone
+                		&& this.map.getArrayMap()[x+1][y] instanceof Path && this.map.getArrayMap()[x+1][y+1] instanceof Path ) {
+                	
+                	this.map.getArrayMap()[x+1][y+1] = this.map.getArrayMap()[x][y];
+            		this.map.getArrayMap()[x][y] = new Path(x,y);
+	
+                }
+
+
+
+            }
+
+        }
+        
+		setChanged();
+		notifyObservers();
+	}
 
 
 }
