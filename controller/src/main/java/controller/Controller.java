@@ -25,6 +25,7 @@ public final class Controller implements IController {
 	public Controller(final IView view, final IModel model) {
 		this.setView(view);
 		this.setModel(model);
+
 	}
 
 	/**
@@ -38,6 +39,19 @@ public final class Controller implements IController {
 	public void control() {
 		this.view.printMessage(
 				"Bienvenue sur BoulderDash ! Cliquez sur 'OK' pour commencer à jouer !");
+	}
+	
+	public void start() {
+		
+		while(true) {
+			this.model.loop();
+			try {
+				Thread.sleep(50);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 	/**
@@ -86,16 +100,20 @@ public final class Controller implements IController {
 			this.model.loadMap(5);
 			break;
 		case Z:
-			this.model.movePlayer('Z');
+			this.model.getMap().getPlayer().movePlayer('Z');
+			this.model.modelNotify();
 			break;
 		case Q:
-			this.model.movePlayer('Q');
+			this.model.getMap().getPlayer().movePlayer('Q');
+			this.model.modelNotify();
 			break;
 		case S:
-			this.model.movePlayer('S');
+			this.model.getMap().getPlayer().movePlayer('S');
+			this.model.modelNotify();
 			break;
 		case D:
-			this.model.movePlayer('D');
+			this.model.getMap().getPlayer().movePlayer('D');
+			this.model.modelNotify();
 			break;
 		default:
 			break;

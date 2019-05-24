@@ -35,10 +35,14 @@ public interface IModel {
 	 */
 	Observable getObservable();
 	
-	void movePlayer(char direction);
-
-	public void checkForGravity();
+	//void movePlayer(char direction);
 	
-
+	
+	
+	
+	
+	public void modelNotify();
+	
+	public void loop();
 
 }

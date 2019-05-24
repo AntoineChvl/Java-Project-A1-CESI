@@ -30,5 +30,6 @@ public abstract class Main {
 
         controller.control();
         controller.orderPerform(ControllerOrder.Map1);
+        controller.start();
     }
 }

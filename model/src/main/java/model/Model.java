@@ -2,17 +2,9 @@ package model;
 
 import java.sql.SQLException;
 import java.util.Observable;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import com.entity.mobileelements.Diamond;
-import com.entity.mobileelements.Stone;
-import com.entity.motionlesselements.Dirt;
-import com.entity.motionlesselements.Path;
-import com.entity.motionlesselements.Walls;
 
 import contract.IModel;
-import entity.Entity;
 import entity.Map;
 
 /**
@@ -24,16 +16,12 @@ public final class Model extends Observable implements IModel {
 
 	/** The helloWorld. */
 	private Map map;
-
 	/**
 	 * Instantiates a new model.
 	 */
 	public Model() {
 		this.map = new Map();
-		//this.startTimerFallingObject();
 	}
-	
-	
 
 	/**
      * Gets the hello world.
@@ -57,8 +45,7 @@ public final class Model extends Observable implements IModel {
      */
 	private void setMap(final Map map) {
 		this.map = map;
-		this.setChanged();
-		this.notifyObservers();
+		this.modelNotify();
 	}
 
 	/**
@@ -95,157 +82,16 @@ public final class Model extends Observable implements IModel {
 		return this;
 	}
 	
-	
-	public void movePlayer(char direction) {
-		//Player p = this.map.getPlayer();
-		//this.checkForGravity();
-		switch(direction) {
-		
-		case 'Z': 
-				this.moveUp();
-			break;
-		case 'Q':
-				this.moveLeft();
-			break;
-		case 'S':
-				this.moveDown();
-			break;
-		case 'D':
-				this.moveRight();
-			break;
-		}
-		
-		this.setChanged();
-		this.notifyObservers();
-	}
-	
-	public void moveUp() {
-		boolean collision = checkForCollisions(this.map.getArrayMap(), map.getPlayer().getPositionX(), map.getPlayer().getPositionY()-1);
-		boolean isDiamond = checkForDiamonds(this.map.getArrayMap(), map.getPlayer().getPositionX(), map.getPlayer().getPositionY()-1);
-		this.map.getPlayer().loadImagesOfPlayer("up");
-		if(!collision) {
-
-			this.map.getArrayMap()[map.getPlayer().getPositionX()][map.getPlayer().getPositionY()-1] = this.map.getArrayMap()[map.getPlayer().getPositionX()][map.getPlayer().getPositionY()];
-			this.map.getArrayMap()[map.getPlayer().getPositionX()][map.getPlayer().getPositionY()] = new Path(map.getPlayer().getPositionX(),map.getPlayer().getPositionY());
-			this.map.getPlayer().setPositionY(map.getPlayer().getPositionY()-1);
-
-			
-			if(isDiamond) {
-				this.getMap().getPlayer().incrementDiamondsCounter();
-			}
-
-		}
-	}
-	
-	public void moveDown() {
-		boolean collision = checkForCollisions(this.map.getArrayMap(), map.getPlayer().getPositionX(), map.getPlayer().getPositionY()+1);
-		boolean isDiamond = checkForDiamonds(this.map.getArrayMap(), map.getPlayer().getPositionX(), map.getPlayer().getPositionY()+1);
-		this.map.getPlayer().loadImagesOfPlayer("down");
-		if(!collision) {
-
-			this.map.getArrayMap()[map.getPlayer().getPositionX()][map.getPlayer().getPositionY()+1] = this.map.getArrayMap()[map.getPlayer().getPositionX()][map.getPlayer().getPositionY()];
-			this.map.getArrayMap()[map.getPlayer().getPositionX()][map.getPlayer().getPositionY()] = new Path(map.getPlayer().getPositionX(),map.getPlayer().getPositionY());
-			this.map.getPlayer().setPositionY(map.getPlayer().getPositionY()+1);
-
-			
-			if(isDiamond) {
-				this.getMap().getPlayer().incrementDiamondsCounter();
-			}
-			
-		}
-
-	}
-	
-	public void moveLeft() {
-		boolean collision = checkForCollisions(this.map.getArrayMap(), map.getPlayer().getPositionX()-1, map.getPlayer().getPositionY());
-		boolean isDiamond = checkForDiamonds(this.map.getArrayMap(), map.getPlayer().getPositionX()-1, map.getPlayer().getPositionY());
-		this.map.getPlayer().loadImagesOfPlayer("left");
-		if(!collision) {
-
-			this.map.getArrayMap()[map.getPlayer().getPositionX()-1][map.getPlayer().getPositionY()] = this.map.getArrayMap()[map.getPlayer().getPositionX()][map.getPlayer().getPositionY()];
-			this.map.getArrayMap()[map.getPlayer().getPositionX()][map.getPlayer().getPositionY()] = new Path(map.getPlayer().getPositionX(),map.getPlayer().getPositionY());
-			this.map.getPlayer().setPositionX(map.getPlayer().getPositionX()-1);
-
-			
-			if(isDiamond) {
-				this.getMap().getPlayer().incrementDiamondsCounter();
-			}
-			
-		}
-
-	}
-	
-	public void moveRight() {
-		boolean collision = checkForCollisions(this.map.getArrayMap(), map.getPlayer().getPositionX()+1, map.getPlayer().getPositionY());
-		boolean isDiamond = checkForDiamonds(this.map.getArrayMap(), map.getPlayer().getPositionX()+1, map.getPlayer().getPositionY());
-		this.map.getPlayer().loadImagesOfPlayer("right");
-		if(!collision) {
-
-			this.map.getArrayMap()[map.getPlayer().getPositionX()+1][map.getPlayer().getPositionY()] = this.map.getArrayMap()[map.getPlayer().getPositionX()][map.getPlayer().getPositionY()];
-			this.map.getArrayMap()[map.getPlayer().getPositionX()][map.getPlayer().getPositionY()] = new Path(map.getPlayer().getPositionX(),map.getPlayer().getPositionY());
-			this.map.getPlayer().setPositionX(map.getPlayer().getPositionX()+1);
-
-			
-			if(isDiamond) {
-				this.getMap().getPlayer().incrementDiamondsCounter();
-			}
-			
-		}
-
-	}
-	
-	
-	public boolean checkForCollisions(Entity[][] playerPosition, int x, int y) {
-		if(playerPosition[x][y] instanceof Stone) {
-			return true;
-		} else if (playerPosition[x][y] instanceof Walls){
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	public boolean checkForDiamonds(Entity[][] playerPosition, int x, int y) {
-		
-		if(playerPosition[x][y] instanceof Diamond) {
-			return true;
-		}
-		return false;
-	}
-	
-	
-	public void checkForGravity() {
-
-        for (int y = this.map.getHeightMap()-1; y >= 0 ; y--) {
-            for (int x = 0; x < this.map.getWidthMap(); x++) {
-            	
-            	if ((this.map.getArrayMap()[x][y] instanceof Stone || this.map.getArrayMap()[x][y] instanceof Diamond) && this.map.getArrayMap()[x][y+1] instanceof Path) {
-            		this.map.getArrayMap()[x][y+1] = this.map.getArrayMap()[x][y];
-            		this.map.getArrayMap()[x][y] = new Path(x,y);
-
-                } else if (this.map.getArrayMap()[x][y] instanceof Stone && this.map.getArrayMap()[x][y+1] instanceof Stone
-                		&& this.map.getArrayMap()[x-1][y] instanceof Path && this.map.getArrayMap()[x-1][y+1] instanceof Path ) {
-                	
-                	this.map.getArrayMap()[x-1][y+1] = this.map.getArrayMap()[x][y];
-            		this.map.getArrayMap()[x][y] = new Path(x,y);
-	
-                } else if (this.map.getArrayMap()[x][y] instanceof Stone && this.map.getArrayMap()[x][y+1] instanceof Stone
-                		&& this.map.getArrayMap()[x+1][y] instanceof Path && this.map.getArrayMap()[x+1][y+1] instanceof Path ) {
-                	
-                	this.map.getArrayMap()[x+1][y+1] = this.map.getArrayMap()[x][y];
-            		this.map.getArrayMap()[x][y] = new Path(x,y);
-	
-                }
-
-
-
-            }
-
-        }
-        
+	public void modelNotify() {
 		setChanged();
 		notifyObservers();
 	}
+	
+	public void loop() {
+		this.getMap().loop();
+		this.modelNotify();
+	}
+	
 
 
 }

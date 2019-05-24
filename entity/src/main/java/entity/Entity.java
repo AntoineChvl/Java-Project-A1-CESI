@@ -8,9 +8,10 @@ package entity;
 public abstract class Entity {
 	
 	
-	Sprite sprite;
-	int positionX;
-	int positionY;
+	private Sprite sprite;
+	private int positionX;
+	private int positionY;
+	private Map map;
 	
 	public Entity(final Sprite sprite, int x, int y) {
 		this.setSprite(sprite);
@@ -22,6 +23,13 @@ public abstract class Entity {
 		
 	}
 	
+	public void setMap(Map map) {
+		this.map = map;
+	}
+	
+	public Map getMap() {
+		return this.map;
+	}
 	
 	
 	public final void setSprite(final Sprite sprite) {

@@ -1,5 +1,6 @@
 package entity;
 
+import com.collisionshandler.CollisionsHandler;
 import com.entity.mobileelements.Diamond;
 import com.entity.mobileelements.Enemy;
 import com.entity.mobileelements.Player;
@@ -17,6 +18,7 @@ public class Map extends Entity {
 	private int id;
 
 	private Entity[][] mapToChars;
+	private CollisionsHandler collisionsHandler;
 
 	/**
 	 * Instantiates a new hello world.
@@ -29,7 +31,16 @@ public class Map extends Entity {
 		this.setId(id);
 		this.setContentOfMap(content);
 		this.createMapToChars();
+		collisionsHandler = new CollisionsHandler(this);
 
+	}
+
+	public CollisionsHandler getCollisionsHandler() {
+		return collisionsHandler;
+	}
+
+	public void setCollisionsHandler(CollisionsHandler collisionsHandler) {
+		this.collisionsHandler = collisionsHandler;
 	}
 
 	/**
@@ -125,6 +136,9 @@ public class Map extends Entity {
 					default:
 						break;
 					}
+					
+					mapToChars[x][y].setMap(this);
+					
 				}
 			}
 		}
@@ -146,6 +160,11 @@ public class Map extends Entity {
         }
         return null;
     }
+	
+	public void loop() {
+		this.collisionsHandler.checkForGravity();
+		
+	}
 	
 
 }

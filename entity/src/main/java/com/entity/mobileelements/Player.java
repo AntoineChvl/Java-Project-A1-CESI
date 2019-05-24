@@ -2,6 +2,8 @@ package com.entity.mobileelements;
 
 import java.io.IOException;
 
+import com.entity.motionlesselements.Path;
+
 import entity.Sprite;
 
 public class Player extends MobileElements {
@@ -11,6 +13,7 @@ public class Player extends MobileElements {
 	private static final Sprite spriteTurnRight = new Sprite('y',"Right_Rockford.png");
 	private static final Sprite spriteUp = new Sprite('y',"Back_Rockford1.png");
 	private int diamondsCounter;
+	
 	
 	static {
 		try {
@@ -111,6 +114,104 @@ public class Player extends MobileElements {
 			break;		
 		}
 	}
+	
+	public void movePlayer(char direction) {
+		//Player p = this.map.getPlayer();
+		//this.checkForGravity();
+		switch(direction) {
+		
+		case 'Z': 
+				this.moveUp();
+			break;
+		case 'Q':
+				this.moveLeft();
+			break;
+		case 'S':
+				this.moveDown();
+			break;
+		case 'D':
+				this.moveRight();
+			break;
+		}
+		
+		//this.modelNotify();
+	}
+	
+	public void moveUp() {
+		boolean collision = this.getMap().getCollisionsHandler().checkForCollisions(this.getMap().getArrayMap(), getMap().getPlayer().getPositionX(), getMap().getPlayer().getPositionY()-1);
+		boolean isDiamond = this.getMap().getCollisionsHandler().checkForDiamonds(this.getMap().getArrayMap(), getMap().getPlayer().getPositionX(), getMap().getPlayer().getPositionY()-1);
+		this.getMap().getPlayer().loadImagesOfPlayer("up");
+		if(!collision) {
+
+			this.getMap().getArrayMap()[getMap().getPlayer().getPositionX()][getMap().getPlayer().getPositionY()-1] = this.getMap().getArrayMap()[getMap().getPlayer().getPositionX()][getMap().getPlayer().getPositionY()];
+			this.getMap().getArrayMap()[getMap().getPlayer().getPositionX()][getMap().getPlayer().getPositionY()] = new Path(getMap().getPlayer().getPositionX(),getMap().getPlayer().getPositionY());
+			this.getMap().getPlayer().setPositionY(getMap().getPlayer().getPositionY()-1);
+
+			
+			if(isDiamond) {
+				this.incrementDiamondsCounter();
+			}
+
+		}
+	}
+	
+	public void moveDown() {
+		boolean collision = this.getMap().getCollisionsHandler().checkForCollisions(this.getMap().getArrayMap(), getMap().getPlayer().getPositionX(), getMap().getPlayer().getPositionY()+1);
+		boolean isDiamond = this.getMap().getCollisionsHandler().checkForDiamonds(this.getMap().getArrayMap(), getMap().getPlayer().getPositionX(), getMap().getPlayer().getPositionY()+1);
+		this.getMap().getPlayer().loadImagesOfPlayer("down");
+		if(!collision) {
+
+			this.getMap().getArrayMap()[getMap().getPlayer().getPositionX()][getMap().getPlayer().getPositionY()+1] = this.getMap().getArrayMap()[getMap().getPlayer().getPositionX()][getMap().getPlayer().getPositionY()];
+			this.getMap().getArrayMap()[getMap().getPlayer().getPositionX()][getMap().getPlayer().getPositionY()] = new Path(getMap().getPlayer().getPositionX(),getMap().getPlayer().getPositionY());
+			this.getMap().getPlayer().setPositionY(getMap().getPlayer().getPositionY()+1);
+
+			
+			if(isDiamond) {
+				this.incrementDiamondsCounter();
+			}
+			
+		}
+
+	}
+	
+	public void moveLeft() {
+		boolean collision = this.getMap().getCollisionsHandler().checkForCollisions(this.getMap().getArrayMap(), getMap().getPlayer().getPositionX()-1, getMap().getPlayer().getPositionY());
+		boolean isDiamond = this.getMap().getCollisionsHandler().checkForDiamonds(this.getMap().getArrayMap(), getMap().getPlayer().getPositionX()-1, getMap().getPlayer().getPositionY());
+		this.getMap().getPlayer().loadImagesOfPlayer("left");
+		if(!collision) {
+
+			this.getMap().getArrayMap()[getMap().getPlayer().getPositionX()-1][getMap().getPlayer().getPositionY()] = this.getMap().getArrayMap()[getMap().getPlayer().getPositionX()][getMap().getPlayer().getPositionY()];
+			this.getMap().getArrayMap()[getMap().getPlayer().getPositionX()][getMap().getPlayer().getPositionY()] = new Path(getMap().getPlayer().getPositionX(),getMap().getPlayer().getPositionY());
+			this.getMap().getPlayer().setPositionX(getMap().getPlayer().getPositionX()-1);
+
+			
+			if(isDiamond) {
+				this.incrementDiamondsCounter();
+			}
+			
+		}
+
+	}
+	
+	public void moveRight() {
+		boolean collision = this.getMap().getCollisionsHandler().checkForCollisions(this.getMap().getArrayMap(), getMap().getPlayer().getPositionX()+1, getMap().getPlayer().getPositionY());
+		boolean isDiamond = this.getMap().getCollisionsHandler().checkForDiamonds(this.getMap().getArrayMap(), getMap().getPlayer().getPositionX()+1, getMap().getPlayer().getPositionY());
+		this.getMap().getPlayer().loadImagesOfPlayer("right");
+		if(!collision) {
+
+			this.getMap().getArrayMap()[getMap().getPlayer().getPositionX()+1][getMap().getPlayer().getPositionY()] = this.getMap().getArrayMap()[getMap().getPlayer().getPositionX()][getMap().getPlayer().getPositionY()];
+			this.getMap().getArrayMap()[getMap().getPlayer().getPositionX()][getMap().getPlayer().getPositionY()] = new Path(getMap().getPlayer().getPositionX(),getMap().getPlayer().getPositionY());
+			this.getMap().getPlayer().setPositionX(getMap().getPlayer().getPositionX()+1);
+
+			
+			if(isDiamond) {
+				this.incrementDiamondsCounter();
+			}
+			
+		}
+
+	}
+	
 	
 	
 	
