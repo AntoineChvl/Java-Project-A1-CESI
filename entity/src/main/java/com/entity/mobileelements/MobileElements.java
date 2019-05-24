@@ -47,36 +47,36 @@ public abstract class MobileElements extends Entity {
 		switch(direction) {
 		
 		case 'Z':
-			this.setSprite(entity.getSpriteUp());
+			entity.setSprite(entity.getSpriteUp());
 			try {
-				this.getSprite().loadImage();
+				entity.getSprite().loadImage();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			break;
 		case 'S':
-			this.setSprite(entity.getSpriteDown());
+			entity.setSprite(entity.getSpriteDown());
 			try {
-				this.getSprite().loadImage();
+				entity.getSprite().loadImage();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			break;
 		case 'Q':
-			this.setSprite(entity.getSpriteTurnLeft());
+			entity.setSprite(entity.getSpriteTurnLeft());
 			try {
-				this.getSprite().loadImage();
+				entity.getSprite().loadImage();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			break;
 		case 'D':
-			this.setSprite(entity.getSpriteTurnRight());
+			entity.setSprite(entity.getSpriteTurnRight());
 			try {
-				this.getSprite().loadImage();
+				entity.getSprite().loadImage();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
