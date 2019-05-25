@@ -24,6 +24,8 @@ public enum ControllerOrder {
 	
 	S,
 	
-	D
+	D,
+	
+	nothing
 	
 }

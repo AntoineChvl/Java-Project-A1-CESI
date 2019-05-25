@@ -37,8 +37,7 @@ public final class Controller implements IController {
 	 * @see contract.IController#control()
 	 */
 	public void control() {
-		this.view.printMessage(
-				"Bienvenue sur BoulderDash ! Cliquez sur 'OK' pour commencer à jouer !");
+		this.view.printMessage("Welcome to BoulderBash ! Press any key to start the game. Press 1, 2, 3, 4 or 5 to change the map. Use Z/Q/S/D to move the character.");
 	}
 	
 	public void start() {

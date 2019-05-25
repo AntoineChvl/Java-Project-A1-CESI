@@ -20,7 +20,7 @@ public final class Model extends Observable implements IModel {
 	 * Instantiates a new model.
 	 */
 	public Model() {
-		this.map = new Map();
+		//this.map = new Map();
 	}
 
 	/**

@@ -47,6 +47,7 @@ public class Map extends Entity {
 	 */
 	public Map() {
 		this(1, "");
+
 	}
 
 	/**
@@ -98,9 +99,9 @@ public class Map extends Entity {
 	public void createMapToChars() {
 
 		String map = this.getContentOfMap();
-		//System.out.println(map);
-		//System.out.println(getHeightMap());
-		//System.out.println(getWidthMap());
+		// System.out.println(map);
+		// System.out.println(getHeightMap());
+		// System.out.println(getWidthMap());
 		if (getHeightMap() >= 1 && getWidthMap() >= 1) {
 			this.mapToChars = new Entity[this.getWidthMap()][this.getHeightMap()];
 			for (int y = 0; y < getHeightMap(); y++) {
@@ -108,83 +109,80 @@ public class Map extends Entity {
 				for (int x = 0; x < getWidthMap(); x++) {
 					switch (finalMap[y].toCharArray()[x]) {
 					case 'q':
-						mapToChars[x][y] = new Walls(x,y);
+						mapToChars[x][y] = new Walls(x, y);
 						break;
 					case 't':
-						mapToChars[x][y] = new Dirt(x,y);
+						mapToChars[x][y] = new Dirt(x, y);
 						break;
 					case 'y':
-						mapToChars[x][y] = new Player(x,y);
+						mapToChars[x][y] = new Player(x, y);
 						break;
 					case 'o':
-						mapToChars[x][y] = new Stone(x,y);
+						mapToChars[x][y] = new Stone(x, y);
 						break;
 					case 'i':
-						mapToChars[x][y] = new Enemy(x,y);
+						mapToChars[x][y] = new Enemy(x, y);
 
 						break;
 					case 'u':
-						mapToChars[x][y] = new Path(x,y);
+						mapToChars[x][y] = new Path(x, y);
 						break;
 					case 'x':
-						mapToChars[x][y] = new Diamond(x,y);
+						mapToChars[x][y] = new Diamond(x, y);
 						break;
 					case 'e':
-						mapToChars[x][y] = new ExitDoor(x,y);
+						mapToChars[x][y] = new ExitDoor(x, y);
 						break;
 					default:
 						break;
 					}
-					
+
 					mapToChars[x][y].setMap(this);
-					
+
 				}
 			}
 		}
 		this.enemyThreadStart();
 	}
-	
-	public Entity[][] getArrayMap(){
-		
+
+	public Entity[][] getArrayMap() {
+
 		return this.mapToChars;
 	}
-	
+
 	public Player getPlayer() {
-        Entity[][] entity = this.getArrayMap();
-        for (int y = 0; y < getHeightMap(); y++) {
-            for (int x = 0; x < getWidthMap(); x++) {
-                if (entity[x][y] instanceof Player) {
-                    return (Player) entity[x][y];
-                }
-            }
-        }
-        return null;
-    }
-	
+		Entity[][] entity = this.getArrayMap();
+		for (int y = 0; y < getHeightMap(); y++) {
+			for (int x = 0; x < getWidthMap(); x++) {
+				if (entity[x][y] instanceof Player) {
+					return (Player) entity[x][y];
+				}
+			}
+		}
+		return null;
+	}
+
 	public void loop() {
 		this.collisionsHandler.checkForGravity();
 		this.getPlayer().playerDeathLinkToEnemy();
+		this.getPlayer().didPlayerWin();
 	}
-	
+
 	public void enemyThreadStart() {
 
 		if (getHeightMap() >= 1 && getWidthMap() >= 1) {
 			for (int y = 0; y < getHeightMap(); y++) {
-				
+
 				for (int x = 0; x < getWidthMap(); x++) {
 
-					if(this.getArrayMap()[x][y] instanceof Enemy) {
+					if (this.getArrayMap()[x][y] instanceof Enemy) {
 						Thread t = new Thread((Runnable) this.getArrayMap()[x][y]);
 						t.start();
 					}
-					
-					
+
 				}
 			}
 		}
 	}
-	
-
-	
 
 }

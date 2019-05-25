@@ -4,6 +4,7 @@ import com.entity.mobileelements.Diamond;
 import com.entity.mobileelements.MobileElements;
 import com.entity.mobileelements.Player;
 import com.entity.mobileelements.Stone;
+import com.entity.motionlesselements.ExitDoor;
 import com.entity.motionlesselements.Path;
 import com.entity.motionlesselements.Walls;
 
@@ -24,6 +25,8 @@ public class CollisionsHandler {
 		if (entity[x][y] instanceof Stone) {
 			return true;
 		} else if (entity[x][y] instanceof Walls) {
+			return true;
+		} else if (entity[x][y] instanceof ExitDoor) {
 			return true;
 		} else {
 			return false;

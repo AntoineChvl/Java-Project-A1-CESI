@@ -58,7 +58,7 @@ public final class View implements IView, Runnable {
 			case KeyEvent.VK_D:
 				return ControllerOrder.D;
 			default:
-				return ControllerOrder.Map1;
+				return ControllerOrder.nothing;
 		}
 	}
 

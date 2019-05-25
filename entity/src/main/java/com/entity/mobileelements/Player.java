@@ -2,6 +2,8 @@ package com.entity.mobileelements;
 
 import java.io.IOException;
 
+import com.entity.motionlesselements.ExitDoor;
+
 import entity.Sprite;
 
 public class Player extends MobileElements {
@@ -13,6 +15,8 @@ public class Player extends MobileElements {
 	private static final Sprite spriteDeath = new Sprite('y', "Death.png");
 	private boolean isAlive;
 	private int underPotentialThreat;
+	private boolean isWin;
+	private int numberOfWin;
 
 	static {
 		try {
@@ -27,6 +31,8 @@ public class Player extends MobileElements {
 		super(spriteDown, x, y);
 		this.isAlive = true;
 		this.underPotentialThreat = 0;
+		this.isWin = false;
+		this.numberOfWin = 0;
 
 	}
 
@@ -56,7 +62,7 @@ public class Player extends MobileElements {
 
 	public void movePlayer(char direction) {
 
-		if(this.getIsAlive()) {
+		if(this.getIsAlive() && !this.getIsWin()) {
 			switch (direction) {
 
 			case 'Z':
@@ -74,13 +80,12 @@ public class Player extends MobileElements {
 			}
 		} else {
 			
-			System.out.println("Perdu !");
 		}
 	}
 	
 
 	public boolean getIsAlive() {
-		return isAlive;
+		return this.isAlive;
 	}
 
 	public void setIsAlive(boolean isAlive) {
@@ -98,7 +103,24 @@ public class Player extends MobileElements {
 	public void incrementUnderPotentialThreat() {
 		this.underPotentialThreat++;
 	}
+
 	
+	public boolean getIsWin() {
+		return isWin;
+	}
+
+	public void setIsWin(boolean isWin) {
+		this.isWin = isWin;
+	}
+
+	public int getNumberOfWin() {
+		return numberOfWin;
+	}
+
+	public void incrementNumberOfWin() {
+		this.numberOfWin++;
+	}
+
 	public void playerDeathLinkToEnemy() {
 		
 		int x = this.getPositionX();
@@ -111,10 +133,24 @@ public class Player extends MobileElements {
 			this.setIsAlive(false);
 			this.loadImage('X', this);
 		}
-		
-		
 	}
 	
+	public void didPlayerWin() {
+		
+		int x = this.getPositionX();
+		int y = this.getPositionY();
+		
+		if((this.getMap().getArrayMap()[x+1][y] instanceof ExitDoor ||
+				this.getMap().getArrayMap()[x-1][y] instanceof ExitDoor ||
+				this.getMap().getArrayMap()[x][y+1] instanceof ExitDoor ||
+				this.getMap().getArrayMap()[x][y-1] instanceof ExitDoor) && this.getDiamondsCounter() > 5) {
+			
+			this.incrementNumberOfWin();
+			this.setIsWin(true);
+			this.loadImage('X', this);
+		}
+		
+	}
 
 
 }
