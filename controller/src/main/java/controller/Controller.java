@@ -46,7 +46,7 @@ public final class Controller implements IController {
 		while(true) {
 			this.model.loop();
 			try {
-				Thread.sleep(50);
+				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -83,41 +83,46 @@ public final class Controller implements IController {
 	 * @see contract.IController#orderPerform(contract.ControllerOrder)
 	 */
 	public void orderPerform(final ControllerOrder controllerOrder) {
-		switch (controllerOrder) {
-		case Map1:
-			this.model.loadMap(1);
-			break;
-		case Map2:
-			this.model.loadMap(2);
-			break;
-		case Map3:
-			this.model.loadMap(3);
-			break;
-		case Map4:
-			this.model.loadMap(4);
-			break;
-		case Map5:
-			this.model.loadMap(5);
-			break;
-		case Z:
-			this.model.getMap().getPlayer().movePlayer('Z');
-			this.model.modelNotify();
-			break;
-		case Q:
-			this.model.getMap().getPlayer().movePlayer('Q');
-			this.model.modelNotify();
-			break;
-		case S:
-			this.model.getMap().getPlayer().movePlayer('S');
-			this.model.modelNotify();
-			break;
-		case D:
-			this.model.getMap().getPlayer().movePlayer('D');
-			this.model.modelNotify();
-			break;
-		default:
-			break;
+		
+
+		
+			switch (controllerOrder) {
+			case Map1:
+				this.model.loadMap(1);
+				break;
+			case Map2:
+				this.model.loadMap(2);
+				break;
+			case Map3:
+				this.model.loadMap(3);
+				break;
+			case Map4:
+				this.model.loadMap(4);
+				break;
+			case Map5:
+				this.model.loadMap(5);
+				break;
+			case Z:
+				this.model.getMap().getPlayer().movePlayer('Z');
+				this.model.modelNotify();
+				break;
+			case Q:
+				this.model.getMap().getPlayer().movePlayer('Q');
+				this.model.modelNotify();
+				break;
+			case S:
+				this.model.getMap().getPlayer().movePlayer('S');
+				this.model.modelNotify();
+				break;
+			case D:
+				this.model.getMap().getPlayer().movePlayer('D');
+				this.model.modelNotify();
+				break;
+			default:
+				break;
+			}
+			
 		}
-	}
+	
 
 }

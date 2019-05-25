@@ -1,16 +1,15 @@
 package view;
 
 import java.awt.Font;
-
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.util.Observable;
 import java.util.Observer;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.swing.JPanel;
+
+import com.entity.mobileelements.Player;
 
 import entity.Entity;
 
@@ -82,6 +81,7 @@ class ViewPanel extends JPanel implements Observer {
 		graphics.setFont(font);
 		
 		//((Graphics2D)graphics).scale(2,2);
+
 		
 		if (counter != 0 && counter != -100) {
 		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
@@ -89,9 +89,7 @@ class ViewPanel extends JPanel implements Observer {
 		graphics.drawString("Remaining time : "+counter, this.getWidth()-200, 35);
 		
 		Entity[][] loadMap = this.viewFrame.getModel().getMap().getArrayMap();
-		
-		
-		
+
 		for(int x = 0; x <this.viewFrame.getModel().getMap().getWidthMap(); x++) {
 			
 			for(int y=0; y < this.viewFrame.getModel().getMap().getHeightMap(); y++) {

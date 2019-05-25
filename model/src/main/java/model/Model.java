@@ -90,6 +90,10 @@ public final class Model extends Observable implements IModel {
 	public void loop() {
 		this.getMap().loop();
 		this.modelNotify();
+		
+//		if(!this.getMap().getPlayer().getIsAlive()) {
+//			this.modelNotify();
+//		}
 	}
 	
 

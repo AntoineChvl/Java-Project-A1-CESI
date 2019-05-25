@@ -9,43 +9,49 @@ import entity.Sprite;
 
 public abstract class MobileElements extends Entity {
 
+	private int diamondsCounter;
+	
 	public MobileElements(Sprite sprite, int x, int y) {
 		super(sprite, x, y);
-		// TODO Auto-generated constructor stub
 	}
-	
-	
-	
-	public void entityMove(int x, int y, char direction, Entity e) {
-		
+
+	public void entityMove(int x, int y, char direction, MobileElements e) {
+
 		final int xpos = e.getPositionX();
 		final int ypos = e.getPositionY();
+		boolean collision = false;
+		boolean isDiamond = false;
 		
-		boolean collision = this.getMap().getCollisionsHandler().checkForCollisions(this.getMap().getArrayMap(),xpos+x,ypos+y);
-		boolean isDiamond = this.getMap().getCollisionsHandler().checkForDiamonds(this.getMap().getArrayMap(), xpos, ypos-1);
-		
-		this.loadImage(direction, e);
-		if(!collision) {
+			if(e instanceof Player) {
+				collision = this.getMap().getCollisionsHandler().checkForCollisions(this.getMap().getArrayMap(),xpos + x, ypos + y);
+				isDiamond = this.getMap().getCollisionsHandler().checkForDiamonds(this.getMap().getArrayMap(), xpos + x,ypos + y);
+			}else {
+				collision = this.getMap().getCollisionsHandler().checkForPath(this.getMap().getArrayMap(),xpos + x, ypos + y);
+			}
+				
 
-			this.getMap().getArrayMap()[xpos+x][ypos+y] = this.getMap().getArrayMap()[xpos][ypos];
-			this.getMap().getArrayMap()[xpos][ypos] = new Path(xpos,ypos);
-			this.setPositionY(ypos+y);
-			this.setPositionX(xpos+x);
+			this.loadImage(direction, e);
+			
+			if (!collision) {
 
-		}
+				this.getMap().getArrayMap()[xpos + x][ypos + y] = this.getMap().getArrayMap()[xpos][ypos];
+				this.getMap().getArrayMap()[xpos][ypos] = new Path(xpos, ypos);
+				this.setPositionY(ypos + y);
+				this.setPositionX(xpos + x);
+
+			}
+
+			if (isDiamond == true) {
+				e.incrementDiamondsCounter();
+			}
 		
-		if(e instanceof Player && isDiamond == true) {
-			e.incrementDiamondsCounter();
-		}
-		
-		
+
 	}
 
-	
 	public void loadImage(char direction, Entity entity) {
-		
-		switch(direction) {
-		
+
+		switch (direction) {
+
 		case 'Z':
 			entity.setSprite(entity.getSpriteUp());
 			try {
@@ -81,8 +87,27 @@ public abstract class MobileElements extends Entity {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			break;		
+			break;
+		case 'X':
+			entity.setSprite(entity.getSpriteDeath());
+			try {
+				entity.getSprite().loadImage();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
 		}
 	}
+
+	public void incrementDiamondsCounter() {
+		this.diamondsCounter++;
+	}
+
+	public int getDiamondsCounter() {
+		return this.diamondsCounter;
+	}
+
+	
 
 }

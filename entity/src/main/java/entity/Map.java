@@ -30,9 +30,8 @@ public class Map extends Entity {
 	public Map(final int id, final String content) {
 		this.setId(id);
 		this.setContentOfMap(content);
-		this.createMapToChars();
 		collisionsHandler = new CollisionsHandler(this);
-
+		this.createMapToChars();
 	}
 
 	public CollisionsHandler getCollisionsHandler() {
@@ -97,8 +96,7 @@ public class Map extends Entity {
 	}
 
 	public void createMapToChars() {
-		
-		
+
 		String map = this.getContentOfMap();
 		//System.out.println(map);
 		//System.out.println(getHeightMap());
@@ -123,6 +121,7 @@ public class Map extends Entity {
 						break;
 					case 'i':
 						mapToChars[x][y] = new Enemy(x,y);
+
 						break;
 					case 'u':
 						mapToChars[x][y] = new Path(x,y);
@@ -142,6 +141,7 @@ public class Map extends Entity {
 				}
 			}
 		}
+		this.enemyThreadStart();
 	}
 	
 	public Entity[][] getArrayMap(){
@@ -163,8 +163,27 @@ public class Map extends Entity {
 	
 	public void loop() {
 		this.collisionsHandler.checkForGravity();
-		
+		this.getPlayer().playerDeathLinkToEnemy();
 	}
+	
+	public void enemyThreadStart() {
+
+		if (getHeightMap() >= 1 && getWidthMap() >= 1) {
+			for (int y = 0; y < getHeightMap(); y++) {
+				
+				for (int x = 0; x < getWidthMap(); x++) {
+
+					if(this.getArrayMap()[x][y] instanceof Enemy) {
+						Thread t = new Thread((Runnable) this.getArrayMap()[x][y]);
+						t.start();
+					}
+					
+					
+				}
+			}
+		}
+	}
+	
 
 	
 
