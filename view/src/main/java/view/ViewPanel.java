@@ -29,7 +29,7 @@ class ViewPanel extends JPanel implements Observer {
 	private ViewFrame viewFrame;
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -998294702363713521L;
-	static int counter = 10; // Counter until the end of the game
+	static int counter = 200; // Counter until the end of the game
 	
 	public ViewPanel() {
 	}
@@ -125,7 +125,13 @@ class ViewPanel extends JPanel implements Observer {
 				}
 				
 				if(player != null && player.getIsWin()) {
-					getModel.loadMap(map.getId()+1);
+					if (map.getId() <5) {
+						getModel.loadMap(map.getId()+1);
+						
+					} else {
+						getModel.loadMap(1);
+					}
+					
 					counter = timerResetValue;
 				}
 				
