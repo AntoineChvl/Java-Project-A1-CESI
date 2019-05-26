@@ -9,7 +9,7 @@ import entity.Map;
 /**
  * The Interface IModel.
  *
- * @author Jean-Aymeric Diet
+ * @author Exia CESI - Saint-Nazaire - Group 5
  */
 public interface IModel {
 
