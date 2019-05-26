@@ -62,7 +62,7 @@ public class Player extends MobileElements {
 
 	public void movePlayer(char direction) {
 
-		if(this.getIsAlive() && !this.getIsWin()) {
+		if(this.getIsAlive()) {
 			switch (direction) {
 
 			case 'Z':
@@ -125,6 +125,14 @@ public class Player extends MobileElements {
 				this.getMap().getArrayMap()[x][y-1] instanceof Enemy) {
 			this.setIsAlive(false);
 			this.loadImage('X', this);
+			
+			try {
+				Thread.sleep(200);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
 	}
 	

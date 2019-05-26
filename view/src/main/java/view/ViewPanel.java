@@ -138,6 +138,9 @@ class ViewPanel extends JPanel implements Observer {
 				graphics.fillRect(width - 210, 0, 220, 45);
 				graphics.setColor(Color.BLUE);
 				graphics.drawString("Remaining time : " + counter, width - 200, 20);
+				if(player != null) {
+					
+				}
 				graphics.drawString(String.valueOf("Diamond Counter : " + player.getDiamondsCounter()), width - 200, 40);
 				
 				
