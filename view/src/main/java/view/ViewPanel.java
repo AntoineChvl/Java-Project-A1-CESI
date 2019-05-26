@@ -29,7 +29,8 @@ class ViewPanel extends JPanel implements Observer {
 	private ViewFrame viewFrame;
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -998294702363713521L;
-	static int counter = 200; // Counter until the end of the game
+	private static int counter = 200; // Counter until the end of the game
+	private boolean hasBeenNotifiedToStop = false;
 	
 	public ViewPanel() {
 	}
@@ -125,16 +126,24 @@ class ViewPanel extends JPanel implements Observer {
 					}
 				}
 				
-				if(!player.getIsAlive()) {
+				if(!player.getIsAlive() && hasBeenNotifiedToStop == false) {
+					
+					hasBeenNotifiedToStop = true;
+					graphics.clearRect(0, 0, width, height);
+					this.viewFrame.printMessage("You died ! Try again...");
 					getModel.loadMap(map.getId());
+					hasBeenNotifiedToStop = false;
 				}
 				
-				if(player.getIsWin()) {
+				if(player.getIsWin() && hasBeenNotifiedToStop == false) {
 					if (map.getId() <5) {
 						getModel.loadMap(map.getId()+1);
 						
 					} else {
-						getModel.loadMap(1);
+						hasBeenNotifiedToStop = true;
+						graphics.clearRect(0, 0, width, height);
+						this.viewFrame.printMessage("You won ! Congrats !");
+						player.setIsAlive(false);
 					}
 					
 					counter = timerResetValue;
@@ -177,7 +186,8 @@ class ViewPanel extends JPanel implements Observer {
 
 
 		} else {
-			
+			this.viewFrame.printMessage("Loading game...");
+			graphics.clearRect(0, 0, width, height);
 		}
 	}
 

@@ -30,7 +30,7 @@ public abstract class Main {
         view.setController(controller);
 
         controller.control();
-        controller.orderPerform(ControllerOrder.Map1); 
+        controller.orderPerform(ControllerOrder.Map5); 
 
         controller.start();
 
