@@ -8,6 +8,12 @@ import com.entity.motionlesselements.Path;
 import entity.Entity;
 import entity.Sprite;
 
+/**
+ * The Abstract Class MobileElements.
+ *
+ * @author Exia CESI - Saint-Nazaire - Group 5
+ */
+
 public abstract class MobileElements extends Entity {
 
 	private int diamondsCounter;
