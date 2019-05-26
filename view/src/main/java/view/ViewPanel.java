@@ -4,17 +4,16 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.geom.AffineTransform;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import com.entity.mobileelements.Player;
 
+import contract.IModel;
 import entity.Entity;
 import entity.Map;
 
@@ -30,7 +29,8 @@ class ViewPanel extends JPanel implements Observer {
 	private ViewFrame viewFrame;
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -998294702363713521L;
-
+	static int counter = 200; // Counter until the end of the game
+	
 	public ViewPanel() {
 	}
 
@@ -79,7 +79,7 @@ class ViewPanel extends JPanel implements Observer {
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 */
 
-	static int counter = 200; // Counter until the end of the game
+	
 
 	@SuppressWarnings("static-access")
 	@Override
@@ -89,7 +89,9 @@ class ViewPanel extends JPanel implements Observer {
 		final int imageSize = 16;
 		final int width = this.getWidth();
 		final int height = this.getHeight();
+		final int timerResetValue = 200;
 		Map map = this.viewFrame.getModel().getMap();
+		IModel getModel = this.viewFrame.getModel();
 		Entity[][] loadMap = null;
 		Player player = null;
 
@@ -119,8 +121,25 @@ class ViewPanel extends JPanel implements Observer {
 				}
 				
 				if(player != null && !player.getIsAlive()) {
-					this.viewFrame.getModel().loadMap(map.getId());
+					getModel.loadMap(map.getId());
 				}
+				
+				if(player != null && player.getIsWin()) {
+					getModel.loadMap(map.getId()+1);
+					counter = timerResetValue;
+				}
+				
+				
+				((Graphics2D) graphics).scale(1 / scale, 1 / scale);
+
+				graphics.translate((int) (+playerPosX * 16 * scale - width / 2),
+						(int) (+playerPosY * 16 * scale - height / 2));
+				graphics.setColor(Color.white);
+				graphics.fillRect(width - 210, 0, 220, 45);
+				graphics.setColor(Color.BLUE);
+				graphics.drawString("Remaining time : " + counter, width - 200, 20);
+				graphics.drawString(String.valueOf("Diamond Counter : " + player.getDiamondsCounter()), width - 200, 40);
+				
 				
 			} else {
 				// If the remaining time is equal to 0
@@ -133,15 +152,7 @@ class ViewPanel extends JPanel implements Observer {
 				 */
 			}
 
-			((Graphics2D) graphics).scale(1 / scale, 1 / scale);
 
-			graphics.translate((int) (+playerPosX * 16 * scale - width / 2),
-					(int) (+playerPosY * 16 * scale - height / 2));
-			graphics.setColor(Color.white);
-			graphics.fillRect(width - 210, 0, 220, 45);
-			graphics.setColor(Color.BLUE);
-			graphics.drawString("Remaining time : " + counter, width - 200, 20);
-			graphics.drawString(String.valueOf("Diamond Counter : " + player.getDiamondsCounter()), width - 200, 40);
 
 		} else {
 			

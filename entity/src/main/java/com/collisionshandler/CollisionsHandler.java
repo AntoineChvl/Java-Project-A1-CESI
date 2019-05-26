@@ -52,7 +52,7 @@ public class CollisionsHandler {
 	
 	public boolean checkForStoneToMove(Entity[][] entity, int x, int y, int sideX) {
 
-		if (entity[x][y] instanceof Stone && (entity[x+sideX][y] instanceof Dirt || entity[x+sideX][y] instanceof Path)) {
+		if (entity[x][y] instanceof Stone && entity[x+sideX][y] instanceof Path) {
 			return true;
 		}
 		return false;

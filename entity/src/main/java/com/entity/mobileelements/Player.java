@@ -15,10 +15,8 @@ public class Player extends MobileElements {
 	private static final Sprite spriteUp = new Sprite('y', "Back_Rockford1.png");
 	private static final Sprite spriteDeath = new Sprite('y', "Death.png");
 	private boolean isAlive;
-	private int numberOfDeath;
 	private int underPotentialThreat;
 	private boolean isWin;
-	private int numberOfWin;
 	private int thresholdToWin;
 
 	static {
@@ -35,8 +33,7 @@ public class Player extends MobileElements {
 		this.isAlive = true;
 		this.underPotentialThreat = 0;
 		this.isWin = false;
-		this.numberOfWin = 0;
-		this.numberOfDeath = 0;
+
 	}
 
 	public int getDiamondsCounter() {
@@ -116,21 +113,6 @@ public class Player extends MobileElements {
 		this.isWin = isWin;
 	}
 
-	public int getNumberOfWin() {
-		return numberOfWin;
-	}
-
-	public void incrementNumberOfWin() {
-		this.numberOfWin++;
-	}
-	
-	public int getNumberOfDeath() {
-		return numberOfDeath;
-	}
-
-	public void incrementNumberOfDeath() {
-		this.numberOfDeath++;
-	}
 
 	public void playerDeathLinkToEnemy() {
 		
@@ -161,11 +143,9 @@ public class Player extends MobileElements {
 		int y = this.getPositionY();
 		thresholdToWin = 1;
 
-		if(this.getMap().getArrayMap()[x+sideX][y+sideY] instanceof ExitDoor && this.getDiamondsCounter() > thresholdToWin) {
+		if(this.getMap().getArrayMap()[x+sideX][y+sideY] instanceof ExitDoor && this.getDiamondsCounter() >= thresholdToWin) {
 			this.getMap().getArrayMap()[x+sideX][y+sideY] = this.getMap().getArrayMap()[x][y];
 			this.getMap().getArrayMap()[x][y] = new Path(x,y);
-			this.incrementNumberOfWin();
-			this.incrementNumberOfDeath();
 			this.setIsWin(true);
 		}
 	}
