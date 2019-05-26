@@ -7,6 +7,12 @@ import com.entity.motionlesselements.Path;
 
 import entity.Sprite;
 
+/**
+ * The Class Player.
+ *
+ * @author Exia CESI - Saint-Nazaire - Group 5
+ */
+
 public class Player extends MobileElements {
 
 	private static final Sprite spriteDown = new Sprite('y', "Rockford.png");

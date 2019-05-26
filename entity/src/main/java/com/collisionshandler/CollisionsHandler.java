@@ -11,6 +11,12 @@ import com.entity.motionlesselements.Walls;
 import entity.Entity;
 import entity.Map;
 
+/**
+ * The Class CollisionsHandler.
+ *
+ * @author Exia CESI - Saint-Nazaire - Group 5
+ */
+
 public class CollisionsHandler {
 
 	private Map map;

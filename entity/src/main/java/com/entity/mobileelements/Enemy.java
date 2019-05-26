@@ -4,7 +4,11 @@ import java.io.IOException;
 
 
 import entity.Sprite;
-
+/**
+ * The Class Enemy.
+ *
+ * @author Exia CESI - Saint-Nazaire - Group 5
+ */
 public class Enemy extends MobileElements implements Runnable {
 
 	private static final Sprite spriteDown = new Sprite('i',"Enemy.png");
