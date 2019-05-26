@@ -29,7 +29,7 @@ class ViewPanel extends JPanel implements Observer {
 	private ViewFrame viewFrame;
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -998294702363713521L;
-	static int counter = 200; // Counter until the end of the game
+	static int counter = 10; // Counter until the end of the game
 	
 	public ViewPanel() {
 	}
@@ -42,7 +42,7 @@ class ViewPanel extends JPanel implements Observer {
 	public ViewPanel(final ViewFrame viewFrame) {
 		this.setViewFrame(viewFrame);
 		viewFrame.getModel().getObservable().addObserver(this);
-		// viewFrame.getModel().getMap();
+		viewFrame.getModel().getMap();
 	}
 
 	/**
@@ -95,7 +95,7 @@ class ViewPanel extends JPanel implements Observer {
 		Entity[][] loadMap = null;
 		Player player = null;
 
-		if (map != null) {
+		if (map.getPlayer() != null) {
 
 			loadMap = map.getArrayMap();
 			player = this.viewFrame.getModel().getMap().getPlayer();
@@ -138,9 +138,6 @@ class ViewPanel extends JPanel implements Observer {
 				graphics.fillRect(width - 210, 0, 220, 45);
 				graphics.setColor(Color.BLUE);
 				graphics.drawString("Remaining time : " + counter, width - 200, 20);
-				if(player != null) {
-					
-				}
 				graphics.drawString(String.valueOf("Diamond Counter : " + player.getDiamondsCounter()), width - 200, 40);
 				
 				

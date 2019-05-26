@@ -55,7 +55,7 @@ public class CollisionsHandler {
 		return true;
 	}
 	
-	public boolean checkForStoneToMove(Entity[][] entity, int x, int y, int sideX) {
+	public boolean checkForStoneToMove(Entity[][] entity, int x, int y, int sideX) { 
 
 		if (entity[x][y] instanceof Stone && entity[x+sideX][y] instanceof Path) {
 			return true;

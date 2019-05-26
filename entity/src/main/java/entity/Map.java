@@ -47,7 +47,6 @@ public class Map extends Entity {
 	 */
 	public Map() {
 		this(1, "");
-
 	}
 
 	/**
@@ -99,9 +98,6 @@ public class Map extends Entity {
 	public void createMapToChars() {
 
 		String map = this.getContentOfMap();
-		// System.out.println(map);
-		// System.out.println(getHeightMap());
-		// System.out.println(getWidthMap());
 		if (getHeightMap() >= 1 && getWidthMap() >= 1) {
 			this.mapToChars = new Entity[this.getWidthMap()][this.getHeightMap()];
 			for (int y = 0; y < getHeightMap(); y++) {
@@ -162,7 +158,7 @@ public class Map extends Entity {
 		return null;
 	}
 
-	public void loop() {
+	public void loop() { 
 		this.collisionsHandler.checkForGravity();
 		this.getPlayer().playerDeathLinkToEnemy();
 		this.getPlayer().didPlayerWin();

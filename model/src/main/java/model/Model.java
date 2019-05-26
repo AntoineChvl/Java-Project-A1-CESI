@@ -20,7 +20,7 @@ public final class Model extends Observable implements IModel {
 	 * Instantiates a new model.
 	 */
 	public Model() {
-		//this.map = new Map();
+		this.map = new Map();
 	}
 
 	/**
@@ -89,9 +89,8 @@ public final class Model extends Observable implements IModel {
 	
 	public void loop() {
 
-			this.getMap().loop();
-			this.modelNotify();
-		
+		this.getMap().loop();
+		this.modelNotify();
 	}
 	
 
