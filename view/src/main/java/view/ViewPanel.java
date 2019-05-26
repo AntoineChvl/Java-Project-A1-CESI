@@ -90,6 +90,11 @@ class ViewPanel extends JPanel implements Observer {
 		final int width = this.getWidth();
 		final int height = this.getHeight();
 		final int timerResetValue = 200;
+		final int xStartStatsValues = width - 210;
+		final int yStartStatsValues = 0;
+		final int xEndStatsValues = 220;
+		final int yEndStatsValues = 65;
+		final int xStartStatsDisplay = width - 200;
 		Map map = this.viewFrame.getModel().getMap();
 		IModel getModel = this.viewFrame.getModel();
 		Entity[][] loadMap = null;
@@ -120,11 +125,11 @@ class ViewPanel extends JPanel implements Observer {
 					}
 				}
 				
-				if(player != null && !player.getIsAlive()) {
+				if(!player.getIsAlive()) {
 					getModel.loadMap(map.getId());
 				}
 				
-				if(player != null && player.getIsWin()) {
+				if(player.getIsWin()) {
 					if (map.getId() <5) {
 						getModel.loadMap(map.getId()+1);
 						
@@ -141,10 +146,21 @@ class ViewPanel extends JPanel implements Observer {
 				graphics.translate((int) (+playerPosX * 16 * scale - width / 2),
 						(int) (+playerPosY * 16 * scale - height / 2));
 				graphics.setColor(Color.white);
-				graphics.fillRect(width - 210, 0, 220, 45);
+				graphics.fillRect(xStartStatsValues, yStartStatsValues, xEndStatsValues, yEndStatsValues);
 				graphics.setColor(Color.BLUE);
-				graphics.drawString("Remaining time : " + counter, width - 200, 20);
-				graphics.drawString(String.valueOf("Diamond Counter : " + player.getDiamondsCounter()), width - 200, 40);
+				graphics.drawString("Remaining time : " + counter, xStartStatsDisplay, 20);
+				graphics.drawString(String.valueOf("Diamond Counter : " + player.getDiamondsCounter()), xStartStatsDisplay, 40);
+				graphics.setColor(Color.RED);
+				graphics.drawString(String.valueOf("Number needed : " + map.getNumberOfDiamondsNeeded()), xStartStatsDisplay, 60);
+				
+				if(player.getDiamondsCounter() >= map.getNumberOfDiamondsNeeded()) {
+					graphics.clearRect(xStartStatsValues, yStartStatsValues, xEndStatsValues, yEndStatsValues);
+					graphics.setColor(Color.BLUE);
+					graphics.drawString("Remaining time : " + counter, xStartStatsDisplay, 20);
+					graphics.setColor(Color.GREEN);
+					graphics.drawString(String.valueOf("Diamond Counter : " + player.getDiamondsCounter()), xStartStatsDisplay, 40);
+					graphics.drawString("Go to exit door!", xStartStatsDisplay, 60);
+				}
 				
 				
 			} else {

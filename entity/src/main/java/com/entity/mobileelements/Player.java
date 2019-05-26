@@ -150,12 +150,12 @@ public class Player extends MobileElements {
 		
 	}
 	
-	public void goToExit(int sideX, int sideY, int nombreDiamantsNecessaires) {
+	public void goToExit(int sideX, int sideY, int numberOfDiamondsNeeded) {
 		
 		int x = this.getPositionX();
 		int y = this.getPositionY();
 
-		if(this.getMap().getArrayMap()[x+sideX][y+sideY] instanceof ExitDoor && this.getDiamondsCounter() >= nombreDiamantsNecessaires) {
+		if(this.getMap().getArrayMap()[x+sideX][y+sideY] instanceof ExitDoor && this.getDiamondsCounter() >= numberOfDiamondsNeeded) {
 			this.getMap().getArrayMap()[x+sideX][y+sideY] = this.getMap().getArrayMap()[x][y];
 			this.getMap().getArrayMap()[x][y] = new Path(x,y);
 			this.setIsWin(true);

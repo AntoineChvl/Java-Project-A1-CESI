@@ -31,11 +31,7 @@ public abstract class Main {
 
         controller.control();
         controller.orderPerform(ControllerOrder.Map1); 
-        
-        // We create ViewPanel in order to start the timer because the start almost instantly
-    	//ViewPanel vpTime = new ViewPanel();
-    	//vpTime.startTimer();
-    	
+
         controller.start();
 
     }

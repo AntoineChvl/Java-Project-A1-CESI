@@ -19,7 +19,7 @@ public class Map extends Entity {
 
 	private Entity[][] mapToChars;
 	private CollisionsHandler collisionsHandler;
-	private int nombreDiamantsNecessaires;
+	private int numberOfDiamondsNeeded;
 
 	/**
 	 * Instantiates a new hello world.
@@ -28,12 +28,12 @@ public class Map extends Entity {
 	 * @param key     the key
 	 * @param message the message
 	 */
-	public Map(final int id, final String content, int nombreDiamantsNecessaires) {
+	public Map(final int id, final String content, int numberOfDiamondsNeeded) {
 		this.setId(id);
 		this.setContentOfMap(content);
 		collisionsHandler = new CollisionsHandler(this);
 		this.createMapToChars();
-		this.nombreDiamantsNecessaires = nombreDiamantsNecessaires;
+		this.numberOfDiamondsNeeded = numberOfDiamondsNeeded;
 	}
 
 	public CollisionsHandler getCollisionsHandler() {
@@ -95,6 +95,16 @@ public class Map extends Entity {
 	public int getWidthMap() {
 		String[] mapFirstLength = getContentOfMap().split("\n");
 		return mapFirstLength[0].length() - 1;
+	}
+	
+	
+
+	public int getNumberOfDiamondsNeeded() {
+		return numberOfDiamondsNeeded;
+	}
+
+	public void setNumberOfDiamondsNeeded(int numberOfDiamondsNeeded) {
+		this.numberOfDiamondsNeeded = numberOfDiamondsNeeded;
 	}
 
 	public void createMapToChars() {
@@ -163,7 +173,7 @@ public class Map extends Entity {
 	public void loop() { 
 		this.collisionsHandler.checkForGravity();
 		this.getPlayer().playerDeathLinkToEnemy();
-		this.getPlayer().didPlayerWin(nombreDiamantsNecessaires);
+		this.getPlayer().didPlayerWin(numberOfDiamondsNeeded);
 	}
 
 	public void enemyThreadStart() {
