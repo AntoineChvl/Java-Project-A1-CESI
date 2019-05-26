@@ -2,6 +2,7 @@ package com.entity.mobileelements;
 
 import java.io.IOException;
 
+import com.collisionshandler.CollisionsHandler;
 import com.entity.motionlesselements.Path;
 
 import entity.Entity;
@@ -15,30 +16,41 @@ public abstract class MobileElements extends Entity {
 		super(sprite, x, y);
 	}
 
-	public void entityMove(int x, int y, char direction, MobileElements e) {
+	public void entityMove(int x, int y, int sideX, char direction, MobileElements e) {
 
 		final int xpos = e.getPositionX();
 		final int ypos = e.getPositionY();
+		final Entity[][] loadArrayMap = this.getMap().getArrayMap();
+		final CollisionsHandler getCollisionHandler = this.getMap().getCollisionsHandler();
 		boolean collision = false;
 		boolean isDiamond = false;
+		boolean moveStone = false;
 		
 			if(e instanceof Player) {
-				collision = this.getMap().getCollisionsHandler().checkForCollisions(this.getMap().getArrayMap(),xpos + x, ypos + y);
-				isDiamond = this.getMap().getCollisionsHandler().checkForDiamonds(this.getMap().getArrayMap(), xpos + x,ypos + y);
+				collision = getCollisionHandler.checkForCollisions(loadArrayMap,xpos + x, ypos + y);
+				isDiamond = getCollisionHandler.checkForDiamonds(loadArrayMap, xpos + x,ypos + y);
+				moveStone = getCollisionHandler.checkForStoneToMove(loadArrayMap, xpos + x, ypos + y, sideX);
 			}else {
-				collision = this.getMap().getCollisionsHandler().checkForPath(this.getMap().getArrayMap(),xpos + x, ypos + y);
+				collision = getCollisionHandler.checkForPath(loadArrayMap,xpos + x, ypos + y);
 			}
 				
 
 			this.loadImage(direction, e);
 			
-			if (!collision) {
-
-				this.getMap().getArrayMap()[xpos + x][ypos + y] = this.getMap().getArrayMap()[xpos][ypos];
-				this.getMap().getArrayMap()[xpos][ypos] = new Path(xpos, ypos);
+			if(moveStone) {
+				loadArrayMap[xpos + x + sideX][ypos + y] = loadArrayMap[xpos + x][ypos + y];
+				loadArrayMap[xpos + x][ypos + y] = loadArrayMap[xpos][ypos];
+				loadArrayMap[xpos][ypos] = new Path(xpos, ypos);
 				this.setPositionY(ypos + y);
 				this.setPositionX(xpos + x);
+			}
+			
+			if (!collision) {
 
+				loadArrayMap[xpos + x][ypos + y] = loadArrayMap[xpos][ypos];
+				loadArrayMap[xpos][ypos] = new Path(xpos, ypos);
+				this.setPositionY(ypos + y);
+				this.setPositionX(xpos + x);
 			}
 
 			if (isDiamond == true) {

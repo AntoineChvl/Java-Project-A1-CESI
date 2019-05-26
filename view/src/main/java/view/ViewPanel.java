@@ -81,6 +81,7 @@ class ViewPanel extends JPanel implements Observer {
 
 	static int counter = 200; // Counter until the end of the game
 
+	@SuppressWarnings("static-access")
 	@Override
 	protected void paintComponent(final Graphics graphics) {
 
@@ -115,14 +116,12 @@ class ViewPanel extends JPanel implements Observer {
 					for (int y = 0; y < map.getHeightMap(); y++) {
 						graphics.drawImage(loadMap[x][y].getSprite().getImage(), x * imageSize, y * imageSize, this);
 					}
-					if (player.getIsWin() && player.getNumberOfWin() == 1) {
-
-						player.incrementNumberOfWin();
-						JOptionPane deathMessage = new JOptionPane();
-						JOptionPane.showMessageDialog(null, "You just won !", "Congrats !",
-								JOptionPane.INFORMATION_MESSAGE);
-					}
 				}
+				
+				if(player != null && !player.getIsAlive()) {
+					this.viewFrame.getModel().loadMap(map.getId());
+				}
+				
 			} else {
 				// If the remaining time is equal to 0
 				graphics.clearRect(0, 0, width, height);
@@ -144,6 +143,8 @@ class ViewPanel extends JPanel implements Observer {
 			graphics.drawString("Remaining time : " + counter, width - 200, 20);
 			graphics.drawString(String.valueOf("Diamond Counter : " + player.getDiamondsCounter()), width - 200, 40);
 
+		} else {
+			
 		}
 	}
 

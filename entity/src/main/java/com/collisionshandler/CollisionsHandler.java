@@ -4,6 +4,7 @@ import com.entity.mobileelements.Diamond;
 import com.entity.mobileelements.MobileElements;
 import com.entity.mobileelements.Player;
 import com.entity.mobileelements.Stone;
+import com.entity.motionlesselements.Dirt;
 import com.entity.motionlesselements.ExitDoor;
 import com.entity.motionlesselements.Path;
 import com.entity.motionlesselements.Walls;
@@ -47,6 +48,14 @@ public class CollisionsHandler {
 			return false;
 		}
 		return true;
+	}
+	
+	public boolean checkForStoneToMove(Entity[][] entity, int x, int y, int sideX) {
+
+		if (entity[x][y] instanceof Stone && (entity[x+sideX][y] instanceof Dirt || entity[x+sideX][y] instanceof Path)) {
+			return true;
+		}
+		return false;
 	}
 
 	public void checkForGravity() {
@@ -110,9 +119,18 @@ public class CollisionsHandler {
 				 && ((Player)this.map.getArrayMap()[x][y + 1]).getUnderPotentialThreat() > 0) {
 			 	
 			 	((Player)this.map.getArrayMap()[x][y + 1]).setIsAlive(false);
+			 	
 				((MobileElements)this.map.getArrayMap()[x][y+1]).loadImage('X', this.map.getArrayMap()[x][y+1]);
 				this.map.getArrayMap()[x][y+1].setIsFallen(false);
+				
+				try {
+					Thread.sleep(200);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 		}	
-	}	
+	}
+	
 }

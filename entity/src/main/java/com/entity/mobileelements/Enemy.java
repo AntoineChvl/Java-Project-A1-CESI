@@ -29,16 +29,16 @@ public class Enemy extends MobileElements implements Runnable {
 			int randomDirInt = (int) randomDirection;
 			switch(randomDirInt) {
 			case 1:
-				super.entityMove(0, -1, 'S', this);
+				super.entityMove(0, -1, 0, 'S', this);
 				break;
 			case 2:
-				super.entityMove(-1, 0, 'S', this);
+				super.entityMove(-1, 0, 0, 'S', this);
 				break;
 			case 3:
-				super.entityMove(0, 1, 'S', this);
+				super.entityMove(0, 1, 0, 'S', this);
 				break;
 			case 4:
-				super.entityMove(+1, 0, 'S', this);
+				super.entityMove(+1, 0, 0, 'S', this);
 				break;
 			}
 			

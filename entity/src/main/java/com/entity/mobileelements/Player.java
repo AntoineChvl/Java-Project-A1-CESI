@@ -3,6 +3,7 @@ package com.entity.mobileelements;
 import java.io.IOException;
 
 import com.entity.motionlesselements.ExitDoor;
+import com.entity.motionlesselements.Path;
 
 import entity.Sprite;
 
@@ -14,9 +15,11 @@ public class Player extends MobileElements {
 	private static final Sprite spriteUp = new Sprite('y', "Back_Rockford1.png");
 	private static final Sprite spriteDeath = new Sprite('y', "Death.png");
 	private boolean isAlive;
+	private int numberOfDeath;
 	private int underPotentialThreat;
 	private boolean isWin;
 	private int numberOfWin;
+	private int thresholdToWin;
 
 	static {
 		try {
@@ -33,7 +36,7 @@ public class Player extends MobileElements {
 		this.underPotentialThreat = 0;
 		this.isWin = false;
 		this.numberOfWin = 0;
-
+		this.numberOfDeath = 0;
 	}
 
 	public int getDiamondsCounter() {
@@ -66,16 +69,16 @@ public class Player extends MobileElements {
 			switch (direction) {
 
 			case 'Z':
-				super.entityMove(0, -1, direction, this);
+				super.entityMove(0, -1, 0, direction, this);
 				break;
 			case 'Q':
-				super.entityMove(-1, 0, direction, this);
+				super.entityMove(-1, 0, -1, direction, this);
 				break;
 			case 'S':
-				super.entityMove(0, +1, direction, this);
+				super.entityMove(0, +1, 0, direction, this);
 				break;
 			case 'D':
-				super.entityMove(+1, 0, direction, this);
+				super.entityMove(+1, 0, 1, direction, this);
 				break;
 			}
 		} else {
@@ -120,6 +123,14 @@ public class Player extends MobileElements {
 	public void incrementNumberOfWin() {
 		this.numberOfWin++;
 	}
+	
+	public int getNumberOfDeath() {
+		return numberOfDeath;
+	}
+
+	public void incrementNumberOfDeath() {
+		this.numberOfDeath++;
+	}
 
 	public void playerDeathLinkToEnemy() {
 		
@@ -137,20 +148,30 @@ public class Player extends MobileElements {
 	
 	public void didPlayerWin() {
 		
-		int x = this.getPositionX();
-		int y = this.getPositionY();
-		
-		if((this.getMap().getArrayMap()[x+1][y] instanceof ExitDoor ||
-				this.getMap().getArrayMap()[x-1][y] instanceof ExitDoor ||
-				this.getMap().getArrayMap()[x][y+1] instanceof ExitDoor ||
-				this.getMap().getArrayMap()[x][y-1] instanceof ExitDoor) && this.getDiamondsCounter() > 5) {
-			
-			this.incrementNumberOfWin();
-			this.setIsWin(true);
-			this.loadImage('X', this);
-		}
+		this.goToExit(0, 1);
+		this.goToExit(0, -1);
+		this.goToExit(1, 0);
+		this.goToExit(-1, 0);
 		
 	}
+	
+	public void goToExit(int sideX, int sideY) {
+		
+		int x = this.getPositionX();
+		int y = this.getPositionY();
+		thresholdToWin = 1;
 
-
+		if(this.getMap().getArrayMap()[x+sideX][y+sideY] instanceof ExitDoor && this.getDiamondsCounter() > thresholdToWin) {
+			this.getMap().getArrayMap()[x+sideX][y+sideY] = this.getMap().getArrayMap()[x][y];
+			this.getMap().getArrayMap()[x][y] = new Path(x,y);
+			this.incrementNumberOfWin();
+			this.incrementNumberOfDeath();
+			this.setIsWin(true);
+		}
+	}
+	
+	
 }
+
+
+
