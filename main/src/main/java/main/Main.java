@@ -30,7 +30,7 @@ public abstract class Main {
         view.setController(controller);
 
         controller.control();
-        controller.orderPerform(ControllerOrder.Map5); 
+        controller.orderPerform(ControllerOrder.Map1); 
         
         // We create ViewPanel in order to start the timer because the start almost instantly
     	//ViewPanel vpTime = new ViewPanel();

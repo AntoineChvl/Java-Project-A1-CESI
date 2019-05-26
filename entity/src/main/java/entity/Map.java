@@ -19,6 +19,7 @@ public class Map extends Entity {
 
 	private Entity[][] mapToChars;
 	private CollisionsHandler collisionsHandler;
+	private int nombreDiamantsNecessaires;
 
 	/**
 	 * Instantiates a new hello world.
@@ -27,11 +28,12 @@ public class Map extends Entity {
 	 * @param key     the key
 	 * @param message the message
 	 */
-	public Map(final int id, final String content) {
+	public Map(final int id, final String content, int nombreDiamantsNecessaires) {
 		this.setId(id);
 		this.setContentOfMap(content);
 		collisionsHandler = new CollisionsHandler(this);
 		this.createMapToChars();
+		this.nombreDiamantsNecessaires = nombreDiamantsNecessaires;
 	}
 
 	public CollisionsHandler getCollisionsHandler() {
@@ -46,7 +48,7 @@ public class Map extends Entity {
 	 * Instantiates a new hello world.
 	 */
 	public Map() {
-		this(1, "");
+		this(1, "", 1);
 	}
 
 	/**
@@ -161,21 +163,18 @@ public class Map extends Entity {
 	public void loop() { 
 		this.collisionsHandler.checkForGravity();
 		this.getPlayer().playerDeathLinkToEnemy();
-		this.getPlayer().didPlayerWin();
+		this.getPlayer().didPlayerWin(nombreDiamantsNecessaires);
 	}
 
 	public void enemyThreadStart() {
 
 		if (getHeightMap() >= 1 && getWidthMap() >= 1) {
 			for (int y = 0; y < getHeightMap(); y++) {
-
 				for (int x = 0; x < getWidthMap(); x++) {
-
 					if (this.getArrayMap()[x][y] instanceof Enemy) {
 						Thread t = new Thread((Runnable) this.getArrayMap()[x][y]);
 						t.start();
 					}
-
 				}
 			}
 		}

@@ -23,7 +23,6 @@ public class Player extends MobileElements {
 	private boolean isAlive;
 	private int underPotentialThreat;
 	private boolean isWin;
-	private int thresholdToWin;
 
 	static {
 		try {
@@ -142,22 +141,21 @@ public class Player extends MobileElements {
 		}
 	}
 	
-	public void didPlayerWin() {
+	public void didPlayerWin(int nombreDiamantsNecessaires) {
 		
-		this.goToExit(0, 1);
-		this.goToExit(0, -1);
-		this.goToExit(1, 0);
-		this.goToExit(-1, 0);
+		this.goToExit(0, 1, nombreDiamantsNecessaires);
+		this.goToExit(0, -1, nombreDiamantsNecessaires);
+		this.goToExit(1, 0, nombreDiamantsNecessaires);
+		this.goToExit(-1, 0, nombreDiamantsNecessaires);
 		
 	}
 	
-	public void goToExit(int sideX, int sideY) {
+	public void goToExit(int sideX, int sideY, int nombreDiamantsNecessaires) {
 		
 		int x = this.getPositionX();
 		int y = this.getPositionY();
-		thresholdToWin = 1;
 
-		if(this.getMap().getArrayMap()[x+sideX][y+sideY] instanceof ExitDoor && this.getDiamondsCounter() >= thresholdToWin) {
+		if(this.getMap().getArrayMap()[x+sideX][y+sideY] instanceof ExitDoor && this.getDiamondsCounter() >= nombreDiamantsNecessaires) {
 			this.getMap().getArrayMap()[x+sideX][y+sideY] = this.getMap().getArrayMap()[x][y];
 			this.getMap().getArrayMap()[x][y] = new Path(x,y);
 			this.setIsWin(true);
