@@ -23,6 +23,7 @@ import entity.Map;
  * @author Jean-Aymeric Diet
  */
 @SuppressWarnings("unused")
+public
 class ViewPanel extends JPanel implements Observer {
 
 	/** The view frame. */
@@ -134,7 +135,7 @@ class ViewPanel extends JPanel implements Observer {
 		}
 	}
 
-	public void startTimer() { // This is a timer
+	public static void startTimer() { // This is a timer
 		ViewPanel drawTimer = new ViewPanel();
 		TimerTask timerTask = new TimerTask() {
 			@Override
