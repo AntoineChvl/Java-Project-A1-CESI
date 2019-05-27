@@ -2,6 +2,7 @@ package com.entity.mobileelements;
 
 import java.io.IOException;
 
+import com.strategy.LoopEnemyMove;
 
 import entity.Sprite;
 /**
@@ -23,29 +24,10 @@ public class Enemy extends MobileElements {
 	
 	public Enemy(int x, int y) {
 		super(spriteDown, x, y);
+		this.setStrategy(new LoopEnemyMove(this));
 		
 	}
 	
-	public void randomMove() {
-			double randomDirection = Math.random();
-			randomDirection = randomDirection * 4 +1;
-			int randomDirInt = (int) randomDirection;
-			switch(randomDirInt) {
-			case 1:
-				this.entityMove(0, -1, 0, 'S');
-				break;
-			case 2:
-				this.entityMove(-1, 0, 0, 'S');
-				break;
-			case 3:
-				this.entityMove(0, 1, 0, 'S');
-				break;
-			case 4:
-				this.entityMove(+1, 0, 0, 'S');
-				break;
-			}
-	}
-
 	
 	public Sprite getSpriteDown() {
 		return Enemy.spriteDown;

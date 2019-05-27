@@ -2,8 +2,6 @@ package com.collisionshandler;
 
 import com.entity.mobileelements.Diamond;
 import com.entity.mobileelements.Enemy;
-import com.entity.mobileelements.MobileElements;
-import com.entity.mobileelements.Player;
 import com.entity.mobileelements.Stone;
 import com.entity.motionlesselements.ExitDoor;
 import com.entity.motionlesselements.Path;
@@ -20,6 +18,7 @@ import entity.Map;
 
 public class CollisionsHandler {
 
+	@SuppressWarnings("unused")
 	private Map map;
 
 	public CollisionsHandler(Map map) {

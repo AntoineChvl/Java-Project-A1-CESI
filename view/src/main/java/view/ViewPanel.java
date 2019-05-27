@@ -86,7 +86,7 @@ class ViewPanel extends JPanel implements Observer {
 	@Override
 	protected void paintComponent(final Graphics graphics) {
 
-		final double scale = 4.5;
+		final double scale = 3.0;
 		final int imageSize = 16;
 		final int width = this.getWidth();
 		final int height = this.getHeight();

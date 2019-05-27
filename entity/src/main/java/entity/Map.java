@@ -168,22 +168,8 @@ public class Map extends Entity {
 
 	public void loop() {
 		this.runStrategies();
-		//this.getCollisionsHandler().checkForGravity();
 		this.getPlayer().playerDeathLinkToEnemy();
 		this.getPlayer().didPlayerWin(numberOfDiamondsNeeded);
-		this.enemyThreadStart();
-	}
-
-	public void enemyThreadStart() {
-		if (getHeightMap() >= 1 && getWidthMap() >= 1) {
-			for (int y = 0; y < getHeightMap(); y++) {
-				for (int x = 0; x < getWidthMap(); x++) {
-					if (this.getArrayMap()[x][y] instanceof Enemy) {
-						((Enemy)this.getArrayMap()[x][y]).randomMove();
-					}
-				}
-			}
-		}
 	}
 	
 	public void runStrategies() {

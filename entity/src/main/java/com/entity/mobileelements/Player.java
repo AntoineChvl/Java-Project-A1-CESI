@@ -130,7 +130,7 @@ public class Player extends MobileElements {
 			this.loadImage('X', this);
 			
 			try {
-				Thread.sleep(200);
+				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -141,12 +141,12 @@ public class Player extends MobileElements {
 		
 	}
 	
-	public void didPlayerWin(int nombreDiamantsNecessaires) {
+	public void didPlayerWin(int numberOfDiamondsNeeded) {
 		
-		this.goToExit(0, 1, nombreDiamantsNecessaires);
-		this.goToExit(0, -1, nombreDiamantsNecessaires);
-		this.goToExit(1, 0, nombreDiamantsNecessaires);
-		this.goToExit(-1, 0, nombreDiamantsNecessaires);
+		this.goToExit(0, 1, numberOfDiamondsNeeded);
+		this.goToExit(0, -1, numberOfDiamondsNeeded);
+		this.goToExit(1, 0, numberOfDiamondsNeeded);
+		this.goToExit(-1, 0, numberOfDiamondsNeeded);
 		
 	}
 	

@@ -20,15 +20,19 @@ public class RandomEnemyMove extends Strategy<Enemy> {
 		switch(randomDirInt) {
 		case 1:
 			me.entityMove(0, -1, 0, 'S');
+			me.getMap().getPlayer().playerDeathLinkToEnemy();
 			break;
 		case 2:
 			me.entityMove(-1, 0, 0, 'S');
+			me.getMap().getPlayer().playerDeathLinkToEnemy();
 			break;
 		case 3:
 			me.entityMove(0, 1, 0, 'S');
+			me.getMap().getPlayer().playerDeathLinkToEnemy();
 			break;
 		case 4:
 			me.entityMove(+1, 0, 0, 'S');
+			me.getMap().getPlayer().playerDeathLinkToEnemy();
 			break;
 		}
 		
