@@ -8,7 +8,6 @@ import contract.ControllerOrder;
 import controller.Controller;
 import model.Model;
 import view.View;
-import view.ViewPanel;
 /**
  * The Class Main.
  *
@@ -30,7 +29,6 @@ public abstract class Main {
         view.setController(controller);
 		
         controller.control();
-        ViewPanel.startTimer();
         controller.orderPerform(ControllerOrder.Map1); 
 
         controller.start();

@@ -32,6 +32,7 @@ class ViewPanel extends JPanel implements Observer {
 	private static final long serialVersionUID = -998294702363713521L;
 	private static int counter = 200; // Counter until the end of the game
 	private boolean hasBeenNotifiedToStop = false;
+	private boolean isTimerStart = false;
 
 	public ViewPanel() {
 	}
@@ -114,6 +115,11 @@ class ViewPanel extends JPanel implements Observer {
 				this.focusMapOnPlayer(graphics, width, height, playerPosX, playerPosY, scale, imageSize);
 
 				this.displayMap(graphics, width, height);
+				
+				if (isTimerStart == false) {
+					this.startTimer();
+					this.isTimerStart = true;
+				}
 
 				this.reverseFocusOnScreenAndStats(graphics, scale, width, height, playerPosX, playerPosY, player, map, imageSize);
 
