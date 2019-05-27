@@ -168,6 +168,8 @@ public class Map extends Entity {
 
 	public void loop() {
 		this.runStrategies();
+		//this.getCollisionsHandler().checkForGravity();
+		this.getPlayer().playerDeathLinkToEnemy();
 		this.getPlayer().didPlayerWin(numberOfDiamondsNeeded);
 	}
 
@@ -186,7 +188,7 @@ public class Map extends Entity {
 	
 	public void runStrategies() {
 		Entity[][] entity = this.getArrayMap();
-		for (int y = 0; y < getHeightMap(); y++) {
+		for (int y = getHeightMap() -1; y >= 0; y--) {
 			for (int x = 0; x < getWidthMap(); x++) {
 				if(entity[x][y].getStrategy() != null) {
 					entity[x][y].getStrategy().runStrategy();

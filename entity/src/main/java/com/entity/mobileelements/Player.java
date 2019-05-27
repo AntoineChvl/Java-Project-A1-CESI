@@ -137,8 +137,10 @@ public class Player extends MobileElements {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
 		}
+
+		
+		
 	}
 	
 	public void didPlayerWin(int nombreDiamantsNecessaires) {

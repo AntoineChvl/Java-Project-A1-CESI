@@ -210,7 +210,7 @@ class ViewPanel extends JPanel implements Observer {
 
 		((Graphics2D) graphics).scale(1 / scale, 1 / scale);
 
-		graphics.translate((int) (+playerPosX * 16 * scale - width / 2), (int) (+playerPosY * 16 * scale - height / 2));
+		graphics.translate((int) (+playerPosX * imageSize * scale - width / 2), (int) (+playerPosY * imageSize * scale - height / 2));
 		graphics.setColor(Color.white);
 		graphics.fillRect(xStartStatsValues, yStartStatsValues, xEndStatsValues, yEndStatsValues);
 		graphics.setColor(Color.BLUE);
