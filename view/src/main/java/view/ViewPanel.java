@@ -136,7 +136,7 @@ class ViewPanel extends JPanel implements Observer {
 			
 
 		} else {
-			this.viewFrame.printMessage("Loading game...");
+			//this.viewFrame.printMessage("Loading game...");
 			graphics.clearRect(0, 0, width, height);
 		}
 	}
