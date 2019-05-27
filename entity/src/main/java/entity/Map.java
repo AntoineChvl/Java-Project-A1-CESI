@@ -48,7 +48,7 @@ public class Map extends Entity {
 	 * Instantiates a new hello world.
 	 */
 	public Map() {
-		this(1, "", 1);
+		this(1, "", 0);
 	}
 
 	/**

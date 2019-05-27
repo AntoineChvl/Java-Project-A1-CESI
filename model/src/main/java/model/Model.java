@@ -93,9 +93,5 @@ public final class Model extends Observable implements IModel {
 			this.getMap().loop();
 			this.modelNotify();
 		}
-		
 	}
-	
-
-
 }
