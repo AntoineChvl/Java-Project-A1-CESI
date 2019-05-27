@@ -15,7 +15,7 @@ public abstract class Entity {
 	private int positionY;
 	private Map map;
 	private boolean isFallen;
-	private Strategy strategy;
+	private Strategy<?> strategy;
 	
 	public Entity(final Sprite sprite, int x, int y) {
 		this.setSprite(sprite);
@@ -84,11 +84,11 @@ public abstract class Entity {
 		this.isFallen = isFallen;
 	}
 
-	public Strategy getStrategy() {
+	public Strategy<?> getStrategy() {
 		return strategy;
 	}
 
-	public void setStrategy(Strategy strategy) {
+	public void setStrategy(Strategy<?> strategy) {
 		this.strategy = strategy;
 	}
 

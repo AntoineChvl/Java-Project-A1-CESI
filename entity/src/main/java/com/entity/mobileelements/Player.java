@@ -19,8 +19,6 @@ public class Player extends MobileElements {
 	private static final Sprite spriteTurnLeft = new Sprite('y', "Left_Rockford.png");
 	private static final Sprite spriteTurnRight = new Sprite('y', "Right_Rockford.png");
 	private static final Sprite spriteUp = new Sprite('y', "Back_Rockford1.png");
-	private static final Sprite spriteDeath = new Sprite('y', "Death.png");
-	private boolean isAlive;
 	private int underPotentialThreat;
 	private boolean isWin;
 
@@ -39,10 +37,6 @@ public class Player extends MobileElements {
 		this.underPotentialThreat = 0;
 		this.isWin = false;
 
-	}
-
-	public int getDiamondsCounter() {
-		return super.getDiamondsCounter();
 	}
 
 	public Sprite getSpriteDown() {
@@ -86,15 +80,6 @@ public class Player extends MobileElements {
 		}
 	}
 	
-
-	public boolean getIsAlive() {
-		return this.isAlive;
-	}
-
-	public void setIsAlive(boolean isAlive) {
-		this.isAlive = isAlive;
-	}
-	
 	public int getUnderPotentialThreat() {
 		return underPotentialThreat;
 	}
@@ -135,10 +120,7 @@ public class Player extends MobileElements {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-
-		
-		
+		}		
 	}
 	
 	public void didPlayerWin(int numberOfDiamondsNeeded) {

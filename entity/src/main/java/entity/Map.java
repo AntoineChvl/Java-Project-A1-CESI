@@ -19,7 +19,7 @@ public class Map extends Entity {
 
 	private Entity[][] mapToChars;
 	private CollisionsHandler collisionsHandler;
-	private int numberOfDiamondsNeeded;
+	private int numberOfDiamondsNeeded = 0;
 
 	/**
 	 * Instantiates a new hello world.

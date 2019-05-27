@@ -89,8 +89,11 @@ public final class Model extends Observable implements IModel {
 	
 	public void loop() {
 
-		this.getMap().loop();
-		this.modelNotify();
+		if(this.getMap().getNumberOfDiamondsNeeded() != 0) {
+			this.getMap().loop();
+			this.modelNotify();
+		}
+		
 	}
 	
 

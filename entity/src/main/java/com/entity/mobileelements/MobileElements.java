@@ -17,6 +17,8 @@ import entity.Sprite;
 public abstract class MobileElements extends Entity {
 
 	private int diamondsCounter;
+	protected boolean isAlive;
+	protected static final Sprite spriteDeath = new Sprite('y', "Death.png");
 	
 	public MobileElements(Sprite sprite, int x, int y) {
 		super(sprite, x, y);
@@ -120,11 +122,25 @@ public abstract class MobileElements extends Entity {
 	public void incrementDiamondsCounter() {
 		this.diamondsCounter++;
 	}
+	
+	public void increaseDiamondsCounter(int increase) {
+		this.diamondsCounter += increase;
+	}
 
 	public int getDiamondsCounter() {
 		return this.diamondsCounter;
 	}
 
+	public boolean getIsAlive() {
+		return this.isAlive;
+	}
+
+	public void setIsAlive(boolean isAlive) {
+		this.isAlive = isAlive;
+	}
 	
+	public Sprite getSpriteDeath() {
+		return MobileElements.spriteDeath;
+	}
 
 }
