@@ -76,7 +76,7 @@ class DAOMap extends DAOEntity<Map> {
 			call.execute();
 			final ResultSet resultSet = call.getResultSet();
 			if (resultSet.first()) {
-				map = new Map(id, resultSet.getString("levelContent"), resultSet.getInt("nombreDiamantsNecessaires"));
+				map = new Map(id, resultSet.getString("levelContent"), resultSet.getInt("numberDiamondsNeeded"));
 			}
 			return map;
 		} catch (final SQLException e) {

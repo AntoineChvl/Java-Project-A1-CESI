@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.collisionshandler.CollisionsHandler;
 import com.entity.motionlesselements.Path;
+import com.fallingstrategy.Strategy;
 
 import entity.Entity;
 import entity.Sprite;
@@ -22,17 +23,17 @@ public abstract class MobileElements extends Entity {
 		super(sprite, x, y);
 	}
 
-	public void entityMove(int x, int y, int sideX, char direction, MobileElements e) {
+	public void entityMove(int x, int y, int sideX, char direction) {
 
-		final int xpos = e.getPositionX();
-		final int ypos = e.getPositionY();
+		final int xpos = this.getPositionX();
+		final int ypos = this.getPositionY();
 		final Entity[][] loadArrayMap = this.getMap().getArrayMap();
 		final CollisionsHandler getCollisionHandler = this.getMap().getCollisionsHandler();
 		boolean collision = false;
 		boolean isDiamond = false;
 		boolean moveStone = false;
 		
-			if(e instanceof Player) {
+			if(this instanceof Player) {
 				collision = getCollisionHandler.checkForCollisions(loadArrayMap,xpos + x, ypos + y);
 				isDiamond = getCollisionHandler.checkForDiamonds(loadArrayMap, xpos + x,ypos + y);
 				moveStone = getCollisionHandler.checkForStoneToMove(loadArrayMap, xpos + x, ypos + y, sideX);
@@ -41,7 +42,7 @@ public abstract class MobileElements extends Entity {
 			}
 				
 
-			this.loadImage(direction, e);
+			this.loadImage(direction, this);
 			
 			if(moveStone) {
 				loadArrayMap[xpos + x + sideX][ypos + y] = loadArrayMap[xpos + x][ypos + y];
@@ -49,6 +50,7 @@ public abstract class MobileElements extends Entity {
 				loadArrayMap[xpos][ypos] = new Path(xpos, ypos);
 				this.setPositionY(ypos + y);
 				this.setPositionX(xpos + x);
+				loadArrayMap[xpos + x + sideX][ypos + y].setPositionX(xpos + x + sideX);
 			}
 			
 			if (!collision) {
@@ -60,10 +62,8 @@ public abstract class MobileElements extends Entity {
 			}
 
 			if (isDiamond == true) {
-				e.incrementDiamondsCounter();
+				this.incrementDiamondsCounter();
 			}
-		
-
 	}
 
 	public void loadImage(char direction, Entity entity) {

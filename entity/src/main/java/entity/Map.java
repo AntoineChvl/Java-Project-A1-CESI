@@ -96,8 +96,6 @@ public class Map extends Entity {
 		String[] mapFirstLength = getContentOfMap().split("\n");
 		return mapFirstLength[0].length() - 1;
 	}
-	
-	
 
 	public int getNumberOfDiamondsNeeded() {
 		return numberOfDiamondsNeeded;
@@ -108,7 +106,6 @@ public class Map extends Entity {
 	}
 
 	public void createMapToChars() {
-
 		String map = this.getContentOfMap();
 		if (getHeightMap() >= 1 && getWidthMap() >= 1) {
 			this.mapToChars = new Entity[this.getWidthMap()][this.getHeightMap()];
@@ -126,11 +123,10 @@ public class Map extends Entity {
 						mapToChars[x][y] = new Player(x, y);
 						break;
 					case 'o':
-						mapToChars[x][y] = new Stone(x, y);
+						mapToChars[x][y] = new Stone(x, y, this);
 						break;
 					case 'i':
 						mapToChars[x][y] = new Enemy(x, y);
-
 						break;
 					case 'u':
 						mapToChars[x][y] = new Path(x, y);
@@ -170,14 +166,12 @@ public class Map extends Entity {
 		return null;
 	}
 
-	public void loop() { 
-		this.collisionsHandler.checkForGravity();
-		this.getPlayer().playerDeathLinkToEnemy();
+	public void loop() {
+		this.runStrategies();
 		this.getPlayer().didPlayerWin(numberOfDiamondsNeeded);
 	}
 
 	public void enemyThreadStart() {
-
 		if (getHeightMap() >= 1 && getWidthMap() >= 1) {
 			for (int y = 0; y < getHeightMap(); y++) {
 				for (int x = 0; x < getWidthMap(); x++) {
@@ -185,6 +179,18 @@ public class Map extends Entity {
 						Thread t = new Thread((Runnable) this.getArrayMap()[x][y]);
 						t.start();
 					}
+				}
+			}
+		}
+	}
+	
+	public void runStrategies() {
+		Entity[][] entity = this.getArrayMap();
+		for (int y = 0; y < getHeightMap(); y++) {
+			for (int x = 0; x < getWidthMap(); x++) {
+				if(entity[x][y].getStrategy() != null) {
+					entity[x][y].getStrategy().runStrategy();
+
 				}
 			}
 		}

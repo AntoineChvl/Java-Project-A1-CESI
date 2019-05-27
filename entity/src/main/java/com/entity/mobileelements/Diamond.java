@@ -2,6 +2,8 @@ package com.entity.mobileelements;
 
 import java.io.IOException;
 
+import com.fallingstrategy.BasicFalling;
+
 import entity.Sprite;
 
 public class Diamond extends MobileElements {
@@ -18,7 +20,7 @@ public class Diamond extends MobileElements {
 	
 	public Diamond(int x, int y) {
 		super(sprite, x, y);
-		// TODO Auto-generated constructor stub
+		this.setStrategy(new BasicFalling(this));
 	}
 
 }

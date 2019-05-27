@@ -18,6 +18,10 @@ public enum ControllerOrder {
 	
 	Map5,
 	
+	Map6,
+	
+	Map7,
+	
 	Z,
 	
 	Q,

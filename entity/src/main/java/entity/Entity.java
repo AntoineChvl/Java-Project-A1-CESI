@@ -1,5 +1,6 @@
 package entity;
 
+import com.fallingstrategy.Strategy;
 
 /**
  * The Class Entity.
@@ -14,6 +15,7 @@ public abstract class Entity {
 	private int positionY;
 	private Map map;
 	private boolean isFallen;
+	private Strategy strategy;
 	
 	public Entity(final Sprite sprite, int x, int y) {
 		this.setSprite(sprite);
@@ -81,6 +83,17 @@ public abstract class Entity {
 	public void setIsFallen(boolean isFallen) {
 		this.isFallen = isFallen;
 	}
+
+	public Strategy getStrategy() {
+		return strategy;
+	}
+
+	public void setStrategy(Strategy strategy) {
+		this.strategy = strategy;
+	}
+	
+	
+
 
 }
 

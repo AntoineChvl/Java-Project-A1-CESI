@@ -2,12 +2,15 @@ package com.entity.mobileelements;
 
 import java.io.IOException;
 
+import com.fallingstrategy.CascadeFalling;
+
+import entity.Map;
 import entity.Sprite;
 
 public class Stone extends MobileElements {
 
 	private static final Sprite sprite = new Sprite('o',"Stone.png");
-	
+	private Map map;
 	static {
 		try {
 			sprite.loadImage();
@@ -18,11 +21,23 @@ public class Stone extends MobileElements {
 	}
 	
 	
-	public Stone(int x, int y) {
+	public Stone(int x, int y, Map map) {
+		
 		super(sprite, x, y);
-		// TODO Auto-generated constructor stub
+		this.setStrategy(new CascadeFalling(this));
+		this.map = map;
 	}
-	
+
+
+	public Map getMap() {
+		return map;
+	}
+
+
+	public void setMap(Map map) {
+		this.map = map;
+	}
+
 	
 
 }

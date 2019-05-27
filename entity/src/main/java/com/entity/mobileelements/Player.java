@@ -71,16 +71,16 @@ public class Player extends MobileElements {
 			switch (direction) {
 
 			case 'Z':
-				super.entityMove(0, -1, 0, direction, this);
+				this.entityMove(0, -1, 0, direction);
 				break;
 			case 'Q':
-				super.entityMove(-1, 0, -1, direction, this);
+				this.entityMove(-1, 0, -1, direction);
 				break;
 			case 'S':
-				super.entityMove(0, +1, 0, direction, this);
+				this.entityMove(0, +1, 0, direction);
 				break;
 			case 'D':
-				super.entityMove(+1, 0, 1, direction, this);
+				this.entityMove(+1, 0, 1, direction);
 				break;
 			}
 		} else {

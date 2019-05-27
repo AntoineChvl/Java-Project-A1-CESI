@@ -27,22 +27,21 @@ public class Enemy extends MobileElements implements Runnable {
 	}
 	
 	public void randomMove() {
-
 			double randomDirection = Math.random();
 			randomDirection = randomDirection * 4 +1;
 			int randomDirInt = (int) randomDirection;
 			switch(randomDirInt) {
 			case 1:
-				super.entityMove(0, -1, 0, 'S', this);
+				this.entityMove(0, -1, 0, 'S');
 				break;
 			case 2:
-				super.entityMove(-1, 0, 0, 'S', this);
+				this.entityMove(-1, 0, 0, 'S');
 				break;
 			case 3:
-				super.entityMove(0, 1, 0, 'S', this);
+				this.entityMove(0, 1, 0, 'S');
 				break;
 			case 4:
-				super.entityMove(+1, 0, 0, 'S', this);
+				this.entityMove(+1, 0, 0, 'S');
 				break;
 			}
 			
@@ -52,7 +51,6 @@ public class Enemy extends MobileElements implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
 	}
 
 	@Override

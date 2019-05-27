@@ -82,9 +82,7 @@ public final class Controller implements IController {
 	 * @see contract.IController#orderPerform(contract.ControllerOrder)
 	 */
 	public void orderPerform(final ControllerOrder controllerOrder) {
-		
 
-		
 			switch (controllerOrder) {
 			case Map1:
 				this.model.loadMap(1);
@@ -100,6 +98,12 @@ public final class Controller implements IController {
 				break;
 			case Map5:
 				this.model.loadMap(5);
+				break;
+			case Map6:
+				this.model.loadMap(6);
+				break;
+			case Map7:
+				this.model.loadMap(7);
 				break;
 			case Z:
 				this.model.getMap().getPlayer().movePlayer('Z');

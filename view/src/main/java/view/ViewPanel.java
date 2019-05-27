@@ -31,7 +31,8 @@ class ViewPanel extends JPanel implements Observer {
 	private static final long serialVersionUID = -998294702363713521L;
 	private static int counter = 200; // Counter until the end of the game
 	private boolean hasBeenNotifiedToStop = false;
-	
+	private boolean hasBeenNotifiedToEnd = false;
+
 	public ViewPanel() {
 	}
 
@@ -80,8 +81,6 @@ class ViewPanel extends JPanel implements Observer {
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 */
 
-	
-
 	@SuppressWarnings("static-access")
 	@Override
 	protected void paintComponent(final Graphics graphics) {
@@ -112,66 +111,12 @@ class ViewPanel extends JPanel implements Observer {
 
 			if (counter != 0 && counter != -100) {
 
-				graphics.clearRect(0, 0, width, height);
+				this.focusMapOnPlayer(graphics, width, height, playerPosX, playerPosY, scale, imageSize);
 
-				graphics.translate((int) (-playerPosX * imageSize * scale + width / 2),
-						(int) (-playerPosY * imageSize * scale + height / 2));
+				this.displayMap(graphics, width, height);
 
-				((Graphics2D) graphics).scale(scale, scale);
+				this.reverseFocusOnScreenAndStats(graphics, scale, width, height, playerPosX, playerPosY, player, map, imageSize);
 
-				for (int x = 0; x < map.getWidthMap(); x++) {
-
-					for (int y = 0; y < map.getHeightMap(); y++) {
-						graphics.drawImage(loadMap[x][y].getSprite().getImage(), x * imageSize, y * imageSize, this);
-					}
-				}
-				
-				if(!player.getIsAlive() && hasBeenNotifiedToStop == false) {
-					
-					hasBeenNotifiedToStop = true;
-					graphics.clearRect(0, 0, width, height);
-					this.viewFrame.printMessage("You died ! Try again...");
-					getModel.loadMap(map.getId());
-					hasBeenNotifiedToStop = false;
-				}
-				
-				if(player.getIsWin() && hasBeenNotifiedToStop == false) {
-					if (map.getId() <5) {
-						getModel.loadMap(map.getId()+1);
-						
-					} else {
-						hasBeenNotifiedToStop = true;
-						graphics.clearRect(0, 0, width, height);
-						this.viewFrame.printMessage("You won ! Congrats !");
-						player.setIsAlive(false);
-					}
-					
-					counter = timerResetValue;
-				}
-				
-				
-				((Graphics2D) graphics).scale(1 / scale, 1 / scale);
-
-				graphics.translate((int) (+playerPosX * 16 * scale - width / 2),
-						(int) (+playerPosY * 16 * scale - height / 2));
-				graphics.setColor(Color.white);
-				graphics.fillRect(xStartStatsValues, yStartStatsValues, xEndStatsValues, yEndStatsValues);
-				graphics.setColor(Color.BLUE);
-				graphics.drawString("Remaining time : " + counter, xStartStatsDisplay, 20);
-				graphics.drawString(String.valueOf("Diamond Counter : " + player.getDiamondsCounter()), xStartStatsDisplay, 40);
-				graphics.setColor(Color.RED);
-				graphics.drawString(String.valueOf("Number needed : " + map.getNumberOfDiamondsNeeded()), xStartStatsDisplay, 60);
-				
-				if(player.getDiamondsCounter() >= map.getNumberOfDiamondsNeeded()) {
-					graphics.clearRect(xStartStatsValues, yStartStatsValues, xEndStatsValues, yEndStatsValues);
-					graphics.setColor(Color.BLUE);
-					graphics.drawString("Remaining time : " + counter, xStartStatsDisplay, 20);
-					graphics.setColor(Color.GREEN);
-					graphics.drawString(String.valueOf("Diamond Counter : " + player.getDiamondsCounter()), xStartStatsDisplay, 40);
-					graphics.drawString("Go to exit door!", xStartStatsDisplay, 60);
-				}
-				
-				
 			} else {
 				// If the remaining time is equal to 0
 				graphics.clearRect(0, 0, width, height);
@@ -182,8 +127,7 @@ class ViewPanel extends JPanel implements Observer {
 				 * = set it two 200 when the player switch between the maps)
 				 */
 			}
-
-
+			
 
 		} else {
 			this.viewFrame.printMessage("Loading game...");
@@ -205,4 +149,87 @@ class ViewPanel extends JPanel implements Observer {
 		Timer timer = new Timer("MyTimer"); // create a new timer
 		timer.scheduleAtFixedRate(timerTask, 1000, 1000); // each seconds we perform the run method
 	}
+
+	public void displayMap(Graphics graphics, int width, int height) {
+
+		final int imageSize = 16;
+		final int numberOfLevels = 7;
+		Map map = this.viewFrame.getModel().getMap();
+		IModel getModel = this.viewFrame.getModel();
+		Entity[][] loadMap = map.getArrayMap();
+		Player player = this.viewFrame.getModel().getMap().getPlayer();
+		final int timerResetValue = 200;
+
+		for (int x = 0; x < map.getWidthMap(); x++) {
+			for (int y = 0; y < map.getHeightMap(); y++) {
+				graphics.drawImage(loadMap[x][y].getSprite().getImage(), x * imageSize, y * imageSize, this);
+			}
+		}
+
+		if (!player.getIsAlive() && hasBeenNotifiedToStop == false) {
+
+			hasBeenNotifiedToStop = true;
+			graphics.clearRect(0, 0, width, height);
+			this.viewFrame.printMessage("You died ! Try again...");
+			getModel.loadMap(map.getId());
+			hasBeenNotifiedToStop = false;
+		}
+
+		if (player.getIsWin() && hasBeenNotifiedToStop == false) {
+			if (map.getId() < numberOfLevels) {
+				getModel.loadMap(map.getId() + 1);
+				counter = timerResetValue;
+			} else {
+				hasBeenNotifiedToStop = true;
+				player.setIsAlive(false);
+				graphics.clearRect(0, 0, width, height);
+				this.viewFrame.printMessage("You won ! Congrats !");
+				System.exit(0);
+			}
+		}
+	}
+
+	public void focusMapOnPlayer(Graphics graphics, int width, int height, int playerPosX, int playerPosY, double scale, int imageSize) {
+
+		graphics.clearRect(0, 0, width, height);
+
+		graphics.translate((int) (-playerPosX * imageSize * scale + width / 2),
+				(int) (-playerPosY * imageSize * scale + height / 2));
+
+		((Graphics2D) graphics).scale(scale, scale);
+	}
+
+	public void reverseFocusOnScreenAndStats(Graphics graphics, double scale, int width, int height, int playerPosX,
+			int playerPosY, Player player, Map map, int imageSize) {
+
+		final int xStartStatsValues = width - 210;
+		final int yStartStatsValues = 0;
+		final int xEndStatsValues = 220;
+		final int yEndStatsValues = 65;
+		final int xStartStatsDisplay = width - 200;
+
+		((Graphics2D) graphics).scale(1 / scale, 1 / scale);
+
+		graphics.translate((int) (+playerPosX * 16 * scale - width / 2), (int) (+playerPosY * 16 * scale - height / 2));
+		graphics.setColor(Color.white);
+		graphics.fillRect(xStartStatsValues, yStartStatsValues, xEndStatsValues, yEndStatsValues);
+		graphics.setColor(Color.BLUE);
+		graphics.drawString("Remaining time : " + counter, xStartStatsDisplay, 20);
+		graphics.drawString(String.valueOf("Diamond Counter : " + player.getDiamondsCounter()), xStartStatsDisplay, 40);
+		graphics.setColor(Color.RED);
+		graphics.drawString(String.valueOf("Number needed : " + map.getNumberOfDiamondsNeeded()), xStartStatsDisplay,
+				60);
+
+		if (player.getDiamondsCounter() >= map.getNumberOfDiamondsNeeded()) {
+			graphics.clearRect(xStartStatsValues, yStartStatsValues, xEndStatsValues, yEndStatsValues);
+			graphics.setColor(Color.BLUE);
+			graphics.drawString("Remaining time : " + counter, xStartStatsDisplay, 20);
+			graphics.setColor(Color.GREEN);
+			graphics.drawString(String.valueOf("Diamond Counter : " + player.getDiamondsCounter()), xStartStatsDisplay,
+					40);
+			graphics.drawString("Go to exit door!", xStartStatsDisplay, 60);
+		}
+
+	}
+
 }
