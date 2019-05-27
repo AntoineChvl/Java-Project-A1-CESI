@@ -66,79 +66,72 @@ public class CollisionsHandler {
 		return false;
 	}
 
-	public void checkForGravity() {
-		
-		
-		for (int y = this.map.getHeightMap() - 1; y >= 0; y--) {
-			for (int x = 0; x < this.map.getWidthMap(); x++) {
-
-				this.basicGravity(x, y);
-				this.cascadeGravity(x, y, -1,1);
-				this.cascadeGravity(x, y, +1,1);
-				this.playerDeathLinkToGravity(x, y);
-				this.map.getArrayMap()[x][y].setIsFallen(false);
-			}
-		}
-	
-	}	
-
-	public void basicGravity(int x, int y) {
-		
-		Entity getSpecificEntity = this.map.getArrayMap()[x][y];
-
-		if ((getSpecificEntity instanceof Stone || getSpecificEntity instanceof Diamond)
-				&& this.map.getArrayMap()[x][y + 1] instanceof Path) {
-			this.map.getArrayMap()[x][y + 1] = getSpecificEntity;
-			this.map.getArrayMap()[x][y] = new Path(x, y);
-			this.map.getArrayMap()[x][y + 1].setIsFallen(true);
-		}
-	
-	}
-
-	public void cascadeGravity(int x, int y, int sideX, int sideY) {
-
-		if (this.map.getArrayMap()[x][y] instanceof Stone
-				&& this.map.getArrayMap()[x][y + sideY] instanceof Stone
-				&& this.map.getArrayMap()[x + sideX][y] instanceof Path
-				&& this.map.getArrayMap()[x + sideX][y + sideY] instanceof Path) {
-
-			this.map.getArrayMap()[x + sideX][y + sideY] = this.map.getArrayMap()[x][y];
-			this.map.getArrayMap()[x][y] = new Path(x, y);
-			this.map.getArrayMap()[x][y + 1].setIsFallen(true);
-
-		} 
-	}
-	
-	public void playerDeathLinkToGravity(int x, int y) {
-		
-		Entity getSpecificEntity = this.map.getArrayMap()[x][y];
-		
-		if ((getSpecificEntity instanceof Stone || getSpecificEntity instanceof Diamond)
-				&& this.map.getArrayMap()[x][y + 1] instanceof Player 
-				&& ((Player)this.map.getArrayMap()[x][y + 1]).getUnderPotentialThreat() == 0){
-			
-			((Player)this.map.getArrayMap()[x][y + 1]).incrementUnderPotentialThreat();
-			getSpecificEntity.setIsFallen(false);
-			
-			
-		} else if (getSpecificEntity.getIsFallen() == true 
-				 && (getSpecificEntity instanceof Stone || getSpecificEntity instanceof Diamond) 
-				 && this.map.getArrayMap()[x][y + 1] instanceof Player
-				 && ((Player)this.map.getArrayMap()[x][y + 1]).getUnderPotentialThreat() > 0) {
-			 	
-			 	((Player)this.map.getArrayMap()[x][y + 1]).setIsAlive(false);
-			 	
-				((MobileElements)this.map.getArrayMap()[x][y+1]).loadImage('X', this.map.getArrayMap()[x][y+1]);
-				this.map.getArrayMap()[x][y+1].setIsFallen(false);
-				
-				try {
-					Thread.sleep(200);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-		}	
-	}
-	
+//	public void checkForGravity() {
+//		for (int y = this.map.getHeightMap() - 1; y >= 0; y--) {
+//			for (int x = 0; x < this.map.getWidthMap(); x++) {
+//
+//				this.basicGravity(x, y);
+//				this.cascadeGravity(x, y, -1,1);
+//				this.cascadeGravity(x, y, +1,1);
+//				this.playerDeathLinkToGravity(x, y);
+//				this.map.getArrayMap()[x][y].setIsFallen(false);
+//			}
+//		}
+//	}	
+//
+//	public void basicGravity(int x, int y) {
+//		Entity getSpecificEntity = this.map.getArrayMap()[x][y];
+//		if ((getSpecificEntity instanceof Stone || getSpecificEntity instanceof Diamond)
+//				&& this.map.getArrayMap()[x][y + 1] instanceof Path) {
+//			this.map.getArrayMap()[x][y + 1] = getSpecificEntity;
+//			this.map.getArrayMap()[x][y] = new Path(x, y);
+//			this.map.getArrayMap()[x][y + 1].setIsFallen(true);
+//		}
+//	}
+//
+//	public void cascadeGravity(int x, int y, int sideX, int sideY) {
+//
+//		if (this.map.getArrayMap()[x][y] instanceof Stone
+//				&& this.map.getArrayMap()[x][y + sideY] instanceof Stone
+//				&& this.map.getArrayMap()[x + sideX][y] instanceof Path
+//				&& this.map.getArrayMap()[x + sideX][y + sideY] instanceof Path) {
+//
+//			this.map.getArrayMap()[x + sideX][y + sideY] = this.map.getArrayMap()[x][y];
+//			this.map.getArrayMap()[x][y] = new Path(x, y);
+//			this.map.getArrayMap()[x][y + 1].setIsFallen(true);
+//
+//		} 
+//	}
+//	
+//	public void playerDeathLinkToGravity(int x, int y) {
+//		
+//		Entity getSpecificEntity = this.map.getArrayMap()[x][y];
+//		
+//		if ((getSpecificEntity instanceof Stone || getSpecificEntity instanceof Diamond)
+//				&& this.map.getArrayMap()[x][y + 1] instanceof Player 
+//				&& ((Player)this.map.getArrayMap()[x][y + 1]).getUnderPotentialThreat() == 0){
+//			
+//			((Player)this.map.getArrayMap()[x][y + 1]).incrementUnderPotentialThreat();
+//			getSpecificEntity.setIsFallen(false);
+//			
+//			
+//		} else if (getSpecificEntity.getIsFallen() == true 
+//				 && (getSpecificEntity instanceof Stone || getSpecificEntity instanceof Diamond) 
+//				 && this.map.getArrayMap()[x][y + 1] instanceof Player
+//				 && ((Player)this.map.getArrayMap()[x][y + 1]).getUnderPotentialThreat() > 0) {
+//			 	
+//			 	((Player)this.map.getArrayMap()[x][y + 1]).setIsAlive(false);
+//			 	
+//				((MobileElements)this.map.getArrayMap()[x][y+1]).loadImage('X', this.map.getArrayMap()[x][y+1]);
+//				this.map.getArrayMap()[x][y+1].setIsFallen(false);
+//				
+//				try {
+//					Thread.sleep(200);
+//				} catch (InterruptedException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//
+//		}	
+//	}
 }

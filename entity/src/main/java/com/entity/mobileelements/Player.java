@@ -83,8 +83,6 @@ public class Player extends MobileElements {
 				this.entityMove(+1, 0, 1, direction);
 				break;
 			}
-		} else {
-			
 		}
 	}
 	

@@ -9,7 +9,7 @@ import entity.Sprite;
  *
  * @author Exia CESI - Saint-Nazaire - Group 5
  */
-public class Enemy extends MobileElements implements Runnable {
+public class Enemy extends MobileElements {
 
 	private static final Sprite spriteDown = new Sprite('i',"Enemy.png");
 	static {
@@ -45,20 +45,14 @@ public class Enemy extends MobileElements implements Runnable {
 				break;
 			}
 			
-			try {
-				Thread.sleep(25);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//			try {
+//				Thread.sleep(25);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 	}
 
-	@Override
-	public void run() {
-		while(true) {
-			this.randomMove();
-		}
-	}
 	
 	public Sprite getSpriteDown() {
 		return Enemy.spriteDown;

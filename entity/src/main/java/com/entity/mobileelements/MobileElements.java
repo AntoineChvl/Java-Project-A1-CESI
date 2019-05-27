@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import com.collisionshandler.CollisionsHandler;
 import com.entity.motionlesselements.Path;
-import com.fallingstrategy.Strategy;
 
 import entity.Entity;
 import entity.Sprite;

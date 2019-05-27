@@ -146,7 +146,7 @@ public class Map extends Entity {
 				}
 			}
 		}
-		this.enemyThreadStart();
+		//this.enemyThreadStart();
 	}
 
 	public Entity[][] getArrayMap() {
@@ -171,6 +171,7 @@ public class Map extends Entity {
 		//this.getCollisionsHandler().checkForGravity();
 		this.getPlayer().playerDeathLinkToEnemy();
 		this.getPlayer().didPlayerWin(numberOfDiamondsNeeded);
+		this.enemyThreadStart();
 	}
 
 	public void enemyThreadStart() {
@@ -178,8 +179,9 @@ public class Map extends Entity {
 			for (int y = 0; y < getHeightMap(); y++) {
 				for (int x = 0; x < getWidthMap(); x++) {
 					if (this.getArrayMap()[x][y] instanceof Enemy) {
-						Thread t = new Thread((Runnable) this.getArrayMap()[x][y]);
-						t.start();
+//						Thread t = new Thread((Runnable) this.getArrayMap()[x][y]);
+//						t.start();
+						((Enemy)this.getArrayMap()[x][y]).randomMove();
 					}
 				}
 			}

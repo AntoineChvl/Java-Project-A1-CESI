@@ -10,7 +10,6 @@ import entity.Sprite;
 public class Stone extends MobileElements {
 
 	private static final Sprite sprite = new Sprite('o',"Stone.png");
-	private Map map;
 	static {
 		try {
 			sprite.loadImage();
@@ -25,19 +24,6 @@ public class Stone extends MobileElements {
 		
 		super(sprite, x, y);
 		this.setStrategy(new CascadeFalling(this));
-		this.map = map;
 	}
-
-
-	public Map getMap() {
-		return map;
-	}
-
-
-	public void setMap(Map map) {
-		this.map = map;
-	}
-
-	
 
 }

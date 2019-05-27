@@ -91,9 +91,6 @@ public abstract class Entity {
 	public void setStrategy(Strategy strategy) {
 		this.strategy = strategy;
 	}
-	
-	
-
 
 }
 
