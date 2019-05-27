@@ -2,7 +2,7 @@ package com.entity.mobileelements;
 
 import java.io.IOException;
 
-import com.fallingstrategy.CascadeFalling;
+import com.strategy.CascadeFalling;
 
 import entity.Map;
 import entity.Sprite;

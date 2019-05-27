@@ -1,6 +1,6 @@
 package entity;
 
-import com.fallingstrategy.Strategy;
+import com.strategy.Strategy;
 
 /**
  * The Class Entity.

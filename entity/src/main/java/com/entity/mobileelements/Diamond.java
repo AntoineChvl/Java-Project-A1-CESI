@@ -2,7 +2,7 @@ package com.entity.mobileelements;
 
 import java.io.IOException;
 
-import com.fallingstrategy.BasicFalling;
+import com.strategy.BasicFalling;
 
 import entity.Sprite;
 

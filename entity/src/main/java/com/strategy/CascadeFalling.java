@@ -1,4 +1,4 @@
-package com.fallingstrategy;
+package com.strategy;
 
 import com.entity.mobileelements.MobileElements;
 import com.entity.mobileelements.Player;
@@ -7,7 +7,7 @@ import com.entity.motionlesselements.Path;
 
 import entity.Entity;
 
-public class CascadeFalling extends Strategy {
+public class CascadeFalling extends Strategy<MobileElements> {
 
 	private MobileElements me = null;
 	
@@ -25,10 +25,7 @@ public class CascadeFalling extends Strategy {
 		Entity getRightBottomEntity = me.getMap().getArrayMap()[me.getPositionX() + 1][me.getPositionY() +1];
 		
 		if (getNextEntity instanceof Path) {
-			me.getMap().getArrayMap()[me.getPositionX()][me.getPositionY()+1] = me;
-			me.getMap().getArrayMap()[me.getPositionX()][me.getPositionY()] = new Path(me.getPositionX(), me.getPositionY());
-			me.setIsFallen(true);
-			me.setPositionY(me.getPositionY()+1);
+			this.cascadeFalling(0, 1);
 		} else if (getNextEntity instanceof Player && me.getIsFallen()){
 			((Player)getNextEntity).setIsAlive(false);
 			

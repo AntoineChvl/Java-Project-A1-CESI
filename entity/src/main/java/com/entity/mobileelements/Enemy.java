@@ -44,13 +44,6 @@ public class Enemy extends MobileElements {
 				this.entityMove(+1, 0, 0, 'S');
 				break;
 			}
-			
-//			try {
-//				Thread.sleep(25);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
 	}
 
 	

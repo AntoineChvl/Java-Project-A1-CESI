@@ -31,7 +31,6 @@ class ViewPanel extends JPanel implements Observer {
 	private static final long serialVersionUID = -998294702363713521L;
 	private static int counter = 200; // Counter until the end of the game
 	private boolean hasBeenNotifiedToStop = false;
-	private boolean hasBeenNotifiedToEnd = false;
 
 	public ViewPanel() {
 	}
@@ -85,7 +84,7 @@ class ViewPanel extends JPanel implements Observer {
 	@Override
 	protected void paintComponent(final Graphics graphics) {
 
-		final double scale = 3.0;
+		final double scale = 4.5;
 		final int imageSize = 16;
 		final int width = this.getWidth();
 		final int height = this.getHeight();
@@ -166,7 +165,7 @@ class ViewPanel extends JPanel implements Observer {
 			}
 		}
 
-		if (!player.getIsAlive() && hasBeenNotifiedToStop == false) {
+		if (!player.getIsAlive()&& hasBeenNotifiedToStop == false) {
 
 			hasBeenNotifiedToStop = true;
 			graphics.clearRect(0, 0, width, height);
@@ -193,10 +192,11 @@ class ViewPanel extends JPanel implements Observer {
 
 		graphics.clearRect(0, 0, width, height);
 
-		graphics.translate((int) (-playerPosX * imageSize * scale + width / 2),
-				(int) (-playerPosY * imageSize * scale + height / 2));
 
-		((Graphics2D) graphics).scale(scale, scale);
+			graphics.translate((int) (-playerPosX * imageSize * scale + width / 2),
+					(int) (-playerPosY * imageSize * scale + height / 2));
+
+			((Graphics2D) graphics).scale(scale, scale);
 	}
 
 	public void reverseFocusOnScreenAndStats(Graphics graphics, double scale, int width, int height, int playerPosX,

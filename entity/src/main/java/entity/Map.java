@@ -179,8 +179,6 @@ public class Map extends Entity {
 			for (int y = 0; y < getHeightMap(); y++) {
 				for (int x = 0; x < getWidthMap(); x++) {
 					if (this.getArrayMap()[x][y] instanceof Enemy) {
-//						Thread t = new Thread((Runnable) this.getArrayMap()[x][y]);
-//						t.start();
 						((Enemy)this.getArrayMap()[x][y]).randomMove();
 					}
 				}
@@ -194,7 +192,6 @@ public class Map extends Entity {
 			for (int x = 0; x < getWidthMap(); x++) {
 				if(entity[x][y].getStrategy() != null) {
 					entity[x][y].getStrategy().runStrategy();
-
 				}
 			}
 		}

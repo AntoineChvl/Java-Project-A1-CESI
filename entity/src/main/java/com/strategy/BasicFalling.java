@@ -1,4 +1,4 @@
-package com.fallingstrategy;
+package com.strategy;
 
 import com.entity.mobileelements.MobileElements;
 import com.entity.mobileelements.Player;
@@ -7,7 +7,7 @@ import com.entity.motionlesselements.Path;
 import entity.Entity;
 
 
-public class BasicFalling extends Strategy {
+public class BasicFalling extends Strategy<MobileElements> {
 
 	private MobileElements me = null;
 	
