@@ -209,11 +209,11 @@ class ViewPanel extends JPanel implements Observer {
 	public void reverseFocusOnScreenAndStats(Graphics graphics, double scale, int width, int height, int playerPosX,
 			int playerPosY, Player player, Map map, int imageSize) {
 
-		final int xStartStatsValues = width - 210;
+		final int xStartStatsValues = width - 220;
 		final int yStartStatsValues = 0;
-		final int xEndStatsValues = 220;
+		final int xEndStatsValues = 240;
 		final int yEndStatsValues = 65;
-		final int xStartStatsDisplay = width - 200;
+		final int xStartStatsDisplay = width - 210;
 
 		((Graphics2D) graphics).scale(1 / scale, 1 / scale);
 
