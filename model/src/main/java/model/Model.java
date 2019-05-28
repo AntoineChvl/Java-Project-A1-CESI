@@ -3,7 +3,6 @@ package model;
 import java.sql.SQLException;
 import java.util.Observable;
 
-import com.databaseconnection.DAOMap;
 import com.databaseconnection.DBConnection;
 
 import contract.IModel;
