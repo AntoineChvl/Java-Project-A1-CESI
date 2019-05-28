@@ -10,7 +10,6 @@ import entity.Entity;
 
 public class BasicFalling extends Strategy<MobileElements> {
 
-	private MobileElements me = null;
 	
 	public BasicFalling(MobileElements me) {
 		this.me = me;

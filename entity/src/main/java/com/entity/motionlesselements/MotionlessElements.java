@@ -9,8 +9,6 @@ public abstract class MotionlessElements extends Entity {
 		super(sprite, x, y);
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-	
+
 
 }

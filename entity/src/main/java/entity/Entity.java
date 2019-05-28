@@ -63,10 +63,10 @@ public abstract class Entity {
 	public Sprite getSpriteUp() {
 		return null;
 	}
-	public  Sprite getSpriteDown() {
+	public Sprite getSpriteDown() {
 		return null;
 	}
-	public  Sprite getSpriteTurnLeft() {
+	public Sprite getSpriteTurnLeft() {
 		return null;
 	}
 	public Sprite getSpriteTurnRight() {

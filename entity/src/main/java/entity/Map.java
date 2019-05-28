@@ -31,7 +31,7 @@ public class Map extends Entity {
 	public Map(final int id, final String content, int numberOfDiamondsNeeded) {
 		this.setId(id);
 		this.setContentOfMap(content);
-		collisionsHandler = new CollisionsHandler(this);
+		collisionsHandler = new CollisionsHandler();
 		this.createMapToChars();
 		this.numberOfDiamondsNeeded = numberOfDiamondsNeeded;
 	}

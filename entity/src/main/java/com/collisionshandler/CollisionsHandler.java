@@ -9,7 +9,6 @@ import com.entity.motionlesselements.Path;
 import com.entity.motionlesselements.Walls;
 
 import entity.Entity;
-import entity.Map;
 
 /**
  * The Class CollisionsHandler.
@@ -19,12 +18,8 @@ import entity.Map;
 
 public class CollisionsHandler {
 
-	@SuppressWarnings("unused")
-	private Map map;
 
-	public CollisionsHandler(Map map) {
-
-		this.map = map;
+	public CollisionsHandler() {
 
 	}
 

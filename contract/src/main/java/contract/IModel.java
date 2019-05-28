@@ -37,8 +37,8 @@ public interface IModel {
 	
 	//void movePlayer(char direction);
 
-	public void modelNotify();
+	void modelNotify();
 	
-	public void loop();
+	void loop();
 
 }

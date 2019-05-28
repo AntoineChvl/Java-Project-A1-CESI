@@ -60,13 +60,14 @@ public abstract class MobileElements extends Entity {
 			if (!collision) {
 
 				if(isPlayer == true) {
-					player.playerDeathLinkToEnemy();
+					player.setIsAlive(false);
+				} else {
+					loadArrayMap[xpos + x][ypos + y] = loadArrayMap[xpos][ypos];
+					loadArrayMap[xpos][ypos] = new Path(xpos, ypos);
+					this.setPositionY(ypos + y);
+					this.setPositionX(xpos + x);
 				}
 				
-				loadArrayMap[xpos + x][ypos + y] = loadArrayMap[xpos][ypos];
-				loadArrayMap[xpos][ypos] = new Path(xpos, ypos);
-				this.setPositionY(ypos + y);
-				this.setPositionX(xpos + x);
 			}
 
 			if (isDiamond == true) {

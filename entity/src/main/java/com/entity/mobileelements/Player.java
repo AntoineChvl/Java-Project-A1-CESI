@@ -19,7 +19,6 @@ public class Player extends MobileElements {
 	private static final Sprite spriteTurnLeft = new Sprite('y', "Left_Rockford.png");
 	private static final Sprite spriteTurnRight = new Sprite('y', "Right_Rockford.png");
 	private static final Sprite spriteUp = new Sprite('y', "Back_Rockford1.png");
-	private int underPotentialThreat;
 	private boolean isWin;
 
 	static {
@@ -34,7 +33,6 @@ public class Player extends MobileElements {
 	public Player(int x, int y) {
 		super(spriteDown, x, y);
 		this.isAlive = true;
-		this.underPotentialThreat = 0;
 		this.isWin = false;
 
 	}
@@ -79,19 +77,6 @@ public class Player extends MobileElements {
 			}
 		}
 	}
-	
-	public int getUnderPotentialThreat() {
-		return underPotentialThreat;
-	}
-
-	public void setUnderPotentialThreat(int underPotentialThreat) {
-		this.underPotentialThreat = underPotentialThreat;
-	}
-	
-	public void incrementUnderPotentialThreat() {
-		this.underPotentialThreat++;
-	}
-
 	
 	public boolean getIsWin() {
 		return isWin;
