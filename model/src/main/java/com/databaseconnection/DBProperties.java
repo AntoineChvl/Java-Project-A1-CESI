@@ -1,4 +1,4 @@
-package model;
+package com.databaseconnection;
 
 import java.io.IOException;
 import java.io.InputStream;

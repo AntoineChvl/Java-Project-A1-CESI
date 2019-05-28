@@ -37,9 +37,7 @@ public class LoopEnemyMove  extends Strategy<Enemy> {
 		
 		Entity getAsideEntity = me.getMap().getArrayMap()[me.getPositionX() + sideX][me.getPositionY()];
 		if(!(getAsideEntity instanceof Walls)) {
-			me.getMap().getArrayMap()[me.getPositionX() + sideX][me.getPositionY()] = me;
-			me.getMap().getArrayMap()[me.getPositionX()][me.getPositionY()] = new Path(me.getPositionX(), me.getPositionY());
-			me.setPositionX(me.getPositionX() + sideX);
+			me.entityMove(me.getPositionX(), me.getPositionY(), sideX, 'S');
 		}
 	}
 }

@@ -29,10 +29,12 @@ public abstract class MobileElements extends Entity {
 		final int xpos = this.getPositionX();
 		final int ypos = this.getPositionY();
 		final Entity[][] loadArrayMap = this.getMap().getArrayMap();
+		final Player player = this.getMap().getPlayer();
 		final CollisionsHandler getCollisionHandler = this.getMap().getCollisionsHandler();
 		boolean collision = false;
 		boolean isDiamond = false;
 		boolean moveStone = false;
+		boolean isPlayer = false;
 		
 			if(this instanceof Player) {
 				collision = getCollisionHandler.checkForCollisions(loadArrayMap,xpos + x, ypos + y);
@@ -40,6 +42,7 @@ public abstract class MobileElements extends Entity {
 				moveStone = getCollisionHandler.checkForStoneToMove(loadArrayMap, xpos + x, ypos + y, sideX);
 			}else {
 				collision = getCollisionHandler.checkForPath(loadArrayMap,xpos + x, ypos + y);
+				isPlayer = getCollisionHandler.checkForPlayer(loadArrayMap, xpos + x, ypos + y);
 			}
 				
 
@@ -56,6 +59,10 @@ public abstract class MobileElements extends Entity {
 			
 			if (!collision) {
 
+				if(isPlayer == true) {
+					player.playerDeathLinkToEnemy();
+				}
+				
 				loadArrayMap[xpos + x][ypos + y] = loadArrayMap[xpos][ypos];
 				loadArrayMap[xpos][ypos] = new Path(xpos, ypos);
 				this.setPositionY(ypos + y);
@@ -65,6 +72,9 @@ public abstract class MobileElements extends Entity {
 			if (isDiamond == true) {
 				this.incrementDiamondsCounter();
 			}
+			
+
+			
 	}
 
 	public void loadImage(char direction, Entity entity) {

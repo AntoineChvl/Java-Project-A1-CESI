@@ -8,6 +8,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.databaseconnection.DAOMap;
+import com.databaseconnection.DBConnection;
+
 public class DAOMapTest {
 	
 	private static DAOMap daoMap;

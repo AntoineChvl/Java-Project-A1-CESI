@@ -1,4 +1,4 @@
-package model;
+package com.databaseconnection;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -12,7 +12,7 @@ import entity.Map;
  *
  * @author Jean-Aymeric Diet
  */
-class DAOMap extends DAOEntity<Map> {
+public class DAOMap extends DAOEntity<Map> {
 
 	/**
 	 * Instantiates a new DAO hello world.

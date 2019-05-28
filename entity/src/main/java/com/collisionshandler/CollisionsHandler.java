@@ -2,6 +2,7 @@ package com.collisionshandler;
 
 import com.entity.mobileelements.Diamond;
 import com.entity.mobileelements.Enemy;
+import com.entity.mobileelements.Player;
 import com.entity.mobileelements.Stone;
 import com.entity.motionlesselements.ExitDoor;
 import com.entity.motionlesselements.Path;
@@ -44,6 +45,14 @@ public class CollisionsHandler {
 	public boolean checkForDiamonds(Entity[][] playerPosition, int x, int y) {
 
 		if (playerPosition[x][y] instanceof Diamond) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean checkForPlayer(Entity[][] playerPosition, int x, int y) {
+
+		if (playerPosition[x][y] instanceof Player) {
 			return true;
 		}
 		return false;

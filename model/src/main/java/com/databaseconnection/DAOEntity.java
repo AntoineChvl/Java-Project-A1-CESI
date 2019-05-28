@@ -1,4 +1,4 @@
-package model;
+package com.databaseconnection;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -13,7 +13,7 @@ import entity.Entity;
  * @param <E>
  *          the element type
  */
-abstract class DAOEntity<E extends Entity> {
+public abstract class DAOEntity<E extends Entity> {
 
 	/** The connection. */
 	private final Connection connection;
