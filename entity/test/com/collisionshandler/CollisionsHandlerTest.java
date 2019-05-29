@@ -10,15 +10,19 @@ import org.junit.Test;
 
 import com.entity.mobileelements.Enemy;
 import com.entity.mobileelements.Player;
+import com.entity.mobileelements.Stone;
+
 import entity.Map;
 
 public class CollisionsHandlerTest {
 	
-	Map map;
-	int x;
-	int y;
-	Player p;
-	Enemy e;
+	private Map map;
+	private int x;
+	private int y;
+	private Player p;
+	@SuppressWarnings("unused")
+	private Enemy e;
+	private Stone s;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -33,18 +37,18 @@ public class CollisionsHandlerTest {
 	public void setUp() throws Exception {
 		this.map = new Map(1 , "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\r\n" + 
 				"qtttootttttttttttttqtttttttttttttttttttq\r\n" + 
-				"qtttxttttttttttttttqtotttoottttttttxtttq\r\n" + 
-				"qtttxttttttttttttttqtttttttttttttttttttq\r\n" + 
+				"qtttuttttttttttttttqtotttoottttttttxtttq\r\n" + 
+				"qtttuttttttttttttttqtttttttttttttttttttq\r\n" + 
 				"qttttttttoooootttttqttttuuiutttotttttttq\r\n" + 
-				"qttttttttttttttttttqtttttttttttoottttttq\r\n" + 
-				"qtttttttttuuiutttttqtttttttttttoottttttq\r\n" + 
+				"qttttttttutttttttttqtttttttttttoottttttq\r\n" + 
+				"qttttttttuuuiutttttqtttttttttttoottttttq\r\n" + 
 				"qqqqqqqqttttqqqqqqqqqqqqqqqquuttqqqqqqqq\r\n" + 
 				"qttttttttttttttttttqtttttttttttttttttttq\r\n" + 
 				"qtttuuuttttttttttttqttttttttuttttttttttq\r\n" + 
 				"qttttttttxttottttttqtttttttttttttttotttq\r\n" + 
-				"qtootttttttotttttttqtttttutttutttttotttq\r\n" + 
-				"qttotttttttttttttttotttttttttxttttotottq\r\n" + 
-				"qtttottttutttttttttttttttttttttttttotteq\r\n" + 
+				"qtootttttttouttttttqtttttutttutttttotttq\r\n" + 
+				"qttottttttttuttttttotttttttttxttttotottq\r\n" + 
+				"qtttottttuttuttttttttttttttttttttttotteq\r\n" + 
 				"qttxxttttuuttttotttutttttttttttttttttttq\r\n" + 
 				"qttttttttttttttotttqttttottttttttttttttq\r\n" + 
 				"qttttttttttttttotttqttttootttttuuttttttq\r\n" + 
@@ -75,7 +79,7 @@ public class CollisionsHandlerTest {
 		p = this.map.getPlayer();
 		this.x = p.getPositionX();
 		this.y = p.getPositionY();
-		
+		s = (Stone) map.getArrayMap()[4][1];
 	}
 
 	@After
@@ -83,7 +87,7 @@ public class CollisionsHandlerTest {
 	}
 
 	@Test
-	public void test() {
+	public void testCollision() {
 
 		final int expectedX = 3;
 		final int expectedY = 35;
@@ -95,4 +99,23 @@ public class CollisionsHandlerTest {
 		assertEquals(expectedY, y);
 
 	}
+	
+	@Test
+	public void testGravity() {
+		
+		final int expectedYAfterGravity = 3;
+		
+		
+		for (int i=0;i<3;i++) {
+            map.runStrategies();
+        }
+		System.out.println(s.getPositionY());
+		assertEquals(expectedYAfterGravity, s.getPositionY());
+		
+		
+	}
+	
+	
+	
+	
 }

@@ -11,8 +11,11 @@ import org.junit.Test;
 import com.strategy.RandomEnemyMove;
 
 import entity.EntityTest;
+import entity.Map;
 
 public class EnemyTest extends EntityTest {
+	
+	Map map;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -25,6 +28,46 @@ public class EnemyTest extends EntityTest {
 	@Before
 	public void setUp() throws Exception {
 		this.entity = new Enemy(5,5);
+		this.map = new Map(233,"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\r\n" +
+                "qttttttuoutttttttttttttttttttttttttttttq\r\n" +
+                "qtttttttoqtttttoootttttttttuuttttqqttttq\r\n" +
+                "qtttttttxqtoottttttqtttttttttttttttqtttq\r\n" +
+                "qttttttttqttttttttqttttttttttttttttttttq\r\n" +
+                "qtttuttttttttttttqttttttttqttttutttttttq\r\n" +
+                "qtttuttttqttttttttttttttttxtttttttttqqtq\r\n" +
+                "qttttttttqtttutttttttttuottttttttttttttq\r\n" +
+                "qttttttttxtttutttttttttuqqqqqqtttttttttq\r\n" +
+                "qttttttttqttttttttotttttttttttttttootttq\r\n" +
+                "qttttxtttttttttttttottttttttttttttxotttq\r\n" +
+                "qtttqqtttutttttqtttootttttttqttttttttttq\r\n" +
+                "qttttqtttttttttttttttotttqttqttttttttttq\r\n" +
+                "qtttttttttttttttttttttttttttqttttttttttq\r\n" +
+                "qttttttttttqqtttttttoutttttttttttttttttq\r\n" +
+                "qtootttttttttttttttqqittttutttttttqttttq\r\n" +
+                "qttttqttttttttttttttquttttuttttttttttttq\r\n" +
+                "qtttttqttttttttttttttttttttttttttttttttq\r\n" +
+                "qttttttttttuutttttqtttttttqttttttttotttq\r\n" +
+                "qttttttttttttttttqtqtttttttttttttttotttq\r\n" +
+                "qttyttttttttttttxxxttxttttttqqtttttxtttq\r\n" +
+                "qtttttttttttttttuuutttttttttqttttttttttq\r\n" +
+                "qtttttttqqqtttttuiuttttoottttttuuttttttq\r\n" +
+                "qtttttttttttttttttttttttottttttttttttttq\r\n" +
+                "qtttttttxxtqqqtttttttqqqxttttttttotttttq\r\n" +
+                "qtttqotttttttttttttttqtttttttttttttttttq\r\n" +
+                "qtttqtttttttttttttutttttttuttttttqtttttq\r\n" +
+                "qttttttuttttttqtttttottttttttttttqtttttq\r\n" +
+                "qttuttttttttttttttttotttttttttttqttttttq\r\n" +
+                "qttttttttqxttttttttototttttttttttttttttq\r\n" +
+                "qtttttttttqttttuttttottqqttttuiutttttttq\r\n" +
+                "qttttutttttqtttttttttttqottttttttttttttq\r\n" +
+                "qtttttttttttqtttttttttqqxttttttttqqttttq\r\n" +
+                "qottqtttttttttttutttttttttttutttttqttttq\r\n" +
+                "qottqxtttttttttuttttttttttttutttttqttttq\r\n" +
+                "qottqttttttuottttttqqqtttttutttttttttttq\r\n" +
+                "qottqqqqttttttttttttttttttttttttttxttttq\r\n" +
+                "qxtttttttttttttttttetttttttttttttttttttq\r\n" +
+                "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",7);
+		this.map.createMapToChars();
 	}
 
 	@After
@@ -42,4 +85,16 @@ public class EnemyTest extends EntityTest {
 		assertEquals(expectedSpriteName, this.entity.getSprite().getImageName());
 		assertEquals(expectedStrategy, this.entity.getStrategy().returnStrategy());
 	}
+	
+	@Test
+	public void testDeathOfEnemy() {
+		
+		final int expectedDiamondCounter = 4;
+		for (int i=0;i<3;i++) {
+            map.runStrategies();
+        }
+       
+        assertEquals(expectedDiamondCounter, map.getPlayer().getDiamondsCounter());
+	}
+
 }
