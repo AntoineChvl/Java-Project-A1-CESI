@@ -20,7 +20,7 @@ public class Stone extends MobileElements {
 	}
 	
 	
-	public Stone(int x, int y, Map map) {
+	public Stone(int x, int y) {
 		
 		super(sprite, x, y);
 		this.setStrategy(new CascadeFalling(this));

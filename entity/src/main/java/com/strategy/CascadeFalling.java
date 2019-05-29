@@ -56,6 +56,12 @@ public class CascadeFalling extends Strategy<MobileElements> {
 		me.setPositionY(me.getPositionY()+ sideY);
 		
 	}
+
+	@Override
+	public String returnStrategy() {
+		// TODO Auto-generated method stub
+		return "CascadeFalling";
+	}
 	
 
 }

@@ -22,5 +22,4 @@ public class Diamond extends MobileElements {
 		super(sprite, x, y);
 		this.setStrategy(new BasicFalling(this));
 	}
-
 }

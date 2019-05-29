@@ -40,4 +40,11 @@ public class BasicFalling extends Strategy<MobileElements> {
 			me.setIsFallen(false);
 		}
 	}
+
+
+	@Override
+	public String returnStrategy() {
+		// TODO Auto-generated method stub
+		return "BasicFalling";
+	}
 }

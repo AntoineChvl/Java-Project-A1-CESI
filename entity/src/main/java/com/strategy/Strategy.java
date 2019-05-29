@@ -8,7 +8,7 @@ public abstract class Strategy<T extends Entity> {
 	
 	protected MobileElements me = null;
 	public abstract void runStrategy();
-	
+	public abstract String returnStrategy();
 	
 
 

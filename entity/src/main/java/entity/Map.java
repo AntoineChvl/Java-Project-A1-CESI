@@ -123,7 +123,7 @@ public class Map extends Entity {
 						mapToChars[x][y] = new Player(x, y);
 						break;
 					case 'o':
-						mapToChars[x][y] = new Stone(x, y, this);
+						mapToChars[x][y] = new Stone(x, y);
 						break;
 					case 'i':
 						mapToChars[x][y] = new Enemy(x, y);

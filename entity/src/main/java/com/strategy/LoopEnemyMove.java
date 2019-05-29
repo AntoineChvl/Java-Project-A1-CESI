@@ -1,7 +1,6 @@
 package com.strategy;
 
 import com.entity.mobileelements.Enemy;
-import com.entity.motionlesselements.Path;
 import com.entity.motionlesselements.Walls;
 
 import entity.Entity;
@@ -39,5 +38,11 @@ public class LoopEnemyMove  extends Strategy<Enemy> {
 		if(!(getAsideEntity instanceof Walls)) {
 			me.entityMove(me.getPositionX(), me.getPositionY(), sideX, 'S');
 		}
+	}
+
+	@Override
+	public String returnStrategy() {
+		// TODO Auto-generated method stub
+		return "LoopEnemyMove";
 	}
 }
