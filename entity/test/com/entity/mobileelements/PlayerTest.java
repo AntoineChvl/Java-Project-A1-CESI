@@ -83,7 +83,7 @@ public class PlayerTest extends EntityTest {
                 "qtttttqttttttttttttttttttttttttttttttttq\r\n" +
                 "qttotttttttuutttttqtttttttqttttttttotttq\r\n" +
                 "qttutttttttttttttqtqtttttttttttttttotttq\r\n" +
-                "qttyttttttttttttxxxttxttttttqqtttttxtttq\r\n" +
+                "qtttttttttttttttxxxttxttttttqqtttttxtttq\r\n" +
                 "qtttttttttttttttuuutttttttttqttttttttttq\r\n" +
                 "qtttttttqqqtttttuiuttttoottttttuuttttttq\r\n" +
                 "qtttttttttttttttttttttttottttttttttttttq\r\n" +
@@ -98,10 +98,10 @@ public class PlayerTest extends EntityTest {
                 "qtttttttttttqtttttttttqqxttttttttqqttttq\r\n" +
                 "qottqtttttttttttutttttttttttutttttqttttq\r\n" +
                 "qottqxtttttttttuttttttttttttutttttqttttq\r\n" +
-                "qottqttttttuottttttqqqtttttutttttttttttq\r\n" +
-                "qottqqqqttttttttttttttttttttttttttxttttq\r\n" +
-                "qxtttttttttttttttttetttttttttttttttttttq\r\n" +
-                "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",7);
+                "qottqttttttuotttttoqqqtttttutttttttttttq\r\n" +
+                "qottqqqqttttttttttutttttttttttttttxttttq\r\n" +
+                "qxttttttttttttttttyetttttttttttttttttttq\r\n" +
+                "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq", 7);
      this.map.createMapToChars();
 	}
 
@@ -146,7 +146,7 @@ public class PlayerTest extends EntityTest {
 		assertEquals(expectedAliveBeforeStone, map.getPlayer().isAlive);
 
 		final boolean expectedAliveAfterStone = false;
-	      for (int i=0;i<3;i++) {
+	      for (int i=0;i<2;i++) {
 	          map.runStrategies();
 	      }
 	     assertEquals(expectedAliveAfterStone, map.getPlayer().isAlive);
@@ -171,7 +171,17 @@ public class PlayerTest extends EntityTest {
 		assertEquals(expectedIncreasedDiamondCounter, pTest.getDiamondsCounter());
 	}
 	
-	
+	@Test
+	public void testDidPlayerWin() {
+		
+		final boolean expectedWin = true;
+	     map.getPlayer().increaseDiamondsCounter(9);
+	     map.getPlayer().didPlayerWin(7);
+	 
+	    assertEquals(expectedWin, map.getPlayer().getIsWin());
+		
+		
+	}
 	
 	
 	
