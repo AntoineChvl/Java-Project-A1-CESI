@@ -31,6 +31,10 @@ public class Enemy extends MobileElements {
 	public Sprite getSpriteDown() {
 		return Enemy.spriteDown;
 	}
+	
+	
+	
+	
 
 
 }

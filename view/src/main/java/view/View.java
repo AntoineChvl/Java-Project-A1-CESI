@@ -51,7 +51,6 @@ public final class View implements IView, Runnable {
 				return ControllerOrder.nothing;
 		}
 	}
-
 	/*
 	 * (non-Javadoc)
 	 *

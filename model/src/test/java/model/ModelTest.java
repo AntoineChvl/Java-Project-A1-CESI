@@ -4,6 +4,9 @@
  */
 package model;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -51,15 +54,25 @@ public class ModelTest {
         Assert.assertEquals(7, this.model.getMap().getNumberOfDiamondsNeeded());
         this.model.loadMap(5);
         Assert.assertEquals(8, this.model.getMap().getNumberOfDiamondsNeeded());
-        this.model.loadMap(20);
-        Assert.assertEquals(0, this.model.getMap().getNumberOfDiamondsNeeded());
-        
     }
+    
+    @Test
+    public void testLimitLoadingMap() {
+
+        try {
+        	this.model.loadMap(8);
+            fail("Failed");
+        } catch (IndexOutOfBoundsException e) {
+            assertEquals(e.getMessage(), "Incorrect id !"); // If there is an exception, the assert equals will return true
+        }
+    }
+    
+    
     
     @Test
     public void testGetContentOfMap() {
         this.model.loadMap(1);
-        Assert.assertEquals("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\r\n" + 
+        assertEquals("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\r\n" + 
         		"qttttttttttttttttttttttttttttttttttttttq\r\n" + 
         		"qtootttttxttttttttttttuotttttttttuuttttq\r\n" + 
         		"qttttttttttttttttttttuuttttttttttxtttttq\r\n" + 
@@ -99,7 +112,7 @@ public class ModelTest {
         		"qttttttttttttttttttttttttttttttttttttuuq\r\n" + 
         		"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq", this.model.getMap().getContentOfMap());
         this.model.loadMap(2);
-        Assert.assertEquals("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\r\n" + 
+        assertEquals("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\r\n" + 
         		"qtttootttttttttttttqtttttttttttttttttttq\r\n" + 
         		"qtttxttttttttttttttqtotttoottttttttxtttq\r\n" + 
         		"qtttxttttttttttttttqtttttttttttttttttttq\r\n" + 
@@ -139,7 +152,7 @@ public class ModelTest {
         		"qttttttttttttttttttqxxtttttttttttttttttq\r\n" + 
         		"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq", this.model.getMap().getContentOfMap());
         this.model.loadMap(3);
-        Assert.assertEquals("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\r\n" + 
+        assertEquals("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\r\n" + 
         		"qtttttttttttqttttttttttttttqtttttoxttttq\r\n" + 
         		"qtttttttttttqtttttttyttttttqtttttttttttq\r\n" + 
         		"qtttttttttttqtottttttttttttqttttttottttq\r\n" + 
@@ -179,7 +192,7 @@ public class ModelTest {
         		"qtttttttttttqttttttuettttttqtttttttttttq\r\n" + 
         		"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq", this.model.getMap().getContentOfMap());
         this.model.loadMap(4);
-        Assert.assertEquals("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\r\n" + 
+        assertEquals("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\r\n" + 
         		"qttttttuoutttttttttttttttttttttttttttttq\r\n" + 
         		"qtttttttoqtttttoootttttttttuuttttqqttttq\r\n" + 
         		"qtttttttxqtoottttttqtttttttttttttttqtttq\r\n" + 
@@ -219,7 +232,7 @@ public class ModelTest {
         		"qxtttttttttttttttttetttttttttttttttttttq\r\n" + 
         		"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq", this.model.getMap().getContentOfMap());
         this.model.loadMap(5);
-        Assert.assertEquals("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\r\n" + 
+        assertEquals("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\r\n" + 
         		"qttxotttttutttuttttttttttttttttoxotttttq\r\n" + 
         		"qttxoutttttttttttttyutttttttttttttttuttq\r\n" + 
         		"qttttttttttotttttttuutttttotttttottttttq\r\n" + 
@@ -258,8 +271,6 @@ public class ModelTest {
         		"qoootttttottttttttttttttottttxxtttttttoq\r\n" + 
         		"qoooxttttttttttttttettttttttttttttttttoq\r\n" + 
         		"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq", this.model.getMap().getContentOfMap());
-        this.model.loadMap(20);
-        Assert.assertEquals("", this.model.getMap().getContentOfMap());
     }
     
     

@@ -60,12 +60,17 @@ public final class Model extends Observable implements IModel {
 	 *
 	 * @see contract.IModel#getMessage(java.lang.String)
 	 */
-	public void loadMap(final int id) {
-		try {
-			final DAOMap daoMap = new DAOMap(DBConnection.getInstance().getConnection());
-			this.setMap(daoMap.find(id));
-		} catch (final SQLException e) {
-			e.printStackTrace();
+	public void loadMap(final int id) throws IndexOutOfBoundsException {
+		
+		if(id <= 7) {
+			try {
+				final DAOMap daoMap = new DAOMap(DBConnection.getInstance().getConnection());
+				this.setMap(daoMap.find(id));
+			} catch (final SQLException e) {
+				e.printStackTrace();
+			}
+		} else {
+				throw new IndexOutOfBoundsException("Incorrect id !");
 		}
 	}
 
