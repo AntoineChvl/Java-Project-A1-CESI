@@ -111,8 +111,7 @@ public class CollisionsHandlerTest {
         }
 		System.out.println(s.getPositionY());
 		assertEquals(expectedYAfterGravity, s.getPositionY());
-		
-		
+
 	}
 	
 	

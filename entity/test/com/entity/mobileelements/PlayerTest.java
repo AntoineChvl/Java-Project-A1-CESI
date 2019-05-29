@@ -179,8 +179,6 @@ public class PlayerTest extends EntityTest {
 	     map.getPlayer().didPlayerWin(7);
 	 
 	    assertEquals(expectedWin, map.getPlayer().getIsWin());
-		
-		
 	}
 	
 	
