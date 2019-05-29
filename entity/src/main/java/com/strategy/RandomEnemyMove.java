@@ -42,7 +42,7 @@ public class RandomEnemyMove extends Strategy<Enemy> {
 
 	@Override
 	public String returnStrategy() {
-		return "RandonEnemyMove";
+		return "RandomEnemyMove";
 	}
 
 }

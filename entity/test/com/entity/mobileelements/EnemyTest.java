@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.strategy.RandomEnemyMove;
 
 import entity.EntityTest;
 
@@ -35,10 +36,10 @@ public class EnemyTest extends EntityTest {
 		super.testEntityBasicCharacteristics();
 		final String expectedSpriteName = "Enemy.png";
 		final char expectedCharName = 'i';
-		final String expectedStrategy = "RandonEnemyMove";
+		entity.setStrategy(new RandomEnemyMove((Enemy)entity));
+		final String expectedStrategy = "RandomEnemyMove";
 		assertEquals(expectedCharName, this.entity.getSprite().getConsoleImage());
 		assertEquals(expectedSpriteName, this.entity.getSprite().getImageName());
 		assertEquals(expectedStrategy, this.entity.getStrategy().returnStrategy());
 	}
-
 }

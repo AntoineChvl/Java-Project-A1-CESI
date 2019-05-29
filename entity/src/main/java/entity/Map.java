@@ -170,7 +170,9 @@ public class Map extends Entity {
 		
 		if(this.getPlayer() != null) {
 			this.getPlayer().playerDeathLinkToEnemy();
-			this.getPlayer().didPlayerWin(numberOfDiamondsNeeded);
+			if(this.numberOfDiamondsNeeded != 0) {
+				this.getPlayer().didPlayerWin(numberOfDiamondsNeeded);
+			}
 		}
 		
 		

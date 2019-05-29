@@ -39,5 +39,4 @@ public class StoneTest extends EntityTest {
 		assertEquals(expectedSpriteName, this.entity.getSprite().getImageName());
 		assertEquals(expectedStrategy, this.entity.getStrategy().returnStrategy());
 	}
-
 }
