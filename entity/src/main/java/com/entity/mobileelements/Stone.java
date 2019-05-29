@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import com.strategy.CascadeFalling;
 
-import entity.Map;
+
 import entity.Sprite;
 
 public class Stone extends MobileElements {
