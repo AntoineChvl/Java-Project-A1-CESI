@@ -147,7 +147,7 @@ class ViewPanel extends JPanel implements Observer {
 			@Override
 			public void run() {
 				// If the counter is equal to -100 it means that the game has stopped
-				if (counter != -100) {
+				if (counter != -100 && counter > 0) {
 					counter--;// increments the counter
 				}
 			}
@@ -238,5 +238,20 @@ class ViewPanel extends JPanel implements Observer {
 		}
 
 	}
+	
+	
+	  // Getter
+    public int getCounter() {
+      return counter;
+    }
+
+    // Setter
+    public void setCounter(int newCounter) throws IndexOutOfBoundsException{
+      if (newCounter > 0 && newCounter < 10000) {
+          ViewPanel.counter = newCounter;
+      }else {
+          throw new IndexOutOfBoundsException("Wrong parameters");
+      }
+    }
 
 }
