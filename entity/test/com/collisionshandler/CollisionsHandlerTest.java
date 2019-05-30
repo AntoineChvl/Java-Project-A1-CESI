@@ -23,6 +23,7 @@ public class CollisionsHandlerTest {
 	@SuppressWarnings("unused")
 	private Enemy e;
 	private Stone s;
+	private Stone sForMove;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -38,7 +39,7 @@ public class CollisionsHandlerTest {
 		this.map = new Map(1 , "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\r\n" + 
 				"qtttootttttttttttttqtttttttttttttttttttq\r\n" + 
 				"qtttuttttttttttttttqtotttoottttttttxtttq\r\n" + 
-				"qtttuttttttttttttttqtttttttttttttttttttq\r\n" + 
+				"qtttuuuttttttttttttqtttttttttttttttttttq\r\n" + 
 				"qttttttttoooootttttqttttuuiutttotttttttq\r\n" + 
 				"qttttttttutttttttttqtttttttttttoottttttq\r\n" + 
 				"qttttttttuuuiutttttqtttttttttttoottttttq\r\n" + 
@@ -70,7 +71,7 @@ public class CollisionsHandlerTest {
 				"qttttttttttttttttttqtttttttttttotttttttq\r\n" + 
 				"qttttttuotttttootttqttttttttttttttottttq\r\n" + 
 				"qttutttttttttttttttqutttttuttttutttotttq\r\n" + 
-				"qttyittttttttxtttutqottotttttttutttttttq\r\n" + 
+				"qttyouuttttttxtttutqottotttttttutttttttq\r\n" + 
 				"qttuutttttttttttuutqottttttotttutttttttq\r\n" + 
 				"qttttttttttttttttttqxxtttttttttttttttttq\r\n" + 
 				"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq", 10);
@@ -80,6 +81,7 @@ public class CollisionsHandlerTest {
 		this.x = p.getPositionX();
 		this.y = p.getPositionY();
 		s = (Stone) map.getArrayMap()[4][1];
+		sForMove = (Stone)map.getArrayMap()[4][35];
 	}
 
 	@After
@@ -109,8 +111,18 @@ public class CollisionsHandlerTest {
 		for (int i=0;i<3;i++) {
             map.runStrategies();
         }
-		System.out.println(s.getPositionY());
 		assertEquals(expectedYAfterGravity, s.getPositionY());
+
+	}
+	
+	@Test
+	public void testMoveStone() {
+		
+		p.entityMove(1, 0, 1, 'S');
+		
+		final int expectedStoneXAfterMove = 5;
+		
+		assertEquals(expectedStoneXAfterMove, sForMove.getPositionX());
 
 	}
 	
