@@ -12,9 +12,10 @@ import contract.IController;
 import contract.IModel;
 
 /**
- * The Class ViewFrame.
+ * The ViewFrame class.
  *
- * @author Jean-Aymeric Diet
+ * @author Antoine Chauvel
+ * @version 1.0
  */
 class ViewFrame extends JFrame implements KeyListener {
 

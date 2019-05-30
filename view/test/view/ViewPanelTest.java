@@ -8,8 +8,15 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+/**
+ * The viewPanelTest class.
+ * @author Tanguy Lhinares
+ * @version 1.0
+ *
+ */
 public class ViewPanelTest {
 	
+	/** The view panel for the test */
 	static ViewPanel vp;
 
 	@BeforeClass
@@ -20,6 +27,10 @@ public class ViewPanelTest {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
+	/**
+	 * Instantiates a new view panel.
+	 * @throws Exception
+	 */
 	@Before
 	public void setUp() throws Exception {
 		vp = new ViewPanel();
@@ -29,7 +40,10 @@ public class ViewPanelTest {
 	public void tearDown() throws Exception {
 	}
 
-	 @Test
+	 /**
+	 * Test the limit value for the timer.
+	 */
+	@Test
 	    public void test() {
 	        try {
 	            vp.setCounter(-100);

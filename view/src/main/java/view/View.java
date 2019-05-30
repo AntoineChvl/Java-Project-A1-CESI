@@ -10,9 +10,10 @@ import contract.IModel;
 import contract.IView;
 
 /**
- * The Class View.
+ * The View class.
  *
- * @author Jean-Aymeric Diet
+ * @author Antoine Chauvel
+ * @version 1.0
  */
 public final class View implements IView, Runnable {
 

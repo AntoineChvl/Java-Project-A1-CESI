@@ -18,9 +18,11 @@ import entity.Entity;
 import entity.Map;
 
 /**
- * The Class ViewPanel.
+ * The ViewPanel class.
  *
- * @author Jean-Aymeric Diet
+ * @author Tanguy Lhinares
+ * @author Antoine Chauvel
+ * @version 1.0
  */
 @SuppressWarnings("unused")
 public
@@ -30,8 +32,11 @@ class ViewPanel extends JPanel implements Observer {
 	private ViewFrame viewFrame;
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -998294702363713521L;
-	private static int counter = 200; // Counter until the end of the game
+	/** The counter until the end of the game */
+	private static int counter = 200;
+	/** The boolean to refresh some information only once */
 	private boolean hasBeenNotifiedToStop = false;
+	/** The boolean to start properly the timer */
 	private boolean isTimerStart = false;
 
 	public ViewPanel() {
@@ -72,6 +77,9 @@ class ViewPanel extends JPanel implements Observer {
 	 *
 	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
 	 */
+	/**
+	 * Repaint the view.
+	 */
 	public void update(final Observable arg0, final Object arg1) {
 		this.repaint();
 	}
@@ -82,6 +90,9 @@ class ViewPanel extends JPanel implements Observer {
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 */
 
+	/**
+	 * Display information on screen. Method called each time the view is "painted".
+	 */
 	@SuppressWarnings("static-access")
 	@Override
 	protected void paintComponent(final Graphics graphics) {
@@ -141,6 +152,11 @@ class ViewPanel extends JPanel implements Observer {
 		}
 	}
 
+	/**
+	 * The startTimer method.
+	 * Launch a specific timer, calcultated by seconds.
+	 * 
+	 */
 	public static void startTimer() { // This is a timer
 		ViewPanel drawTimer = new ViewPanel();
 		TimerTask timerTask = new TimerTask() {
@@ -156,6 +172,13 @@ class ViewPanel extends JPanel implements Observer {
 		timer.scheduleAtFixedRate(timerTask, 1000, 1000); // each seconds we perform the run method
 	}
 
+	/**
+	 * The displayMap method.
+	 * Allows the paintComponent method to display the map and its entities.
+	 * @param graphics the Graphics
+	 * @param width the width of the view
+	 * @param height the height of the view
+	 */
 	public void displayMap(Graphics graphics, int width, int height) {
 
 		final int imageSize = 16;
@@ -195,6 +218,17 @@ class ViewPanel extends JPanel implements Observer {
 		}
 	}
 
+	/**
+	 * The focusMapOnPlayer method.
+	 * Zoom and center the attention on the player.
+	 * @param graphics the Graphics
+	 * @param width the width of the view
+	 * @param height the height of the view
+	 * @param playerPosX the x coord of the player
+	 * @param playerPosY the y coord of the player
+	 * @param scale the zoom used to focus on player
+	 * @param imageSize the sprite size
+	 */
 	public void focusMapOnPlayer(Graphics graphics, int width, int height, int playerPosX, int playerPosY, double scale, int imageSize) {
 
 		graphics.clearRect(0, 0, width, height);
@@ -206,6 +240,19 @@ class ViewPanel extends JPanel implements Observer {
 			((Graphics2D) graphics).scale(scale, scale);
 	}
 
+	/**
+	 * The reverseFocusOnScreenAndStats method.
+	 * Displays statistics on the right upper corner of the view.
+	 * @param graphics the Graphics
+	 * @param scale the zoom used to focus on the player
+	 * @param width the width of the view
+	 * @param height the height of the view
+	 * @param playerPosX the x coord of the player
+	 * @param playerPosY the y coord of the player
+	 * @param player the player
+	 * @param map the map
+	 * @param imageSize the sprite size
+	 */
 	public void reverseFocusOnScreenAndStats(Graphics graphics, double scale, int width, int height, int playerPosX,
 			int playerPosY, Player player, Map map, int imageSize) {
 
@@ -240,12 +287,21 @@ class ViewPanel extends JPanel implements Observer {
 	}
 	
 	
-	  // Getter
+	 
+    /**
+     * The getCounter method.
+     * @return the counter
+     */
     public int getCounter() {
       return counter;
     }
 
-    // Setter
+    
+    /**
+     * The setCounter method.
+     * @param newCounter the new counter
+     * @throws IndexOutOfBoundsException
+     */
     public void setCounter(int newCounter) throws IndexOutOfBoundsException{
       if (newCounter > 0 && newCounter < 10000) {
           ViewPanel.counter = newCounter;
