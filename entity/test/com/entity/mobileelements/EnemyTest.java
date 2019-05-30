@@ -13,8 +13,15 @@ import com.strategy.RandomEnemyMove;
 import entity.EntityTest;
 import entity.Map;
 
+/**
+ * The Enemy test class.
+ * @author Tanguy Lhinares
+ * @version 1.0
+ *
+ */
 public class EnemyTest extends EntityTest {
 	
+	/** The map of the enemy */
 	Map map;
 
 	@BeforeClass
@@ -25,6 +32,9 @@ public class EnemyTest extends EntityTest {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
+	/**
+	 * Instantiates the map and the enemy.
+	 */
 	@Before
 	public void setUp() throws Exception {
 		this.entity = new Enemy(5,5);
@@ -74,6 +84,10 @@ public class EnemyTest extends EntityTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * The testEnemy method.
+	 * Checks the basic sprite name, character and strategy of the enemy.
+	 */
 	@Test
 	public void testEnemy() {
 		super.testEntityBasicCharacteristics();
@@ -86,6 +100,10 @@ public class EnemyTest extends EntityTest {
 		assertEquals(expectedStrategy, this.entity.getStrategy().returnStrategy());
 	}
 	
+	/**
+	 * Runs the map's entities strategies. Consequence : stone fall on the enemy.
+	 * Check the latter death.
+	 */
 	@Test
 	public void testDeathOfEnemy() {
 		

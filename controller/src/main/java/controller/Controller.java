@@ -7,6 +7,8 @@ import contract.IView;
 
 /**
  * The Class Controller.
+ * @author Antoine Chauvel
+ * @version 1.0
  */
 public final class Controller implements IController {
 
@@ -30,6 +32,7 @@ public final class Controller implements IController {
 
 	/**
 	 * Control.
+	 * Show a pop-up and print a specific message, about the game's rules.
 	 */
 	/*
 	 * (non-Javadoc)
@@ -39,6 +42,11 @@ public final class Controller implements IController {
 	public void control() {
 		this.view.printMessage("Welcome to BoulderBash ! Press any key to start the game. Press 1, 2, 3, 4 or 5 to change the map. Use Z/Q/S/D to move the character.");
 	}
+	
+	/**
+	 * Start method.
+	 * Launch the model loop. Refresh each 100 milliseconds.
+	 */
 	
 	public void start() {
 		
@@ -73,7 +81,7 @@ public final class Controller implements IController {
 
 	/**
 	 * Order perform.
-	 *
+	 * Execute specific method depending on the order.
 	 * @param controllerOrder the controller order
 	 */
 	/*

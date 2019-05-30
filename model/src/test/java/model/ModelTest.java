@@ -14,7 +14,15 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+/**
+ * The ModelTest class.
+ * @author Antoine Chauvel
+ * @version 1.0
+ *
+ */
 public class ModelTest {
+	
+	/** The model for the tests */
     private Model model;
 
     @BeforeClass
@@ -25,6 +33,10 @@ public class ModelTest {
     public static void tearDownAfterClass() throws Exception {
     }
 
+    /**
+     * Instantiates a new model.
+     * @throws Exception
+     */
     @Before
     public void setUp() throws Exception {
         this.model = new Model();
@@ -39,8 +51,10 @@ public class ModelTest {
       //Assert.assertEquals("", this.model.getMap().getContentOfMap());
     }
 
+
     /**
-     * Test method for {@link model.Model#loadMap(java.lang.String)}.
+     * The testGetNumberOfDiamondsNeeded method.
+     * Check that the connection to the database if well-established and the correct number of diamonds is picked.
      */
     @Test
     public void testGetNumberOfDiamondsNeeded() {
@@ -56,6 +70,9 @@ public class ModelTest {
         Assert.assertEquals(8, this.model.getMap().getNumberOfDiamondsNeeded());
     }
     
+    /**
+     * Test the limit of level loading.
+     */
     @Test
     public void testLimitLoadingMap() {
 
@@ -69,6 +86,9 @@ public class ModelTest {
     
     
     
+    /**
+     * Verify the correct content of the map is picked from the database depending on the level.
+     */
     @Test
     public void testGetContentOfMap() {
         this.model.loadMap(1);

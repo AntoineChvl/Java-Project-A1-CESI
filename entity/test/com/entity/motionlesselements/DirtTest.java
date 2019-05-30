@@ -11,6 +11,12 @@ import org.junit.Test;
 
 import entity.EntityTest;
 
+/**
+ * The DirtTest class.
+ * @author Antoine Chauvel
+ * @version 1.0
+ *
+ */
 public class DirtTest extends EntityTest {
 
 	@BeforeClass
@@ -21,6 +27,9 @@ public class DirtTest extends EntityTest {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
+	/**
+	 * Instantiates a new dirt.
+	 */
 	@Before
 	public void setUp() throws Exception {
 		this.entity = new Dirt(4,4);
@@ -30,6 +39,10 @@ public class DirtTest extends EntityTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * The testDirt method.
+	 * Checks the basic sprite name, character and strategy of the dirt.
+	 */
 	@Test
 	public void testDirt() {
 		super.testEntityBasicCharacteristics();

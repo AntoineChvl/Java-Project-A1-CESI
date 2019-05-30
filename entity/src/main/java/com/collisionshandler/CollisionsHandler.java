@@ -11,18 +11,31 @@ import com.entity.motionlesselements.Walls;
 import entity.Entity;
 
 /**
- * The Class CollisionsHandler.
+ * The CollisionsHandler Class.
  *
- * @author Exia CESI - Saint-Nazaire - Group 5
+ * @author Antoine Chauvel
+ * @version 1.0
  */
 
 public class CollisionsHandler {
 
 
+	/**
+	 * CollisionsHandler constructor.
+	 * No specific manipulations.
+	 */
 	public CollisionsHandler() {
 
 	}
 
+	/**
+	 * The checkForCollisions method.
+	 * @param entity the bidimensional array that contains the entity
+	 * @param x the entity's x 
+	 * @param y the entity's y
+	 * @return a boolean that indicates if there is a collision or not.
+	 */
+	
 	public boolean checkForCollisions(Entity[][] entity, int x, int y) {
 		if (entity[x][y] instanceof Stone) {
 			return true;
@@ -37,6 +50,14 @@ public class CollisionsHandler {
 		}
 	}
 
+	/**
+	 * The checkForDiamonds method.
+	 * @param playerPosition the player
+	 * @param x the player's x
+	 * @param y the player's y
+	 * @return a boolean that indicates if the player is going on a diamond.
+	 */
+	
 	public boolean checkForDiamonds(Entity[][] playerPosition, int x, int y) {
 
 		if (playerPosition[x][y] instanceof Diamond) {
@@ -45,13 +66,29 @@ public class CollisionsHandler {
 		return false;
 	}
 	
-	public boolean checkForPlayer(Entity[][] playerPosition, int x, int y) {
+	/**
+	 * The checkForPlayer method.
+	 * @param entity the entity that is gonna kill or no the player
+	 * @param x the entity's x
+	 * @param y the entity's y
+	 * @return a boolean that indicates if there is a player near the entity.
+	 */
+	
+	public boolean checkForPlayer(Entity[][] entity, int x, int y) {
 
-		if (playerPosition[x][y] instanceof Player) {
+		if (entity[x][y] instanceof Player) {
 			return true;
 		}
 		return false;
 	}
+	
+	/**
+	 * The checkForPath method.
+	 * @param entity the entity
+	 * @param x the entity's x
+	 * @param y the entity's y
+	 * @return a boolean that indicates if there is a path near the entity. If true, it can moves.
+	 */
 	
 	public boolean checkForPath(Entity[][] entity, int x, int y) {
 
@@ -61,6 +98,15 @@ public class CollisionsHandler {
 		return true;
 	}
 	
+	/**
+	 * The checkForStoneToMove method.
+	 * @param entity the player
+	 * @param x the player's x
+	 * @param y the player's y
+	 * @param sideX the side on which the player wants to move the stone (left/right)
+	 * @return a boolean that indicates if the player can move a stone on the side he wants.
+	 */
+	
 	public boolean checkForStoneToMove(Entity[][] entity, int x, int y, int sideX) { 
 
 		if (entity[x][y] instanceof Stone && entity[x+sideX][y] instanceof Path) {
@@ -69,72 +115,4 @@ public class CollisionsHandler {
 		return false;
 	}
 
-//	public void checkForGravity() {
-//		for (int y = this.map.getHeightMap() - 1; y >= 0; y--) {
-//			for (int x = 0; x < this.map.getWidthMap(); x++) {
-//
-//				this.basicGravity(x, y);
-//				this.cascadeGravity(x, y, -1,1);
-//				this.cascadeGravity(x, y, +1,1);
-//				this.playerDeathLinkToGravity(x, y);
-//				this.map.getArrayMap()[x][y].setIsFallen(false);
-//			}
-//		}
-//	}	
-//
-//	public void basicGravity(int x, int y) {
-//		Entity getSpecificEntity = this.map.getArrayMap()[x][y];
-//		if ((getSpecificEntity instanceof Stone || getSpecificEntity instanceof Diamond)
-//				&& this.map.getArrayMap()[x][y + 1] instanceof Path) {
-//			this.map.getArrayMap()[x][y + 1] = getSpecificEntity;
-//			this.map.getArrayMap()[x][y] = new Path(x, y);
-//			this.map.getArrayMap()[x][y + 1].setIsFallen(true);
-//		}
-//	}
-//
-//	public void cascadeGravity(int x, int y, int sideX, int sideY) {
-//
-//		if (this.map.getArrayMap()[x][y] instanceof Stone
-//				&& this.map.getArrayMap()[x][y + sideY] instanceof Stone
-//				&& this.map.getArrayMap()[x + sideX][y] instanceof Path
-//				&& this.map.getArrayMap()[x + sideX][y + sideY] instanceof Path) {
-//
-//			this.map.getArrayMap()[x + sideX][y + sideY] = this.map.getArrayMap()[x][y];
-//			this.map.getArrayMap()[x][y] = new Path(x, y);
-//			this.map.getArrayMap()[x][y + 1].setIsFallen(true);
-//
-//		} 
-//	}
-//	
-//	public void playerDeathLinkToGravity(int x, int y) {
-//		
-//		Entity getSpecificEntity = this.map.getArrayMap()[x][y];
-//		
-//		if ((getSpecificEntity instanceof Stone || getSpecificEntity instanceof Diamond)
-//				&& this.map.getArrayMap()[x][y + 1] instanceof Player 
-//				&& ((Player)this.map.getArrayMap()[x][y + 1]).getUnderPotentialThreat() == 0){
-//			
-//			((Player)this.map.getArrayMap()[x][y + 1]).incrementUnderPotentialThreat();
-//			getSpecificEntity.setIsFallen(false);
-//			
-//			
-//		} else if (getSpecificEntity.getIsFallen() == true 
-//				 && (getSpecificEntity instanceof Stone || getSpecificEntity instanceof Diamond) 
-//				 && this.map.getArrayMap()[x][y + 1] instanceof Player
-//				 && ((Player)this.map.getArrayMap()[x][y + 1]).getUnderPotentialThreat() > 0) {
-//			 	
-//			 	((Player)this.map.getArrayMap()[x][y + 1]).setIsAlive(false);
-//			 	
-//				((MobileElements)this.map.getArrayMap()[x][y+1]).loadImage('X', this.map.getArrayMap()[x][y+1]);
-//				this.map.getArrayMap()[x][y+1].setIsFallen(false);
-//				
-//				try {
-//					Thread.sleep(200);
-//				} catch (InterruptedException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//
-//		}	
-//	}
 }

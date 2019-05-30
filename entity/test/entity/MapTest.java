@@ -8,8 +8,15 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+/**
+ * The MapTest class.
+ * @author Antoine Chauvel
+ * @version 1.0
+ *
+ */
 public class MapTest {
 	
+	/** The map for the test */
 	Map map;
 
 	@BeforeClass
@@ -20,6 +27,9 @@ public class MapTest {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
+	/**
+	 * Instantiates a new map and its entities.
+	 */
 	@Before
 	public void setUp() throws Exception {
 		this.map = new Map(1 , "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\r\n" + 
@@ -68,6 +78,9 @@ public class MapTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Verifiy that there is a player entity on the map and therefore the transformation of the String into entities worked well.
+	 */
 	@Test
 	public void testMapFulfilled() {
 		assertNotNull(this.map.getPlayer());

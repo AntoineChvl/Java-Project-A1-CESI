@@ -2,11 +2,21 @@ package com.strategy;
 
 import com.entity.mobileelements.Enemy;
 
+/**
+ * The RandomEnemyMove class.
+ * @author Antoine Chauvel
+ * @version 1.0
+ *
+ */
 public class RandomEnemyMove extends Strategy<Enemy> {
 
-	
+	/** The enemy concerned by the strategy */
 	private Enemy me = null;
 	
+	/**
+	 * The RandomEnemyMove strategy constructor.
+	 * @param me the enemy concerned
+	 */
 	public RandomEnemyMove(Enemy me) {
 		this.me = me;
 	}

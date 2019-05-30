@@ -11,19 +11,42 @@ import entity.Sprite;
 /**
  * The Abstract Class MobileElements.
  *
- * @author Exia CESI - Saint-Nazaire - Group 5
+ * @author Antoine Chauvel
+ * @version 1.0
  */
 
 public abstract class MobileElements extends Entity {
-
+	
+	/** The diamond counter */
 	private int diamondsCounter;
+	
+	/** The boolean to indicates if the mobile element is alive */
 	protected boolean isAlive;
+	
+	/** The death sprite for mobile entities */
 	protected static final Sprite spriteDeath = new Sprite('y', "Death.png");
+	
+	
+	/**
+	 * The MobileElements constructor
+	 * @param sprite the default sprite of the entity
+	 * @param x the initial entity's x on the map
+	 * @param y the initial entity's y on the map
+	 */
 	
 	public MobileElements(Sprite sprite, int x, int y) {
 		super(sprite, x, y);
 	}
 
+	/**
+	 * The entityMove method.
+	 * Allows mobile entities to move on the map.
+	 * @param x the x the entity wants to go (1 goes for right and -1 for left)
+	 * @param y the y the entity wants to go (1 goes for down and -1 for up)
+	 * @param sideX the side the entity wants to move a stone
+	 * @param direction the char that indicates to load the entity's specific sprite
+	 */
+	
 	public void entityMove(int x, int y, int sideX, char direction) {
 
 		final int xpos = this.getPositionX();
@@ -78,6 +101,13 @@ public abstract class MobileElements extends Entity {
 			
 	}
 
+	/**
+	 * The loadImage method.
+	 * Allows the entity to change sprite on the map depending on its movements.
+	 * @param direction the direction of the entity
+	 * @param entity the entity
+	 */
+	
 	public void loadImage(char direction, Entity entity) {
 
 		switch (direction) {
@@ -130,26 +160,52 @@ public abstract class MobileElements extends Entity {
 		}
 	}
 
+	/**
+	 * The incrementDiamondsCounter method.
+	 * Increase by 1 the diamond counter of the entity.
+	 */
 	public void incrementDiamondsCounter() {
 		this.diamondsCounter++;
 	}
+	
+	/**
+	 * The increaseDiamondsCounter method.
+	 * @param increase the amount of increase of the counter.
+	 */
 	
 	public void increaseDiamondsCounter(int increase) {
 		this.diamondsCounter += increase;
 	}
 
+	/**
+	 * The getDiamondsCounter methods.
+	 * @return the number of diamonds the entity has
+	 */
+	
 	public int getDiamondsCounter() {
 		return this.diamondsCounter;
 	}
 
+	/**
+	 * The getIsAlive method.
+	 * @return the status of live of the entity (true = is living).
+	 */
 	public boolean getIsAlive() {
 		return this.isAlive;
 	}
 
+	/**
+	 * The setIsAlive method.
+	 * @param isAlive define if the entity is still alive or not
+	 */
 	public void setIsAlive(boolean isAlive) {
 		this.isAlive = isAlive;
 	}
 	
+	/**
+	 * The getSpriteDeath method.
+	 * @return the death sprite of mobile entities
+	 */
 	public Sprite getSpriteDeath() {
 		return MobileElements.spriteDeath;
 	}

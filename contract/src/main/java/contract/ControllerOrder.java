@@ -1,35 +1,37 @@
 package contract;
 
+
 /**
- * The Enum ControllerOrder.
+ * The ControllerOrder enumeration
+ * @author Antoine Chauvel
+ * @version 1.0
  *
- * @author Jean-Aymeric Diet
  */
 public enum ControllerOrder {
 
-	/** The English. */
+	/** The first map */
 	Map1,
-	/** The French. */
+	/** The second map */
 	Map2,
-	/** The Deutch. */
+	/** The third map */
 	Map3,
-	/** The Indonesia. */
+	/** The fourth map */
 	Map4,
-	
+	/** The fifth map */
 	Map5,
-	
+	/** The sixth map */
 	Map6,
-	
+	/** The seventh map */
 	Map7,
-	
+	/** To go up */
 	Z,
-	
+	/** To go left */
 	Q,
-	
+	/** To go down */
 	S,
-	
+	/** To go right */
 	D,
-	
+	/** To do nothing */
 	nothing
 	
 }

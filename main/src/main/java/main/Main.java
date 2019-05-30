@@ -1,7 +1,3 @@
-/**
- * @author Tanguy Lhinaresa 
- * @version 1.0
- */
 package main;
 
 import contract.ControllerOrder;
@@ -9,9 +5,10 @@ import controller.Controller;
 import model.Model;
 import view.View;
 /**
- * The Class Main.
+ * The Main class.
  *
- * @author Jean-Aymeric Diet
+ * @author Antoine Chauvel
+ * @version 1.0
  */
 public abstract class Main {
 

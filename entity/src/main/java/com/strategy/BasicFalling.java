@@ -8,9 +8,19 @@ import com.entity.motionlesselements.Path;
 import entity.Entity;
 
 
+/**
+ * The BasicFalling class.
+ * @author Antoine Chauvel
+ * @version 1.0
+ *
+ */
 public class BasicFalling extends Strategy<MobileElements> {
 
 	
+	/**
+	 * The BasicFalling strategy constructor
+	 * @param me the mobile element concerned
+	 */
 	public BasicFalling(MobileElements me) {
 		this.me = me;
 		

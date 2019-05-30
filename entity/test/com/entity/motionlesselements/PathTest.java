@@ -11,6 +11,12 @@ import org.junit.Test;
 
 import entity.EntityTest;
 
+/**
+ * The PathTest class.
+ * @author Antoine Chauvel
+ * @version 1.0
+ *
+ */
 public class PathTest extends EntityTest {
 
 	@BeforeClass
@@ -21,6 +27,9 @@ public class PathTest extends EntityTest {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
+	/**
+	 * Instantiates a new path.
+	 */
 	@Before
 	public void setUp() throws Exception {
 		this.entity = new Path(6,6);
@@ -30,8 +39,12 @@ public class PathTest extends EntityTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * The testPath method.
+	 * Checks the basic sprite name, character and strategy of the path.
+	 */
 	@Test
-	public void test() {
+	public void testPath() {
 		super.testEntityBasicCharacteristics();
 		final String expectedSpriteName = "Background.png";
 		final char expectedCharName = 'u';

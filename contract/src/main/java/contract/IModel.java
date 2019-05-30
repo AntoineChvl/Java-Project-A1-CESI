@@ -9,22 +9,23 @@ import entity.Map;
 /**
  * The Interface IModel.
  *
- * @author Exia CESI - Saint-Nazaire - Group 5
+ * @author Antoine Chauvel
+ * @version 1.0
  */
 public interface IModel {
 
 	/**
-	 * Gets the hello world.
+	 * Gets the map.
 	 *
-	 * @return the helloworld entity
+	 * @return the map entity
 	 */
 	Map getMap();
 
 	/**
-	 * Load the message.
+	 * Load the map.
 	 *
-	 * @param code
-	 *          the code
+	 * @param id
+	 *          the id of the map from the database
 	 */
 	void loadMap(int id);
 
@@ -35,10 +36,15 @@ public interface IModel {
 	 */
 	Observable getObservable();
 	
-	//void movePlayer(char direction);
 
+	/**
+	 * Notify observers.
+	 */
 	void modelNotify();
 	
+	/**
+	 * Execute methods in the model to load the game.
+	 */
 	void loop();
 
 }

@@ -3,7 +3,8 @@ package contract;
 /**
  * The Interface IView.
  *
- * @author Jean-Aymeric Diet
+ * @author Antoine Chauvel
+ * @version 1.0
  */ 
 public interface IView {
 

@@ -15,17 +15,34 @@ import entity.EntityTest;
 import entity.Map;
 import entity.Sprite;
 
+/**
+ * The PlayerTest class.
+ * @author Vincent Jacques
+ * @author Tanguy Lhinares
+ * @version 1.0
+ *
+ */
 public class PlayerTest extends EntityTest {
 	
+	/** The player of the test */
 	private Player pTest;
+	/** The key pressed by the player */
     private char keyPressed;
+    /** The map of the player */
     private Map map;
- 
+    /** The basic sprite of the player */
     private static final Sprite spriteDown = new Sprite('y', "Rockford.png");
+    /** The left sprite of the player */
     private static final Sprite spriteTurnLeft = new Sprite('y', "Left_Rockford.png");
+    /** The right sprite of the player */
     private static final Sprite spriteTurnRight = new Sprite('y', "Right_Rockford.png");
+    /** The up sprite of the player */
     private static final Sprite spriteUp = new Sprite('y', "Back_Rockford1.png");
 
+	/**
+	 * Load the player's sprites.
+	 * @throws Exception
+	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		try {
@@ -58,6 +75,10 @@ public class PlayerTest extends EntityTest {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
+	/**
+	 * The setUp method.
+	 * Instantiates a new player and a new map. Defines the key pressed.
+	 */
 	@Before
 	public void setUp() throws Exception {
 		this.entity = new Player(6,6);
@@ -108,7 +129,11 @@ public class PlayerTest extends EntityTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-
+	
+	/**
+	 * The testPlayer method.
+	 * Checks the basic sprite name, character and strategy of the player.
+	 */
 	@Test
 	public void testPlayer() {
 		super.testEntityBasicCharacteristics();
@@ -120,6 +145,9 @@ public class PlayerTest extends EntityTest {
 	}
 	
 	
+	/**
+	 * Test the different directions of the player.
+	 */
 	@Test
     public void testMovePlayer() {
             switch (keyPressed) {
@@ -139,6 +167,10 @@ public class PlayerTest extends EntityTest {
             assertEquals(spriteDown, pTest.getSprite());
     }
 	
+	/**
+	 * Run strategies of the map's entities. Consequence : Stone fall on the player.
+	 * Verify the latter death.
+	 */
 	@Test
 	public void testPlayerIsAlive() {
 		
@@ -152,6 +184,10 @@ public class PlayerTest extends EntityTest {
 	     assertEquals(expectedAliveAfterStone, map.getPlayer().isAlive);
 	}
 	
+	/**
+	 * Increases the player's diamond counter through all manners.
+	 * Verify the amount of diamonds the player has.
+	 */
 	@Test
 	public void testDiamondCounterPlayer() {	
 		final int expectedInitialDiamondCounter = 0;
@@ -171,6 +207,9 @@ public class PlayerTest extends EntityTest {
 		assertEquals(expectedIncreasedDiamondCounter, pTest.getDiamondsCounter());
 	}
 	
+	/**
+	 * Verify the player can move foward the next level with the correct amount of diamonds.
+	 */
 	@Test
 	public void testDidPlayerWin() {
 		
@@ -180,9 +219,5 @@ public class PlayerTest extends EntityTest {
 	 
 	    assertEquals(expectedWin, map.getPlayer().getIsWin());
 	}
-	
-	
-	
-	
-	
+
 }

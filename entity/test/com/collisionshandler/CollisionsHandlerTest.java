@@ -14,15 +14,29 @@ import com.entity.mobileelements.Stone;
 
 import entity.Map;
 
+/**
+ * The CollisionsHandlerTest method.
+ * @author Antoine Chauvel
+ * @version 1.0
+ *
+ */
 public class CollisionsHandlerTest {
 	
+	/** The map to test collisions. */
 	private Map map;
+	/** The x of the entity on the map */
 	private int x;
+	/** The y of the entity on the map */
 	private int y;
+	/** The mobile element concerned by the strategy */
 	private Player p;
+	/** The player on the map */
 	@SuppressWarnings("unused")
+	/** The enemy on the map */
 	private Enemy e;
+	/** The stone on the map */
 	private Stone s;
+	/** The stone to move on the map */
 	private Stone sForMove;
 
 	@BeforeClass
@@ -34,6 +48,11 @@ public class CollisionsHandlerTest {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
+	/**
+	 * The setUp method.
+	 * Load the map and entities.
+	 * @throws Exception
+	 */
 	@Before
 	public void setUp() throws Exception {
 		this.map = new Map(1 , "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq\r\n" + 
@@ -88,6 +107,11 @@ public class CollisionsHandlerTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * The testCollision method.
+	 * Moves the player against a stone and verify its coords.
+	 * 
+	 */
 	@Test
 	public void testCollision() {
 
@@ -102,6 +126,11 @@ public class CollisionsHandlerTest {
 
 	}
 	
+	/**
+	 * The testGravity method.
+	 * Makes a stone fall and checks its coords.
+	 * 
+	 */
 	@Test
 	public void testGravity() {
 		
@@ -115,6 +144,10 @@ public class CollisionsHandlerTest {
 
 	}
 	
+	/**
+	 * The testMoveStone method.
+	 * Makes the player moving a stone and checks the latter coords.
+	 */
 	@Test
 	public void testMoveStone() {
 		

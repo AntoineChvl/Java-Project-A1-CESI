@@ -8,14 +8,15 @@ import java.sql.SQLException;
 import entity.Map;
 
 /**
- * The Class DAOHelloWorld.
+ * The DAOMap class.
  *
- * @author Jean-Aymeric Diet
+ * @author Antoine Chauvel
+ * @version 1.0
  */
 public class DAOMap extends DAOEntity<Map> {
 
 	/**
-	 * Instantiates a new DAO hello world.
+	 * Instantiates a new DAO map.
 	 *
 	 * @param connection
 	 *          the connection

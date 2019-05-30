@@ -11,6 +11,12 @@ import org.junit.Test;
 
 import entity.EntityTest;
 
+/**
+ * The ExitDoorTest class.
+ * @author Antoine Chauvel
+ * @version 1.0
+ *
+ */
 public class ExitDoorTest extends EntityTest {
 
 	@BeforeClass
@@ -21,6 +27,9 @@ public class ExitDoorTest extends EntityTest {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
+	/**
+	 * Instantiates a new exit door.
+	 */
 	@Before
 	public void setUp() throws Exception {
 		this.entity = new ExitDoor(3,3);
@@ -30,6 +39,10 @@ public class ExitDoorTest extends EntityTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * The testExitDoor method.
+	 * Checks the basic sprite name, character and strategy of the exit door.
+	 */
 	@Test
 	public void testExitDoor() {
 		super.testEntityBasicCharacteristics();

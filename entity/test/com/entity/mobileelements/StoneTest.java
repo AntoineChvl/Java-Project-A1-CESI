@@ -10,6 +10,12 @@ import org.junit.Test;
 
 import entity.EntityTest;
 
+/**
+ * The StoneTest class.
+ * @author Antoine Chauvel
+ * @version 1.0
+ *
+ */
 public class StoneTest extends EntityTest {
 
 	@BeforeClass
@@ -20,6 +26,10 @@ public class StoneTest extends EntityTest {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
+	/**
+	 * Instantiates a new stone.
+	 *
+	 */
 	@Before
 	public void setUp() throws Exception {
 		this.entity = new Stone(7,7);
@@ -29,6 +39,10 @@ public class StoneTest extends EntityTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * The testStone method.
+	 * Checks the basic sprite name, character and strategy of the stone.
+	 */
 	@Test
 	public void testStone() {
 		super.testEntityBasicCharacteristics();

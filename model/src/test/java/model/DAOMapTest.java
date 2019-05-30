@@ -10,10 +10,21 @@ import org.junit.Test;
 
 import com.databaseconnection.DBConnection;
 
+/**
+ * The DAOPMapTest class.
+ * @author Antoine Chauvel
+ * @version 1.0
+ *
+ */
 public class DAOMapTest {
 	
+	/** The DAOMap for the tests */
 	private static DAOMap daoMap;
 
+	/**
+	 * Instantiates a new DAOMap.
+	 * @throws Exception
+	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		daoMap = new DAOMap(DBConnection.getInstance().getConnection());
@@ -31,6 +42,9 @@ public class DAOMapTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Verify the connection is correct with the database for the levels.
+	 */
 	@Test
 	public void testGetMapFromDatabase() {
 		

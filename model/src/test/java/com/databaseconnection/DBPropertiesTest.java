@@ -8,10 +8,21 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+/**
+ * The DBPropertiesTest class.
+ * @author Antoine Chauvel
+ * @version 1.0
+ *
+ */
 public class DBPropertiesTest {
 	
+	/** The DBProperties used for the tests */
 	static DBProperties dpProperties;
 
+	/**
+	 * Instantiates a new DBProperties
+	 * @throws Exception
+	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		dpProperties = new DBProperties();
@@ -29,6 +40,9 @@ public class DBPropertiesTest {
 	public void tearDown() throws Exception {
 	}
 
+	/**
+	 * Checks that the correct url, login and password are used to connect to the database.
+	 */
 	@Test
 	public void test() {
 		

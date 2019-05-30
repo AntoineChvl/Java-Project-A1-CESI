@@ -6,10 +6,10 @@ import java.sql.SQLException;
 import entity.Entity;
 
 /**
- * The Class DAOEntity.
+ * The DAOEntity class.
  *
  * @author Jean-Aymeric Diet
- *
+ * @version 1.0
  * @param <E>
  *          the element type
  */

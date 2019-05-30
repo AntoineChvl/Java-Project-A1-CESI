@@ -5,11 +5,21 @@ import com.entity.motionlesselements.Walls;
 
 import entity.Entity;
 
+/**
+ * The LoopEnemyMove class.
+ * @author Antoine Chauvel
+ * @version 1.0
+ *
+ */
 public class LoopEnemyMove  extends Strategy<Enemy> {
 
+	/** The enemy concerned by the strategy */
 	private Enemy me = null;
 	
-	
+	/**
+	 * The LoopEnemyMove strategy constructor.
+	 * @param me the enemy concerned
+	 */
 	public LoopEnemyMove(Enemy me) {
 		this.me = me;
 	}
@@ -32,6 +42,10 @@ public class LoopEnemyMove  extends Strategy<Enemy> {
 		
 	}
 	
+	/**
+	 * The move method. Called by runStrategy.
+	 * @param sideX the side on which the enemy is moving (left/right)
+	 */
 	public void move(int sideX) {
 		
 		Entity getAsideEntity = me.getMap().getArrayMap()[me.getPositionX() + sideX][me.getPositionY()];

@@ -9,14 +9,16 @@ import contract.IModel;
 import entity.Map;
 
 /**
- * The Class Model.
+ * The Model class.
  *
- * @author Jean-Aymeric Diet
+ * @author Antoine Chauvel
+ * @version 1.0
  */
 public final class Model extends Observable implements IModel {
 
-	/** The helloWorld. */
+	/** The map. */
 	private Map map;
+	
 	/**
 	 * Instantiates a new model.
 	 */
@@ -25,9 +27,9 @@ public final class Model extends Observable implements IModel {
 	}
 
 	/**
-     * Gets the hello world.
+     * Gets the map.
      *
-     * @return the hello world
+     * @return map
      */
 	/*
 	 * (non-Javadoc)
@@ -39,10 +41,10 @@ public final class Model extends Observable implements IModel {
 	}
 
 	/**
-     * Sets the hello world.
+     * Sets the map
      *
-     * @param helloWorld
-     *            the new hello world
+     * @param map
+     *            the new map
      */
 	private void setMap(final Map map) {
 		this.map = map;
@@ -50,10 +52,10 @@ public final class Model extends Observable implements IModel {
 	}
 
 	/**
-     * Load hello world.
+     * Load the map
      *
-     * @param code
-     *            the code
+     * @param id
+     *            the id of the map
      */
 	/*
 	 * (non-Javadoc)
@@ -88,11 +90,18 @@ public final class Model extends Observable implements IModel {
 		return this;
 	}
 	
+	/**
+	 * Notify observers.
+	 */
 	public void modelNotify() {
 		setChanged();
 		notifyObservers();
 	}
 	
+	/**
+	 * The loop method.
+	 * Executes the map loop and notify observers.
+	 */
 	public void loop() {
 
 		if(this.getMap().getNumberOfDiamondsNeeded() != 0) {
