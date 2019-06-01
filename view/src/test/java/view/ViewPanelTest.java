@@ -44,7 +44,7 @@ public class ViewPanelTest {
 	 * Test the limit value for the timer.
 	 */
 	@Test
-	    public void test() {
+	    public void testCounter() {
 	        try {
 	            vp.setCounter(-100);
 	            ViewPanel.startTimer();
