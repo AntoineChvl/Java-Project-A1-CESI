@@ -58,7 +58,6 @@ class ViewPanel extends JPanel implements Observer {
 	 *
 	 * @return the view frame
 	 */
-	@SuppressWarnings("unused")
 	private ViewFrame getViewFrame() {
 		return this.viewFrame;
 	}
@@ -93,7 +92,6 @@ class ViewPanel extends JPanel implements Observer {
 	/**
 	 * Display information on screen. Method called each time the view is "painted".
 	 */
-	@SuppressWarnings("static-access")
 	@Override
 	protected void paintComponent(final Graphics graphics) {
 
@@ -102,13 +100,7 @@ class ViewPanel extends JPanel implements Observer {
 		final int width = this.getWidth();
 		final int height = this.getHeight();
 		final int timerResetValue = 200;
-		final int xStartStatsValues = width - 210;
-		final int yStartStatsValues = 0;
-		final int xEndStatsValues = 220;
-		final int yEndStatsValues = 65;
-		final int xStartStatsDisplay = width - 200;
 		Map map = this.viewFrame.getModel().getMap();
-		IModel getModel = this.viewFrame.getModel();
 		Entity[][] loadMap = null;
 		Player player = null;
 
@@ -128,14 +120,13 @@ class ViewPanel extends JPanel implements Observer {
 				this.displayMap(graphics, width, height);
 				
 				if (isTimerStart == false) {
-					this.startTimer();
+					ViewPanel.startTimer();
 					this.isTimerStart = true;
 				}
 
 				this.reverseFocusOnScreenAndStats(graphics, scale, width, height, playerPosX, playerPosY, player, map, imageSize);
 
 			} else {
-				// If the remaining time is equal to 0
 				graphics.clearRect(0, 0, width, height);
 				graphics.drawString("BAD TIMING !", width / 2 - 75, height / 2);
 				counter = -100;
@@ -147,14 +138,13 @@ class ViewPanel extends JPanel implements Observer {
 			
 
 		} else {
-			//this.viewFrame.printMessage("Loading game...");
 			graphics.clearRect(0, 0, width, height);
 		}
 	}
 
 	/**
 	 * The startTimer method.
-	 * Launch a specific timer, calcultated by seconds.
+	 * Launch a specific timer, calculated by seconds.
 	 * 
 	 */
 	public static void startTimer() { // This is a timer
@@ -162,14 +152,13 @@ class ViewPanel extends JPanel implements Observer {
 		TimerTask timerTask = new TimerTask() {
 			@Override
 			public void run() {
-				// If the counter is equal to -100 it means that the game has stopped
 				if (counter != -100 && counter > 0) {
 					counter--;// increments the counter
 				}
 			}
 		};
-		Timer timer = new Timer("MyTimer"); // create a new timer
-		timer.scheduleAtFixedRate(timerTask, 1000, 1000); // each seconds we perform the run method
+		Timer timer = new Timer("MyTimer"); 
+		timer.scheduleAtFixedRate(timerTask, 1000, 1000); 
 	}
 
 	/**

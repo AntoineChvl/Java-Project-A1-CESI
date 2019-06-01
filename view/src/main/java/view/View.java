@@ -18,7 +18,7 @@ import contract.IView;
 public final class View implements IView, Runnable {
 
 	/** The frame. */
-	private final ViewFrame viewFrame;
+	private ViewFrame viewFrame = null;
 
 	/**
 	 * Instantiates a new view.
@@ -29,6 +29,10 @@ public final class View implements IView, Runnable {
 	public View(final IModel model) {
 		this.viewFrame = new ViewFrame(model);
 		SwingUtilities.invokeLater(this);
+	}
+	
+	public View() {
+		
 	}
 
 	/**

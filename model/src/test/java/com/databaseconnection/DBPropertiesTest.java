@@ -21,7 +21,7 @@ public class DBPropertiesTest {
 
 	/**
 	 * Instantiates a new DBProperties
-	 * @throws Exception
+	 * @throws Exception in case of an exception
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {

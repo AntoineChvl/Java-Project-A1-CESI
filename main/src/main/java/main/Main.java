@@ -9,12 +9,12 @@ import view.View;
  *
  * @author Antoine Chauvel
  * @version 1.0
- */
+ */ 
 public abstract class Main {
 
     /**
      * The main method.
-     *
+     *  
      * @param args
      *            the arguments
      */
@@ -26,7 +26,7 @@ public abstract class Main {
         view.setController(controller);
 		
         controller.control();
-        controller.orderPerform(ControllerOrder.Map4); 
+        controller.orderPerform(ControllerOrder.Map1); 
 
         controller.start();
 

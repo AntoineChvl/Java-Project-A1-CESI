@@ -8,7 +8,7 @@ import entity.Entity;
 /**
  * The LoopEnemyMove class.
  * @author Antoine Chauvel
- * @version 1.0
+ * @version 0.1
  *
  */
 public class LoopEnemyMove  extends Strategy<Enemy> {
@@ -56,7 +56,6 @@ public class LoopEnemyMove  extends Strategy<Enemy> {
 
 	@Override
 	public String returnStrategy() {
-		// TODO Auto-generated method stub
 		return "LoopEnemyMove";
 	}
 }

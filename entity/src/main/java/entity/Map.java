@@ -215,16 +215,11 @@ public class Map extends Entity {
 	 */
 	public void loop() {
 		
-		if(this.getPlayer() != null) {
-			this.getPlayer().playerDeathLinkToEnemy();
-			if(this.numberOfDiamondsNeeded != 0) {
+		if(this.getPlayer() != null && this.numberOfDiamondsNeeded != 0) {
+				this.getPlayer().playerDeathLinkToEnemy();
 				this.getPlayer().didPlayerWin(numberOfDiamondsNeeded);
-			}
+				this.runStrategies();
 		}
-		
-		
-		this.runStrategies();
-		
 	}
 	
 	/**

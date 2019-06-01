@@ -35,7 +35,7 @@ public class ModelTest {
 
     /**
      * Instantiates a new model.
-     * @throws Exception
+     * @throws Exception in case of an error
      */
     @Before
     public void setUp() throws Exception {
@@ -48,7 +48,7 @@ public class ModelTest {
 
     @Test
     public void testContentOfMap() {
-      //Assert.assertEquals("", this.model.getMap().getContentOfMap());
+      Assert.assertEquals("", this.model.getMap().getContentOfMap());
     }
 
 
@@ -63,15 +63,15 @@ public class ModelTest {
         this.model.loadMap(2);
         Assert.assertEquals(5, this.model.getMap().getNumberOfDiamondsNeeded());
         this.model.loadMap(3);
-        Assert.assertEquals(6, this.model.getMap().getNumberOfDiamondsNeeded());
-        this.model.loadMap(4);
         Assert.assertEquals(7, this.model.getMap().getNumberOfDiamondsNeeded());
+        this.model.loadMap(4);
+        Assert.assertEquals(9, this.model.getMap().getNumberOfDiamondsNeeded());
         this.model.loadMap(5);
-        Assert.assertEquals(8, this.model.getMap().getNumberOfDiamondsNeeded());
+        Assert.assertEquals(10, this.model.getMap().getNumberOfDiamondsNeeded());
     }
     
     /**
-     * Test the limit of level loading.
+     * Test the limit of level loading. If there is an exception, assertEquals will return true
      */
     @Test
     public void testLimitLoadingMap() {
@@ -80,7 +80,7 @@ public class ModelTest {
         	this.model.loadMap(8);
             fail("Failed");
         } catch (IndexOutOfBoundsException e) {
-            assertEquals(e.getMessage(), "Incorrect id !"); // If there is an exception, the assert equals will return true
+            assertEquals(e.getMessage(), "Incorrect id !"); 
         }
     }
     
@@ -232,8 +232,8 @@ public class ModelTest {
         		"qtttttqttttttttttttttttttttttttttttttttq\r\n" + 
         		"qttttttttttuutttttqtttttttqttttttttotttq\r\n" + 
         		"qttttttttttttttttqtqtttttttttttttttotttq\r\n" + 
-        		"qttyttttttttttttxxxttxttttttqqtttttxtttq\r\n" + 
-        		"qtttttttttttttttuuutttttttttqttttttttttq\r\n" + 
+        		"qttytttttttttttttttttxttttttqqtttttxtttq\r\n" + 
+        		"qtttttttttttttttttttttttttttqttttttttttq\r\n" + 
         		"qtttttttqqqtttttuiuttttoottttttuuttttttq\r\n" + 
         		"qtttttttttttttttttttttttottttttttttttttq\r\n" + 
         		"qtttttttxxtqqqtttttttqqqxttttttttotttttq\r\n" + 
@@ -292,7 +292,4 @@ public class ModelTest {
         		"qoooxttttttttttttttettttttttttttttttttoq\r\n" + 
         		"qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq", this.model.getMap().getContentOfMap());
     }
-    
-    
-    
 }

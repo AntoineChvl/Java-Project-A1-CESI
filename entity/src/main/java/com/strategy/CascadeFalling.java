@@ -74,7 +74,6 @@ public class CascadeFalling extends Strategy<MobileElements> {
 
 	@Override
 	public String returnStrategy() {
-		// TODO Auto-generated method stub
 		return "CascadeFalling";
 	}
 	

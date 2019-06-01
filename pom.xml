@@ -7,6 +7,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Master POM</name>
+	 <description>Welcome to our Boulder Dash java project website ! We had to recreate the famous video game of the 90s. Become this unique character which motivation is to collect diamonds in order to win.</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -142,11 +143,11 @@
 			</plugin>
 		</plugins>
 	</reporting>
-	<url>-</url>
+	<url></url>
   <distributionManagement>
     <site>
-      <id>www.yourcompany.com</id>
-      <url>scp://www.yourcompany.com/www/docs/project/</url>
+      <id>JPU-BlankProject</id>
+      <url>file:///C:/temp/</url>
     </site>
   </distributionManagement>
 </project>

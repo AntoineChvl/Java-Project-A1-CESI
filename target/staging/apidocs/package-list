@@ -1,3 +1,8 @@
+com.collisionshandler
+com.databaseconnection
+com.entity.mobileelements
+com.entity.motionlesselements
+com.strategy
 contract
 controller
 entity

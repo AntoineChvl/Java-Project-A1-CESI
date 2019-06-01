@@ -1,6 +1,6 @@
 package model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -21,10 +21,10 @@ public class DAOMapTest {
 	/** The DAOMap for the tests */
 	private static DAOMap daoMap;
 
-	/**
+	/** 
 	 * Instantiates a new DAOMap.
-	 * @throws Exception
-	 */
+	 * @throws Exception in case of an exception
+	 */ 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		daoMap = new DAOMap(DBConnection.getInstance().getConnection());
