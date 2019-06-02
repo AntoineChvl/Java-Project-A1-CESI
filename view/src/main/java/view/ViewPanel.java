@@ -289,7 +289,7 @@ class ViewPanel extends JPanel implements Observer {
     /**
      * The setCounter method.
      * @param newCounter the new counter
-     * @throws IndexOutOfBoundsException
+     * @throws IndexOutOfBoundsException in case of an exception
      */
     public void setCounter(int newCounter) throws IndexOutOfBoundsException{
       if (newCounter > 0 && newCounter < 10000) {

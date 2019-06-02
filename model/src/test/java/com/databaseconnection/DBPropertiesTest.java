@@ -44,7 +44,7 @@ public class DBPropertiesTest {
 	 * Checks that the correct url, login and password are used to connect to the database.
 	 */
 	@Test
-	public void test() {
+	public void testProperties() {
 		
 		final String url = "jdbc:mysql://localhost/jpublankproject?autoReconnect=true&useSSL=false";
 		final String login = "root";

@@ -23,7 +23,6 @@ public class BasicFalling extends Strategy<MobileElements> {
 	 */
 	public BasicFalling(MobileElements me) {
 		this.me = me;
-		
 	}
 	
 	

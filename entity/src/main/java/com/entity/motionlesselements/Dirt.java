@@ -20,7 +20,6 @@ public class Dirt extends MotionlessElements {
 		try {
 			sprite.loadImage();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -34,6 +33,5 @@ public class Dirt extends MotionlessElements {
 	 */
 	public Dirt(int x, int y) {
 		super(sprite, x, y);
-		// TODO Auto-generated constructor stub
 	}
 }

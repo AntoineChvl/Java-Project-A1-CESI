@@ -31,7 +31,6 @@ public class Player extends MobileElements {
 		try {
 			spriteDown.loadImage();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

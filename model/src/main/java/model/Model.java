@@ -18,6 +18,8 @@ public final class Model extends Observable implements IModel {
 
 	/** The map. */
 	private Map map;
+	/** The number of levels */
+	private final static int numberOfLevels = 7;
 	
 	/**
 	 * Instantiates a new model.
@@ -64,7 +66,7 @@ public final class Model extends Observable implements IModel {
 	 */
 	public void loadMap(final int id) throws IndexOutOfBoundsException {
 		
-		if(id <= 7) {
+		if(id <= numberOfLevels) {
 			try {
 				final DAOMap daoMap = new DAOMap(DBConnection.getInstance().getConnection());
 				this.setMap(daoMap.find(id));

@@ -23,7 +23,6 @@ public class Diamond extends MobileElements {
 		try {
 			sprite.loadImage();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

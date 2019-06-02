@@ -123,19 +123,19 @@ public final class Controller implements IController {
 				break;
 			case Z:
 				this.model.getMap().getPlayer().movePlayer('Z');
-				this.model.modelNotify();
+				//this.model.modelNotify();
 				break;
 			case Q:
 				this.model.getMap().getPlayer().movePlayer('Q');
-				this.model.modelNotify();
+				//this.model.modelNotify();
 				break;
 			case S:
 				this.model.getMap().getPlayer().movePlayer('S');
-				this.model.modelNotify();
+				//this.model.modelNotify();
 				break;
 			case D:
 				this.model.getMap().getPlayer().movePlayer('D');
-				this.model.modelNotify();
+				//this.model.modelNotify();
 				break;
 			default:
 				break;

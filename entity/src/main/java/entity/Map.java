@@ -214,10 +214,10 @@ public class Map extends Entity {
 	 * Executes methods of the map and its entities.
 	 */
 	public void loop() {
-		
-		if(this.getPlayer() != null && this.numberOfDiamondsNeeded != 0) {
-				this.getPlayer().playerDeathLinkToEnemy();
-				this.getPlayer().didPlayerWin(numberOfDiamondsNeeded);
+		Player p = this.getPlayer();
+		if(p != null) {
+				p.playerDeathLinkToEnemy();
+				p.didPlayerWin(numberOfDiamondsNeeded);
 				this.runStrategies();
 		}
 	}

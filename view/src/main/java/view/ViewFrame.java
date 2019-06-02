@@ -21,7 +21,6 @@ class ViewFrame extends JFrame implements KeyListener {
 
 	/** The model. */
 	private IModel model;
-
 	/** The controller. */
 	private IController controller;
 	/** The Constant serialVersionUID. */

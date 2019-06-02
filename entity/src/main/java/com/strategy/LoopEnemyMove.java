@@ -43,7 +43,7 @@ public class LoopEnemyMove  extends Strategy<Enemy> {
 	}
 	
 	/**
-	 * The move method. Called by runStrategy.
+	 * The move method. Called by runStrategy. Unfinished yet.
 	 * @param sideX the side on which the enemy is moving (left/right)
 	 */
 	public void move(int sideX) {

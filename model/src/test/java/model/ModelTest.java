@@ -35,7 +35,7 @@ public class ModelTest {
 
     /**
      * Instantiates a new model.
-     * @throws Exception in case of an error
+     * @throws Exception in case of an exception
      */
     @Before
     public void setUp() throws Exception {
