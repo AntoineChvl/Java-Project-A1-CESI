@@ -1,14 +1,11 @@
 package com.strategy;
 
 import com.entity.mobileelements.Enemy;
-import com.entity.motionlesselements.Walls;
-
-import entity.Entity;
 
 /**
  * The LoopEnemyMove class.
  * @author Antoine Chauvel
- * @version 0.1
+ * @version 1.0
  *
  */
 public class LoopEnemyMove  extends Strategy<Enemy> {
@@ -33,25 +30,13 @@ public class LoopEnemyMove  extends Strategy<Enemy> {
 		
 		switch(randomDirInt) {
 		case 1:
-			this.move(1);
+			me.entityMove(1, 0, 0, 'S');
 			break;
 		case 2:
-			this.move(-1);
+			me.entityMove(-1, 0, 0, 'S');
 			break;
 		}
 		
-	}
-	
-	/**
-	 * The move method. Called by runStrategy. Unfinished yet.
-	 * @param sideX the side on which the enemy is moving (left/right)
-	 */
-	public void move(int sideX) {
-		
-		Entity getAsideEntity = me.getMap().getArrayMap()[me.getPositionX() + sideX][me.getPositionY()];
-		if(!(getAsideEntity instanceof Walls)) {
-			me.entityMove(me.getPositionX(), me.getPositionY(), sideX, 'S');
-		}
 	}
 
 	@Override

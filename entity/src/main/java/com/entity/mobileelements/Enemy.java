@@ -2,7 +2,7 @@ package com.entity.mobileelements;
 
 import java.io.IOException;
 
-import com.strategy.RandomEnemyMove;
+import com.strategy.LoopEnemyMove;
 
 import entity.Sprite;
 /**
@@ -33,7 +33,7 @@ public class Enemy extends MobileElements {
 	 */
 	public Enemy(int x, int y) {
 		super(spriteDown, x, y);
-		this.setStrategy(new RandomEnemyMove(this));
+		this.setStrategy(new LoopEnemyMove(this));
 		this.isAlive = true;
 	}
 	
